@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hypnosis Practice Agenda (Dark)</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#121821;
+      --panel-2:#0f141c;
+      --text:#e6edf3;
+      --muted:#a9b4c0;
+      --accent:#6ec6ff;
+      --accent-2:#7ee787;
+      --danger:#ff6b6b;
+      --border:#1e2a38;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:radial-gradient(1200px 800px at 10% -10%, #122033 0%, #0b0f14 60%);
+      line-height:1.55;
+    }
+    a{color:var(--accent)}
+    .container{
+      max-width:1100px;
+      margin: clamp(10px,3vw,32px) auto;
+      padding: clamp(10px,3vw,24px);
+    }
+    header{
+      background: linear-gradient(180deg, rgba(110,198,255,.09), rgba(126,231,135,.06));
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(16px,4vw,28px);
+      box-shadow: var(--shadow);
+    }
+    h1{font-size:clamp(1.2rem, 2.2vw + .6rem, 2rem); margin:0 0 .25rem}
+    .subtitle{color:var(--muted); margin:.25rem 0 .5rem}
+    .intro{
+      margin:.6rem 0 0;
+      color:var(--text);
+      background:#0c1622;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:.65rem .75rem;
+      box-shadow: var(--shadow);
+      font-style: italic;
+    }
+    .pill{
+      display:inline-block; padding:.35rem .7rem; border-radius:999px;
+      background: #0c1622; border:1px solid var(--border); color:var(--muted);
+      font-size:.85rem; margin-right:.35rem
+    }
+    .grid{
+      display:grid; gap:clamp(12px,2vw,18px);
+      grid-template-columns: repeat(12, 1fr);
+      margin-top:clamp(12px,2vw,18px);
+    }
+    .card{
+      grid-column: span 12;
+      background:linear-gradient(180deg, var(--panel), var(--panel-2));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding: clamp(14px,2.6vw,22px);
+    }
+    @media (min-width:840px){
+      .card.half{grid-column: span 6;}
+    }
+    h2{font-size: clamp(1.05rem, 1.2vw + .7rem, 1.4rem); margin:.25rem 0 .5rem}
+    h3{font-size: 1.05rem; margin: 1rem 0 .5rem}
+    .muted{color:var(--muted)}
+    .row{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+    .controls button, button{
+      background: #0c1622; color:var(--text);
+      border:1px solid var(--border);
+      padding:.55rem .8rem; border-radius:10px; cursor:pointer;
+      transition:.2s transform, .2s background;
+    }
+    .controls button:hover, button:hover{ transform: translateY(-1px); background:#0f1a29;}
+    .controls{display:flex; flex-wrap:wrap; gap:8px; margin:.5rem 0 .25rem}
+    .list{margin:.5rem 0 0; padding:0; list-style:none}
+    .list li{display:flex; gap:.6rem; align-items:flex-start; padding:.45rem .35rem; border-radius:10px}
+    .list li:hover{background:#0c1622}
+    .list input[type="checkbox"]{margin-top:.25rem; transform:scale(1.15)}
+    .badge{font-size:.8rem; color:#9ed6ff; padding:.1rem .5rem; border:1px solid var(--border); border-radius:999px; background:#0b1726; margin-left:.35rem}
+    .section{border-top:1px dashed var(--border); margin-top:.75rem; padding-top:.6rem}
+    .select{background:#0c1622; border:1px solid var(--border); color:var(--text); border-radius:10px; padding:.5rem; min-width:200px}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; font-size:.95rem}
+    .hint{font-size:.9rem; color:var(--muted)}
+    .sticky{ position:sticky; top:10px; }
+    .timer{
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(1.2rem, 2.4vw + .6rem, 2rem);
+      letter-spacing:.03em; padding:.25rem .5rem; border-radius:10px;
+      background:#0c1622; border:1px solid var(--border); display:inline-block;
+      min-width:8ch; text-align:center;
+    }
+    .notice{
+      background: #0c1a12; border:1px solid #153f28; color:#bfffd0;
+      padding:.6rem .8rem; border-radius:10px; margin:.5rem 0
+    }
+    .copyout{
+      width:100%; min-height:120px; background:#0c1622; color:var(--text);
+      border:1px solid var(--border); border-radius:10px; padding:.6rem
+    }
+    .footer{color:var(--muted); font-size:.9rem; text-align:center; margin-top:16px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Hypnosis Practice Agenda</h1>
+      <div class="subtitle">90-minute practice session • Dark theme • Mobile-friendly & responsive</div>
+      <p class="intro">“Most people want their practice to be enjoyable, don’t they? And most people also want to feel like they’re actually improving. Some people notice that when there’s a simple plan, it helps the experience feel smoother and more effective. And whether we follow all of it or just take the pieces that feel right, it can still support us in becoming better hypnotists. Would you like to give that a try together?”</p>
+      <div class="row">
+        <span class="pill">45 min per person</span>
+        <span class="pill">Suggestion chosen <b>before</b> trance</span>
+        <span class="pill">Post-hypnotic style wording</span>
+      </div>
+      <div class="controls" aria-label="Timer Presets">
+        <span class="timer" id="timer">45:00</span>
+        <button onclick="setTimer(45*60)">45-min Round</button>
+        <button onclick="setTimer(90*60)">90-min Session</button>
+        <button onclick="toggleTimer()">Start / Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+      <div class="hint">Tip: Start a 45-minute round, switch roles at zero, then run a second round.</div>
+    </header>
+
+    <section class="grid">
+      <article class="card half">
+        <h2>Flow for Each Person</h2>
+        <ol class="list">
+          <li><input type="checkbox" /> <div><b>Opening (1–2 min)</b> — quick check-in; confirm roles.</div></li>
+          <li><input type="checkbox" /> <div><b>Suggestion Menu Selection (≈5 min)</b> — subject consciously chooses 1–2 suggestions <span class="badge">before trance</span>.</div></li>
+          <li><input type="checkbox" /> <div><b>Pre-Talk Practice (≈5 min)</b> — brief explanation, set expectations, answer questions.</div></li>
+          <li><input type="checkbox" /> <div><b>Induction (≈10 min)</b> — any style (eye-fixation, relaxation, Ericksonian), smooth pacing.</div></li>
+          <li><input type="checkbox" /> <div><b>Deepening & Delivery (10–15 min)</b> — deepen and weave in the chosen suggestion(s).</div></li>
+          <li><input type="checkbox" /> <div><b>Emergence (≈5 min)</b> — reorient, count up, ensure alertness and comfort.</div></li>
+          <li><input type="checkbox" /> <div><b>Debrief (≈8–10 min)</b> — subject shares experience; hypnotist reflects; set a micro-goal.</div></li>
+        </ol>
+        <div class="section notice">
+          Remember: speak suggestions in second-person, post-hypnotic style (e.g., “<i>When you wake up, you will…</i>”).
+        </div>
+      </article>
+
+      <article class="card half">
+        <div class="sticky">
+          <h2>Suggestion Menu</h2>
+          <div class="row">
+            <label class="hint">Filter by category:</label>
+            <select id="category" class="select" onchange="filterCategory()">
+              <option value="all">All</option>
+              <option value="confidence">Confidence & Identity</option>
+              <option value="learning">Learning & Growth</option>
+              <option value="creativity">Creativity & Fun</option>
+              <option value="connection">Connection & Collaboration</option>
+              <option value="resources">Resources & Resilience</option>
+              <option value="trance">Trance & Depth</option>
+              <option value="anchor">Anchoring Energy</option>
+            </select>
+            <button onclick="copySelected()">Copy Selected</button>
+            <button onclick="clearChecks()">Clear</button>
+          </div>
+
+          <ul id="menu" class="list"></ul>
+          <textarea id="out" class="copyout mono" placeholder="Copied suggestions will appear here…"></textarea>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Debrief Prompts</h2>
+        <ul class="list">
+          <li><input type="checkbox" /> <div>What moments felt most effective or natural?</div></li>
+          <li><input type="checkbox" /> <div>What could be smoother in pacing, tone, or word choice?</div></li>
+          <li><input type="checkbox" /> <div>Did the suggestion feel congruent and relevant?</div></li>
+          <li><input type="checkbox" /> <div>Any signs of trance depth you noticed (breath, eye changes, response lag)?</div></li>
+          <li><input type="checkbox" /> <div>One takeaway and one improvement goal for next session.</div></li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="footer">© Practice tool for hypnotherapy co-op learning • Works offline • Dark mode</div>
+  </div>
+
+  <script>
+    // ===== Timer =====
+    let remaining = 45 * 60;
+    let timerId = null;
+
+    function setTimer(seconds){
+      remaining = seconds;
+      renderTimer();
+    }
+    function renderTimer(){
+      const m = Math.floor(remaining/60).toString().padStart(2,'0');
+      const s = Math.floor(remaining%60).toString().padStart(2,'0');
+      document.getElementById('timer').textContent = `${m}:${s}`;
+    }
+    function tick(){
+      if(remaining>0){ remaining--; renderTimer(); }
+      else{ clearInterval(timerId); timerId=null; flashTimer(); }
+    }
+    function toggleTimer(){
+      if(timerId){ clearInterval(timerId); timerId=null; }
+      else{ timerId = setInterval(tick, 1000); }
+    }
+    function resetTimer(){
+      clearInterval(timerId); timerId=null; setTimer(45*60);
+    }
+    function flashTimer(){
+      const el = document.getElementById('timer');
+      el.style.background = '#291016';
+      el.style.borderColor = '#4a1f2a';
+      el.style.color = '#ffb3b3';
+      setTimeout(()=>{ el.style.background='#0c1622'; el.style.borderColor='var(--border)'; el.style.color='var(--text)'; }, 3000);
+    }
+    renderTimer();
+
+    // ===== Suggestion Menu =====
+    const suggestions = [
+      // Confidence & Identity
+      {t:'When you wake up, you will believe that you are the hypnotist.', c:'confidence'},
+      {t:'When you wake up, you will know that you are already an awesome hypnotist.', c:'confidence'},
+      {t:'When you wake up, you will feel like an expert.', c:'confidence'},
+      {t:'When you wake up, you will know you are a phenomenal subject.', c:'confidence'},
+      {t:'When you wake up, you will believe you are a phenomenal hypnotist.', c:'confidence'},
+      {t:'When you wake up, you will feel certain that this is exactly what you are meant to be doing.', c:'confidence'},
+
+      // Learning & Growth
+      {t:'When you wake up, you will notice your hypnosis skills getting better every day.', c:'learning'},
+      {t:'When you wake up, you will feel hypnosis is easy and natural for you.', c:'learning'},
+      {t:'When you wake up, you will stay curious and eager to learn more.', c:'learning'},
+      {t:'When you wake up, you will feel your confidence as a hypnotist growing stronger with every session.', c:'learning'},
+
+      // Creativity & Fun
+      {t:'When you wake up, you will notice yourself seeing solutions everywhere you look.', c:'creativity'},
+      {t:'When you wake up, you will find it natural to enjoy practicing hypnosis with others.', c:'creativity'},
+      {t:'When you wake up, you will feel fun leading you into more success.', c:'creativity'},
+
+      // Connection & Collaboration
+      {t:'When you wake up, you will feel people want to work with you because you’re an inspiring hypnotist.', c:'connection'},
+      {t:'When you wake up, you will easily notice signs of trance in yourself and in others.', c:'connection'},
+      {t:'When you wake up, you will feel open to making new friends through hypnosis and community.', c:'connection'},
+      {t:'When you wake up, you will enjoy using your skills to help people.', c:'connection'},
+
+      // Resources & Resilience
+      {t:'When you wake up, you will know all the resources you need are available to you.', c:'resources'},
+      {t:'When you wake up, you will trust yourself to find the right resources at the right time.', c:'resources'},
+
+      // Trance & Depth
+      {t:'When you wake up, you will feel how easy it is to enter deep, comfortable trance states.', c:'trance'},
+      {t:'When you wake up, you will know it’s natural for you to go into trance quickly and enjoyably.', c:'trance'},
+
+      // Anchoring
+      {t:'And when you wake up, you will feel AWESOME!', c:'anchor'}
+    ];
+
+    function renderMenu(items){
+      const ul = document.getElementById('menu');
+      ul.innerHTML = '';
+      items.forEach((s, idx)=>{
+        const li = document.createElement('li');
+        li.dataset.cat = s.c;
+        li.innerHTML = `<input type="checkbox" id="s${idx}"/> <label for="s${idx}">${s.t}</label>`;
+        ul.appendChild(li);
+      });
+    }
+
+    function filterCategory(){
+      const cat = document.getElementById('category').value;
+      const lis = Array.from(document.querySelectorAll('#menu li'));
+      lis.forEach(li=>{
+        li.style.display = (cat==='all' || li.dataset.cat===cat) ? 'flex' : 'none';
+      });
+    }
+
+    function copySelected(){
+      const checks = Array.from(document.querySelectorAll('#menu input[type="checkbox"]:checked'));
+      const lines = checks.map(ch => ch.nextElementSibling.textContent.trim());
+      const box = document.getElementById('out');
+      box.value = lines.join('\\n');
+      box.focus();
+      box.select();
+      try{ document.execCommand('copy'); }catch(e){}
+    }
+    function clearChecks(){
+      const checks = document.querySelectorAll('#menu input[type="checkbox"]');
+      checks.forEach(c=> c.checked=false);
+      document.getElementById('out').value='';
+    }
+
+    renderMenu(suggestions);
+    filterCategory();
+  </script>
+</body>
+</html>

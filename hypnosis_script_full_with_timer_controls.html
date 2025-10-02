@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complete Hypnosis Experience Script</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --card: #f7f7f7;
+      --accent: #3b82f6;
+      --btn-bg: #efefef;
+      --btn-fg: #111111;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+      --font-size: 18px;
+      --max-width: 900px;
+      --radius: 16px;
+      --spacing: 14px;
+      --line-height: 1.7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0c0f;
+        --fg: #e6e6e6;
+        --muted: #a0a0a0;
+        --card: #12151b;
+        --accent: #60a5fa;
+        --btn-bg: #1b1f2a;
+        --btn-fg: #e6e6e6;
+        --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      }
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --card: #f7f7f7;
+      --accent: #3b82f6;
+      --btn-bg: #efefef;
+      --btn-fg: #111111;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    html[data-theme="dark"] {
+      --bg: #0b0c0f;
+      --fg: #e6e6e6;
+      --muted: #a0a0a0;
+      --card: #12151b;
+      --accent: #60a5fa;
+      --btn-bg: #1b1f2a;
+      --btn-fg: #e6e6e6;
+      --shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: var(--line-height);
+      font-size: var(--font-size);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+    }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .title { font-weight: 700; font-size: 1.05rem; }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    button, select {
+      border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    #timer {
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--accent);
+      box-shadow: var(--shadow);
+      min-width: 80px;
+      text-align: center;
+    }
+    main { max-width: var(--max-width); margin: 22px auto; padding: 0 18px 36px; }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    h1, h2 { line-height: 1.3; margin: 0; }
+    h1 { font-size: 1.5rem; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
+    h2 { font-size: 1.2rem; margin-top: 26px; margin-bottom: 6px; }
+    section p { margin: 10px 0; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap toolbar">
+      <div class="title">Complete Hypnosis Experience Script</div>
+      <div class="controls" role="group" aria-label="Reader controls">
+        <span id="timer" aria-live="polite">00:00</span>
+        <button id="timer-toggle" aria-pressed="false" title="Start or pause the timer">Start</button>
+        <button id="timer-reset" title="Reset timer to 00:00">Reset</button>
+        <button id="decrease" title="Decrease font size" aria-label="Decrease font size">A−</button>
+        <button id="increase" title="Increase font size" aria-label="Increase font size">A+</button>
+        <button id="reset" title="Reset font size" aria-label="Reset font size">Reset</button>
+        <select id="theme" aria-label="Theme mode">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="card" aria-labelledby="page-title">
+      <h1 id="page-title">Complete Hypnosis Experience Script</h1>
+      <div class="subtitle">Responsive reader • Light/Dark modes • Adjustable font size • Timer</div>
+
+      <section>
+        <h2>Eye Closure Induction</h2>
+        <p>“Some people find it easy to begin hypnosis by simply looking up, that’s right… just a little higher, so that the eyes begin to notice a gentle strain in the eyelids, and perhaps even across the forehead. And as that sensation builds, you may already feel how natural it is to allow those eyelids to close down now… gently, comfortably, that’s right.</p>
+        <p>And when they close, you may begin to notice… how, just by letting those eyelids remain gently closed… your awareness can drift inward all on its own… inward, toward your imagination… and the quiet workings of your own mind.</p>
+        <p>And many people become aware of just how much more relaxing it feels to keep their eyes closed. In a moment, not yet but in a moment, I'm going to ask you to open your eyelids. When I ask you to open them your eyelids will be so relaxed and heavy that they will just barely open, and when I ask you to close your eyelids again, you will allow yourself to relax even more completely. Now... try to open your eyelids and feel yourself relaxing even more.”</p>
+      </section>
+
+      <section>
+        <h2>Beach Scene</h2>
+        <p>“There’s a CD I sometimes listen to about being on a beach… and each time I hear it, it seems to make me more and more relaxed. And as you hear this now, you might begin to imagine a beach of your own… noticing the warmth of the sand beneath you, the sun shining on your body as though it shines right through, warming you deep inside.</p>
+        <p>Perhaps you notice the gentle sound of waves rolling onto the shore… and the seagulls drifting overhead, part of that natural scene. And it’s almost as if you’re right there, feeling the moist sea breeze waft over your body… while waves of relaxation cascade down… down… over your arms, and out through your fingers.”</p>
+      </section>
+
+      <section>
+        <h2>Arm Levitation Convincer</h2>
+        <p>“And as you’re enjoying that comfort, you may begin to notice something interesting about your arms. Sometimes, when a person is this relaxed, one arm can begin to feel different from the other. Perhaps one feels a little lighter, as though air or lightness is filling it.</p>
+        <p>And you might even imagine that several balloons are tied gently to that arm… helium balloons, tugging upward, lightly, gently… creating a curious sensation of buoyancy. You don’t even have to make it happen. Just imagine what it would be like if those balloons were lifting, pulling softly, as though the arm were rising all by itself. That’s right.</p>
+        <p>And maybe it does begin to lift, even just a little. Or maybe it simply feels lighter, or different, or as though it could lift if it wanted to. Either way, that’s a sign that hypnosis is happening now… that your unconscious mind is responding, even in ways you don’t have to think about.</p>
+        <p>And when you’re ready, you can even open your eyes for just a moment… and notice that arm, already slightly lifted. And then, when you close your eyes again, the feeling of those balloons keeps that arm gently floating. And when the time is right, that arm can slowly lower back down, and as it does, every inch it lowers allows you to go even deeper.”</p>
+      </section>
+
+      <section>
+        <h2>Elevator Deepener</h2>
+        <p>“And as that comfort continues, you may begin to imagine a tall, familiar building. Perhaps you’ve seen it before in your mind, or perhaps it’s just appearing now… solid, modern, welcoming in its own way.</p>
+        <p>You find yourself walking toward the entrance, and as you step through the revolving door, you notice a security guard standing inside. At first there’s a kind of steely glare, as though this guard is testing you… but then, just as quickly, there’s recognition. The guard works for you. You belong here. And so you nod, and the way clears for you to continue.</p>
+        <p>Ahead, you notice the smooth, mirrorlike surface of the elevator doors. As you press the button, the doors slide open, inviting you in. You step inside, safe in this private space. The doors close gently, and the elevator begins to descend.</p>
+        <p>With each floor, you notice the soft hum, the smooth sensation of going down. One… deeper now. Two… even more at ease. Three… by the time you reach ten, you’ll be in a wonderfully receptive state. Four… drifting comfortably. Five… each number a signal to go deeper. Six… safe, calm, peaceful. Seven… down, down, deeper still. Eight… further into yourself. Nine… opening to all that is useful and good. Ten… the elevator comes to a gentle stop.</p>
+        <p>And when the doors open, you step out into a quiet, inviting room. Perhaps a fire glows in the hearth, perhaps a comfortable chair waits for you. And as you settle in, you may notice how natural it feels to let words and ideas simply flow into your mind… soaking in, easily, like water into dry ground.”</p>
+      </section>
+
+      <section>
+        <h2>Hand Stuck Convincer</h2>
+        <p>“…And as you settle into that quiet, comfortable room… maybe noticing the glow of the fire or the comfort of the chair… you might also begin to notice something curious about your body.</p>
+        <p>Perhaps one of your hands… the one resting on your lap… feels as though it’s pressing down a little more firmly now. Almost as if the chair and your hand have become one. And the more you notice it, the more it seems as though that hand has become stuck there… resting so comfortably, so securely, that even if you tried to lift it, you’d find it doesn’t want to move.</p>
+        <p>And in fact, the very act of trying only makes it press down more firmly. Go ahead and gently test it now… and notice what happens. Because the more you try, the more stuck it becomes… and the more you realize, that’s a sign of just how deeply you’re experiencing hypnosis right now.</p>
+        <p>And then, when the time is right, that hand can come free again, and the moment it does, all of that comfort and ease doubles, sending you even deeper inside.”</p>
+      </section>
+
+      <section>
+        <h2>Positive Awakening</h2>
+        <p>“…And very soon now, you’ll be ready to awaken fully from this experience. When you do, you’ll find yourself feeling alert, refreshed, and wonderfully positive about life. It’s as if the calm and ease you’ve experienced here today stays with you, while you wake up feeling brighter, lighter, and happier than before.</p>
+        <p>In a moment, I’ll count from one to five. With each number, you return more fully to the present, carrying with you that good feeling, that confidence, that positive energy.</p>
+        <p>One… slowly returning now.</p>
+        <p>Two… feeling refreshed.</p>
+        <p>Three… energy flowing back into your body.</p>
+        <p>Four… eyes beginning to feel lighter.</p>
+        <p>Five… eyes open, wide awake, alert, and feeling happy about this session.”</p>
+      </section>
+
+      <div class="footer">© <span id="year"></span> Complete Hypnosis Experience Script</div>
+    </article>
+  </main>
+
+  <script>
+    (function() {
+      const root = document.documentElement;
+      const inc = document.getElementById('increase');
+      const dec = document.getElementById('decrease');
+      const resetFont = document.getElementById('reset');
+      const themeSel = document.getElementById('theme');
+      const year = document.getElementById('year');
+      const timerEl = document.getElementById('timer');
+      const toggleBtn = document.getElementById('timer-toggle');
+      const resetTimerBtn = document.getElementById('timer-reset');
+
+      // Timer state
+      let elapsed = 0; // seconds
+      let intervalId = null;
+
+      function renderTime() {
+        const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+        const secs = String(elapsed % 60).padStart(2, '0');
+        timerEl.textContent = mins + ":" + secs;
+      }
+
+      function startTimer() {
+        if (intervalId !== null) return;
+        intervalId = setInterval(() => {
+          elapsed += 1;
+          renderTime();
+        }, 1000);
+        toggleBtn.textContent = 'Pause';
+        toggleBtn.setAttribute('aria-pressed', 'true');
+      }
+
+      function pauseTimer() {
+        if (intervalId === null) return;
+        clearInterval(intervalId);
+        intervalId = null;
+        toggleBtn.textContent = 'Start';
+        toggleBtn.setAttribute('aria-pressed', 'false');
+      }
+
+      function resetTimer() {
+        elapsed = 0;
+        renderTime();
+      }
+
+      // Wire up timer buttons
+      toggleBtn.addEventListener('click', () => {
+        if (intervalId === null) startTimer();
+        else pauseTimer();
+      });
+
+      resetTimerBtn.addEventListener('click', () => {
+        resetTimer();
+      });
+
+      // Initialize time display
+      renderTime();
+
+      // Font size control
+      const getFont = () => parseFloat(getComputedStyle(root).getPropertyValue('--font-size'));
+      const setFont = (px) => {
+        const clamped = Math.max(14, Math.min(28, px));
+        root.style.setProperty('--font-size', clamped + 'px');
+        localStorage.setItem('reader_font_px', String(clamped));
+      };
+      const savedFont = localStorage.getItem('reader_font_px');
+      if (savedFont) setFont(parseFloat(savedFont));
+
+      inc.onclick = () => setFont(getFont()+2);
+      dec.onclick = () => setFont(getFont()-2);
+      resetFont.onclick = () => setFont(18);
+
+      // Theme control
+      function applyTheme(mode) {
+        if (mode === 'light' || mode === 'dark') root.setAttribute('data-theme', mode);
+        else root.removeAttribute('data-theme');
+      }
+      const savedTheme = localStorage.getItem('reader_theme');
+      if (savedTheme) {
+        themeSel.value = savedTheme;
+        applyTheme(savedTheme);
+      }
+      themeSel.onchange = () => {
+        const mode = themeSel.value;
+        applyTheme(mode);
+        localStorage.setItem('reader_theme', mode);
+      };
+
+      // Year
+      year.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

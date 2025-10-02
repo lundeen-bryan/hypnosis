@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eyes Open → Utilization Flows</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #111723;
+      --ink: #e6eef8;
+      --muted: #9fb3c8;
+      --accent: #79b8ff;
+      --border: #253043;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, rgba(11,15,20,0.98), rgba(11,15,20,0.85));
+      backdrop-filter: saturate(180%) blur(8px);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 1.25rem;
+      letter-spacing: 0.3px;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+    button:active { transform: translateY(1px); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .title {
+      font-size: 1.1rem;
+      margin: 2px 0 10px 0;
+      color: var(--ink);
+    }
+    .script {
+      font-size: var(--scriptSize, 1.125rem);
+      white-space: pre-wrap;
+    }
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+    .copy-row {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    a.small {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .footer-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 24px 0 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <h1>Eyes Open → Utilization Flows</h1>
+    <div class="controls">
+      <button onclick="changeSize(1)">A+</button>
+      <button onclick="changeSize(-1)">A−</button>
+      <button onclick="toggleLineBreaks(this)">Toggle line breaks</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <span class="label">How to use</span>
+      <div class="grid">
+        <p class="script">
+Tap any flow when a subject's eyes won’t close. Each line softly links what they’re doing (keeping eyes open) to what you want (closing/going inward), using the “the more you X, the more you Y” pattern.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Flow 1 — Heaviness → Effort → Rest</div>
+      <div class="script" id="s1">
+That’s right… and the more your eyes want to stay open, the heavier they begin to feel…
+And the more effort it takes to keep them open, the quicker that effort just turns into a comfortable tiredness…
+And as that tiredness spreads, your eyes may simply decide for themselves to rest… gently closing now.
+      </div>
+      <div class="copy-row">
+        <button onclick="copyText('s1', this)">Copy</button>
+        <a class="small" href="#" onclick="expand('s1'); return false;">Expand</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Flow 2 — Blink → Curiosity → Focus</div>
+      <div class="script" id="s2">
+You may notice… the more you keep them open, the more little blinks want to happen…
+And the more you notice those blinks, the more curious a part of you becomes about just letting them close…
+And the more they close, even slightly, the more your focus can drift inward… into that deeper calm waiting for you now.
+      </div>
+      <div class="copy-row">
+        <button onclick="copyText('s2', this)">Copy</button>
+        <a class="small" href="#" onclick="expand('s2'); return false;">Expand</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Flow 3 — Effort → Heaviness → Relaxation</div>
+      <div class="script" id="s3">
+The more you try to keep them open, the more effort it takes…
+And the more effort you feel, the heavier those eyelids can become…
+And the heavier they feel, the more relaxed your whole body can begin to feel… almost as if closing is the most natural thing in the world now.
+      </div>
+      <div class="copy-row">
+        <button onclick="copyText('s3', this)">Copy</button>
+        <a class="small" href="#" onclick="expand('s3'); return false;">Expand</a>
+      </div>
+    </div>
+
+    <p class="footer-note">Tip: Speak slowly. Allow micro-pauses after each line so their experience can catch up to your words.</p>
+  </main>
+
+  <script>
+    function changeSize(delta) {
+      const root = document.documentElement;
+      const cs = getComputedStyle(root).getPropertyValue('--scriptSize') || '1.125rem';
+      // Parse rem-ish value to pixels
+      const temp = document.createElement('div');
+      temp.style.fontSize = cs.trim();
+      document.body.appendChild(temp);
+      const px = parseFloat(getComputedStyle(temp).fontSize);
+      temp.remove();
+      const newPx = Math.max(14, Math.min(28, px + (delta > 0 ? 2 : -2)));
+      root.style.setProperty('--scriptSize', newPx + 'px');
+    }
+    function copyText(id, btn) {
+      const el = document.getElementById(id);
+      const text = el.innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = old), 1200);
+      });
+    }
+    function expand(id) {
+      const el = document.getElementById(id);
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function toggleLineBreaks(t) {
+      const els = document.querySelectorAll('.script');
+      els.forEach(el => {
+        if (el.style.whiteSpace === 'normal') {
+          el.style.whiteSpace = 'pre-wrap';
+          t.textContent = 'Toggle line breaks';
+        } else {
+          el.style.whiteSpace = 'normal';
+          t.textContent = 'Preserve line breaks';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
