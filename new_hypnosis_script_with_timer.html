@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>new_hypnosis_script_with_timer.html</title>
+<style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --card: #f7f7f7;
+      --accent: #3b82f6;
+      --btn-bg: #efefef;
+      --btn-fg: #111111;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+      --font-size: 18px;
+      --max-width: 900px;
+      --radius: 16px;
+      --spacing: 14px;
+      --line-height: 1.7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0c0f;
+        --fg: #e6e6e6;
+        --muted: #a0a0a0;
+        --card: #12151b;
+        --accent: #60a5fa;
+        --btn-bg: #1b1f2a;
+        --btn-fg: #e6e6e6;
+        --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      }
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --card: #f7f7f7;
+      --accent: #3b82f6;
+      --btn-bg: #efefef;
+      --btn-fg: #111111;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    html[data-theme="dark"] {
+      --bg: #0b0c0f;
+      --fg: #e6e6e6;
+      --muted: #a0a0a0;
+      --card: #12151b;
+      --accent: #60a5fa;
+      --btn-bg: #1b1f2a;
+      --btn-fg: #e6e6e6;
+      --shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: var(--line-height);
+      font-size: var(--font-size);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+    }
+    .wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .title { font-weight: 700; font-size: 1.05rem; }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    button, select {
+      border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    #timer {
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--accent);
+      box-shadow: var(--shadow);
+      min-width: 80px;
+      text-align: center;
+    }
+    main { max-width: var(--max-width); margin: 22px auto; padding: 0 18px 36px; }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    h1, h2 { line-height: 1.3; margin: 0; }
+    h1 { font-size: 1.5rem; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
+    h2 { font-size: 1.2rem; margin-top: 26px; margin-bottom: 6px; }
+    section p { margin: 10px 0; }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+  </style>
+</head>
+<body>
+<header>
+<div class="wrap toolbar">
+<div class="title">New Hypnosis Script with Timer</div>
+<div aria-label="Reader controls" class="controls" role="group">
+<span aria-live="polite" id="timer">00:00</span>
+<button aria-pressed="false" id="timer-toggle" title="Start or pause the timer">Start</button>
+<button id="timer-reset" title="Reset timer to 00:00">Reset</button>
+<button aria-label="Decrease font size" id="decrease" title="Decrease font size">A−</button>
+<button aria-label="Increase font size" id="increase" title="Increase font size">A+</button>
+<button aria-label="Reset font size" id="reset" title="Reset font size">Reset</button>
+<select aria-label="Theme mode" id="theme">
+<option value="system">System</option>
+<option value="light">Light</option>
+<option value="dark">Dark</option>
+</select>
+</div>
+</div>
+</header>
+<main>
+<article aria-labelledby="page-title" class="card">
+<h1 id="page-title">New Hypnosis Script with Timer</h1>
+<div class="subtitle">Responsive reader • Light/Dark modes • Adjustable font size • Timer</div>
+<section>
+<h2>Modified Spiegel Eye Roll Induction + Escalator Deepener</h2>
+<p>Some people find it easy to begin hypnosis by simply looking up, that’s right… just a little higher, as if you’re looking at your eyebrows, so that the eyes begin to notice a gentle strain in the eyelids, and perhaps even behind the eyes.</p>
+<p>And as those eyelids feel the strain of looking just a little too high… you might already feel how natural it could be to let them close down now… just for a moment… and then, when you’re ready, to open them again.</p>
+<p><em>(pause while they open their eyes again)</em></p>
+<p>And once more, looking upward again… noticing how familiar that feeling is becoming… and perhaps this time, as you allow your eyelids to close, you could let them drift down even more slowly than before… as if the effort simply melts away with each gentle blink.</p>
+<p><em>(pause, allow them to close slowly, then continue)</em></p>
+<p>Good… and then once again, as your eyes open… drifting upward toward those eyebrows… the very moment you notice that strain… you can allow the natural response to happen all by itself… and this time, it may feel as though the eyes simply want to close… all on their own… as though your unconscious mind already knows how good it feels to just let go.</p>
+<p>And as those eyelids settle down, you might find that they remain comfortably closed… and every time you repeat that movement, they close even more easily… until they simply prefer to stay closed… allowing you to go deeper and deeper inside.</p>
+<p>And in a moment, but not yet, I’m going to ask you to gently test your eyelids to see if they might want to open but you’re going to find that they juuussst don’t want to open anymore. You can try to test them now. That’s right.</p>
+<p>And isn’t it interesting how, the very moment our eyes remain closed, our attention is automatically drawn inward… as though the world outside simply fades, and what matters most is the comfort within.</p>
+<p>And any sounds you may hear, or any interruptions or distractions that might occur, can simply be used by your mind as gentle reminders to bring your attention back inward… just as it is now… so that all you really need to notice is the sound of my voice guiding you deeper.</p>
+<p>And as those eyelids rest so comfortably now… you may find yourself ready to go even deeper, with the help of your imagination…</p>
+<h3>Spiegel Escalator Deepener</h3>
+<p>In a moment, you may allow yourself to go all the way down to the very bottom of relaxation, where you will feel absolutely comfortable. A place where all your problems and pain simply disappear. A beautiful place. To get there, I’ll ask you to go down three deeper levels of relaxation. Let’s call these levels A, B, and C.</p>
+<p>And now… in your mind, you may notice an escalator waiting for you. When you feel ready, you can step onto that escalator… and as you do, allow it to carry you down, smoothly and automatically.</p>
+<p>And as you ride it downward, you can go twice as deep as you were before, all you need to do is double your relaxation that you’re experiencing right now. When you arrive at level A, let me know by saying the letter ‘A’ out loud.</p>
+<p><em>(pause for response)</em></p>
+<p>Good. Now I’m going to count from 1 to 3. On the count of 3, the escalator will take you from Level A down to Level B, where you’ll relax twice as deeply again. When you arrive at level B, let me know by saying the letter ‘B’ out loud. If you follow my instructions, by the time you get to Level B your vocal cords will be so relaxed it will be very difficult to say ‘B’ – but try to say it anyway.</p>
+<p>All right, let’s begin… 1…2…3… Go down to Level B.</p>
+<p><em>(pause for response)</em></p>
+<p>Excellent, you’re doing very well. There’s just one more level left – Level C, the very bottom of relaxation, where you’ll feel absolutely amazing.</p>
+<p>I’ll count from 1 to 3 again, and on 3, the escalator will take you all the way down to the deepest level of relaxation, Level C. Don’t try to help it along, just stay relaxed and let it happen on its own.</p>
+<p>1…2…3… Going down to Level C… the very bottom of your relaxation… deeper… deeper… deeper… sinking even deeper… down… down… down… deeper to the bottom of relaxation.</p>
+<p><em>(continue to D, E, or further as desired)</em></p>
+</section><section><div class="card"><h2>Suggestion Menu</h2><p class="subtitle">Check the suggestions you'd like to deliver. You can also add a custom suggestion.</p><div class="controls"><select id="sug-category"><option value="all">All</option><option value="confidence">Confidence &amp; Identity</option><option value="learning">Learning &amp; Growth</option><option value="creativity">Creativity &amp; Fun</option><option value="connection">Connection &amp; Collaboration</option><option value="resources">Resources &amp; Resilience</option><option value="trance">Trance &amp; Depth</option><option value="anchor">Anchoring Energy</option></select><button id="sug-copy">Copy Selected</button><button id="sug-clear">Clear</button></div><ul id="sug-menu" style="list-style:none; padding-left:0; margin:8px 0;"><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_0" type="checkbox"/><label for="sug_0">When you wake up, you will believe that you are the hypnotist.</label></li><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_1" type="checkbox"/><label for="sug_1">When you wake up, you will know that you are already an awesome hypnotist.</label></li><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_2" type="checkbox"/><label for="sug_2">When you wake up, you will feel like an expert.</label></li><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_3" type="checkbox"/><label for="sug_3">When you wake up, you will know you are a phenomenal subject.</label></li><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_4" type="checkbox"/><label for="sug_4">When you wake up, you will believe you are a phenomenal hypnotist.</label></li><li data-cat="confidence" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_5" type="checkbox"/><label for="sug_5">When you wake up, you will feel certain that this is exactly what you are meant to be doing.</label></li><li data-cat="learning" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_6" type="checkbox"/><label for="sug_6">When you wake up, you will notice your hypnosis skills getting better every day.</label></li><li data-cat="learning" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_7" type="checkbox"/><label for="sug_7">When you wake up, you will feel hypnosis is easy and natural for you.</label></li><li data-cat="learning" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_8" type="checkbox"/><label for="sug_8">When you wake up, you will stay curious and eager to learn more.</label></li><li data-cat="learning" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_9" type="checkbox"/><label for="sug_9">When you wake up, you will feel your confidence as a hypnotist growing stronger with every session.</label></li><li data-cat="creativity" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_10" type="checkbox"/><label for="sug_10">When you wake up, you will notice yourself seeing solutions everywhere you look.</label></li><li data-cat="creativity" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_11" type="checkbox"/><label for="sug_11">When you wake up, you will find it natural to enjoy practicing hypnosis with others.</label></li><li data-cat="creativity" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_12" type="checkbox"/><label for="sug_12">When you wake up, you will feel fun leading you into more success.</label></li><li data-cat="connection" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_13" type="checkbox"/><label for="sug_13">When you wake up, you will feel people want to work with you because you’re an inspiring hypnotist.</label></li><li data-cat="connection" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_14" type="checkbox"/><label for="sug_14">When you wake up, you will easily notice signs of trance in yourself and in others.</label></li><li data-cat="connection" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_15" type="checkbox"/><label for="sug_15">When you wake up, you will feel open to making new friends through hypnosis and community.</label></li><li data-cat="connection" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_16" type="checkbox"/><label for="sug_16">When you wake up, you will enjoy using your skills to help people.</label></li><li data-cat="resources" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_17" type="checkbox"/><label for="sug_17">When you wake up, you will know all the resources you need are available to you.</label></li><li data-cat="resources" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_18" type="checkbox"/><label for="sug_18">When you wake up, you will trust yourself to find the right resources at the right time.</label></li><li data-cat="trance" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_19" type="checkbox"/><label for="sug_19">When you wake up, you will feel how easy it is to enter deep, comfortable trance states.</label></li><li data-cat="trance" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_20" type="checkbox"/><label for="sug_20">When you wake up, you will know it’s natural for you to go into trance quickly and enjoyably.</label></li><li data-cat="anchor" style="display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0;"><input id="sug_21" type="checkbox"/><label for="sug_21">And when you wake up, you will feel AWESOME!</label></li></ul><div class="section"><label for="sug-custom">Custom suggestion:</label><input id="sug-custom" placeholder="Type your own suggestion…" style="width:100%; padding:.6rem; margin:.35rem 0; border-radius:10px; border:1px solid color-mix(in oklab, var(--fg) 14%, transparent); background: var(--card); color: var(--fg);" type="text"/><button id="sug-add">Add to List</button></div><textarea class="mono" id="sug-out" placeholder="Selected suggestions will appear here…" style="width:100%; min-height:110px; margin-top:8px; border-radius:10px; border:1px solid color-mix(in oklab, var(--fg) 14%, transparent); background: var(--card); color: var(--fg);"></textarea></div></section><section>
+<h2>Positive Awakening</h2>
+<p>“…And very soon now, you’ll be ready to awaken fully from this experience. When you do, you’ll find yourself feeling alert, refreshed, and wonderfully positive about life. It’s as if the calm and ease you’ve experienced here today stays with you, while you wake up feeling brighter, lighter, and happier than before.</p>
+<p>In a moment, I’ll count from one to five. With each number, you return more fully to the present, carrying with you that good feeling, that confidence, that positive energy.</p>
+<p>One… slowly returning now.</p>
+<p>Two… feeling refreshed.</p>
+<p>Three… energy flowing back into your body.</p>
+<p>Four… eyes beginning to feel lighter.</p>
+<p>Five… eyes open, wide awake, alert, and feeling happy about this session.”</p>
+</section>
+<div class="footer">© <span id="year"></span> Complete Hypnosis Experience Script</div>
+</article>
+</main>
+<script>
+    (function() {
+      const root = document.documentElement;
+      const inc = document.getElementById('increase');
+      const dec = document.getElementById('decrease');
+      const resetFont = document.getElementById('reset');
+      const themeSel = document.getElementById('theme');
+      const year = document.getElementById('year');
+      const timerEl = document.getElementById('timer');
+      const toggleBtn = document.getElementById('timer-toggle');
+      const resetTimerBtn = document.getElementById('timer-reset');
+
+      // Timer state
+      let elapsed = 0; // seconds
+      let intervalId = null;
+
+      function renderTime() {
+        const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+        const secs = String(elapsed % 60).padStart(2, '0');
+        timerEl.textContent = mins + ":" + secs;
+      }
+
+      function startTimer() {
+        if (intervalId !== null) return;
+        intervalId = setInterval(() => {
+          elapsed += 1;
+          renderTime();
+        }, 1000);
+        toggleBtn.textContent = 'Pause';
+        toggleBtn.setAttribute('aria-pressed', 'true');
+      }
+
+      function pauseTimer() {
+        if (intervalId === null) return;
+        clearInterval(intervalId);
+        intervalId = null;
+        toggleBtn.textContent = 'Start';
+        toggleBtn.setAttribute('aria-pressed', 'false');
+      }
+
+      function resetTimer() {
+        elapsed = 0;
+        renderTime();
+      }
+
+      // Wire up timer buttons
+      toggleBtn.addEventListener('click', () => {
+        if (intervalId === null) startTimer();
+        else pauseTimer();
+      });
+
+      resetTimerBtn.addEventListener('click', () => {
+        resetTimer();
+      });
+
+      // Initialize time display
+      renderTime();
+
+      // Font size control
+      const getFont = () => parseFloat(getComputedStyle(root).getPropertyValue('--font-size'));
+      const setFont = (px) => {
+        const clamped = Math.max(14, Math.min(28, px));
+        root.style.setProperty('--font-size', clamped + 'px');
+        localStorage.setItem('reader_font_px', String(clamped));
+      };
+      const savedFont = localStorage.getItem('reader_font_px');
+      if (savedFont) setFont(parseFloat(savedFont));
+
+      inc.onclick = () => setFont(getFont()+2);
+      dec.onclick = () => setFont(getFont()-2);
+      resetFont.onclick = () => setFont(18);
+
+      // Theme control
+      function applyTheme(mode) {
+        if (mode === 'light' || mode === 'dark') root.setAttribute('data-theme', mode);
+        else root.removeAttribute('data-theme');
+      }
+      const savedTheme = localStorage.getItem('reader_theme');
+      if (savedTheme) {
+        themeSel.value = savedTheme;
+        applyTheme(savedTheme);
+      }
+      themeSel.onchange = () => {
+        const mode = themeSel.value;
+        applyTheme(mode);
+        localStorage.setItem('reader_theme', mode);
+      };
+
+      // Year
+      year.textContent = new Date().getFullYear();
+    })();
+  </script>
+<script>
+(function(){
+  const list = document.getElementById('sug-menu');
+  const box = document.getElementById('sug-out');
+  const catSel = document.getElementById('sug-category');
+  const addBtn = document.getElementById('sug-add');
+  const custom = document.getElementById('sug-custom');
+  const clearBtn = document.getElementById('sug-clear');
+  const copyBtn = document.getElementById('sug-copy');
+
+  function filter(){
+    const cat = catSel.value;
+    Array.from(list.children).forEach(li => {
+      li.style.display = (cat === 'all' || li.dataset.cat === cat) ? 'flex' : 'none';
+    });
+  }
+  function gather(){
+    const checks = list.querySelectorAll('input[type="checkbox"]:checked');
+    const lines = Array.from(checks).map(ch => ch.nextElementSibling.textContent.trim());
+    box.value = lines.join('\n');
+  }
+  function addCustom(){
+    const txt = custom.value.trim();
+    if(!txt) return;
+    const idx = list.children.length;
+    const li = document.createElement('li');
+    li.style.display = 'flex'; li.style.gap='.6rem'; li.style.alignItems='flex-start'; li.style.padding='.35rem 0';
+    li.dataset.cat = 'custom';
+    const cb = document.createElement('input'); cb.type='checkbox'; cb.id='sug_'+idx;
+    const label = document.createElement('label'); label.setAttribute('for','sug_'+idx); label.textContent = txt;
+    li.appendChild(cb); li.appendChild(label);
+    list.appendChild(li);
+    custom.value='';
+  }
+  function clearAll(){
+    list.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    box.value = '';
+  }
+  function copyOut(){
+    box.focus(); box.select();
+    try{ document.execCommand('copy'); }catch(e){}
+  }
+
+  list.addEventListener('change', gather);
+  catSel.addEventListener('change', filter);
+  addBtn.addEventListener('click', addCustom);
+  clearBtn.addEventListener('click', clearAll);
+  copyBtn.addEventListener('click', copyOut);
+  filter();
+})();</script></body>
+</html>
