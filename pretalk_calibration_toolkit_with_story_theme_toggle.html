@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Pre‑Talk Calibration Toolkit</title>
+<style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#111827;
+      --muted:#9ca3af;
+      --txt:#e5e7eb;
+      --accent:#60a5fa;
+      --accent-2:#34d399;
+      --border:#1f2937;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent)}
+    .wrap{max-width:880px;margin:0 auto;padding:28px 18px 52px}
+    header{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+    h1{font-size:clamp(24px,4vw,34px);margin:0;color:#f3f4f6}
+    p.lead{color:var(--muted);margin:0}
+    .tip{
+      background:linear-gradient(180deg, rgba(17,24,39,.8), rgba(17,24,39,.6));
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px 16px;
+      margin:14px 0 22px;
+      font-size:15px;
+    }
+    .grid{display:grid;gap:14px;grid-template-columns:1fr}
+    @media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+    .card{
+      background:radial-gradient(1200px 400px at 0% 0%, rgba(96,165,250,.08), transparent 60%),
+                 radial-gradient(1200px 400px at 100% 100%, rgba(52,211,153,.07), transparent 60%),
+                 var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px 14px 12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:.25px;
+      color:#d1d5db;
+      background:#0f172a;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:4px 10px;
+      margin-bottom:10px;
+    }
+    h3{margin:6px 0 10px;font-size:18px;color:#f9fafb}
+    dt{color:#dbeafe;font-weight:600}
+    dd{margin:0 0 8px 0;color:#e5e7eb}
+    .footer{
+      margin-top:26px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .kbd{
+      display:inline-block;border:1px solid var(--border);border-bottom-width:2px;padding:0 6px;border-radius:6px;background:#0f172a;color:#e5e7eb;font-size:12px
+    }
+    .cat{font-size:13px;color:var(--muted);margin-top:2px}
+  
+/* Light theme overrides */
+html[data-theme="light"]{
+  --bg:#f8fafc;
+  --panel:#ffffff;
+  --muted:#475569;
+  --txt:#0b0f14;
+  --accent:#2563eb;
+  --accent-2:#059669;
+  --border:#e5e7eb;
+}
+/* Theme toggle bar */
+.theme-toggle{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  margin:6px 0 4px;
+}
+.theme-toggle button{
+  appearance:none;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--txt);
+  padding:6px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+.theme-toggle button[aria-pressed="true"]{
+  outline:2px solid var(--accent);
+}
+@media (prefers-color-scheme: light){
+  :root{ color-scheme: light; }
+}
+@media (prefers-color-scheme: dark){
+  :root{ color-scheme: dark; }
+}
+
+/* --- Robust theme layer --- */
+/* Dark (default) */
+:root{
+  --bg:#0b1220;
+  --panel:#111827;
+  --muted:#9aa5b1;
+  --txt:#e5e7eb;
+  --accent:#60a5fa;
+  --accent-2:#34d399;
+  --border:#253041;
+}
+/* Base application of variables */
+html, body{
+  background: var(--bg);
+  color: var(--txt);
+}
+a{ color: var(--accent); }
+a:hover{ text-decoration: underline; }
+header, footer{ background: transparent; color: var(--txt); }
+.card{
+  background: var(--panel) !important;
+  color: var(--txt) !important;
+  border: 1px solid var(--border) !important;
+}
+.card h3, h1, h2, h3, h4{ color: var(--txt) !important; }
+.badge, .cat, .muted, small, .subtle{
+  color: var(--muted) !important;
+}
+input, textarea, select{
+  background: var(--panel) !important;
+  color: var(--txt) !important;
+  border: 1px solid var(--border) !important;
+}
+button{
+  color: var(--txt);
+  border-color: var(--border);
+}
+hr{ border-color: var(--border); }
+.nav, .toolbar, .theme-toggle{
+  background: transparent;
+  color: var(--txt);
+}
+/* Light overrides already exist via [data-theme="light"] variables.
+   Strengthen contrast-sensitive elements for light mode explicitly. */
+html[data-theme="light"] body,
+html[data-theme="light"] .card,
+html[data-theme="light"] header,
+html[data-theme="light"] footer,
+html[data-theme="light"] .nav,
+html[data-theme="light"] .toolbar,
+html[data-theme="light"] .theme-toggle{
+  background: var(--bg) !important;
+  color: var(--txt) !important;
+}
+html[data-theme="light"] .badge,
+html[data-theme="light"] .cat,
+html[data-theme="light"] .muted,
+html[data-theme="light"] small,
+html[data-theme="light"] .subtle{
+  color: var(--muted) !important;
+}
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select{
+  background: var(--panel) !important;
+  color: var(--txt) !important;
+  border: 1px solid var(--border) !important;
+}
+html[data-theme="light"] a{ color: var(--accent); }
+
+/* ---- Global Light-Mode Readability Fix ---- */
+html[data-theme="light"] *, 
+html[data-theme="light"] *::before, 
+html[data-theme="light"] *::after{
+  color: var(--txt) !important;
+  border-color: var(--border) !important;
+}
+html[data-theme="light"] body{
+  background: var(--bg) !important;
+}
+html[data-theme="light"] .card{
+  background: var(--panel) !important;
+}
+html[data-theme="light"] a{ color: var(--accent) !important; }
+
+/* ===== Full Light-Mode Reset (readability-first) ===== */
+html[data-theme="light"]{
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --muted:#334155;
+  --txt:#0b0f14;
+  --accent:#1d4ed8;
+  --accent-2:#047857;
+  --border:#d1d5db;
+}
+/* Backgrounds */
+html[data-theme="light"] body,
+html[data-theme="light"] main,
+html[data-theme="light"] .page,
+html[data-theme="light"] .container,
+html[data-theme="light"] .section,
+html[data-theme="light"] .grid,
+html[data-theme="light"] header,
+html[data-theme="light"] footer,
+html[data-theme="light"] nav,
+html[data-theme="light"] aside{
+  background: var(--bg) !important;
+}
+html[data-theme="light"] .card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .sheet{
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+}
+/* Text colors */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] dt,
+html[data-theme="light"] dd,
+html[data-theme="light"] small,
+html[data-theme="light"] .lead,
+html[data-theme="light"] .muted,
+html[data-theme="light"] .subtle,
+html[data-theme="light"] .badge,
+html[data-theme="light"] .kicker,
+html[data-theme="light"] .cat,
+html[data-theme="light"] .category,
+html[data-theme="light"] .note{
+  color: var(--txt) !important;
+}
+/* Links and controls */
+html[data-theme="light"] a{ color: var(--accent) !important; }
+html[data-theme="light"] button{ color: var(--txt) !important; border-color: var(--border) !important; background: var(--panel) !important; }
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select{
+  background: var(--panel) !important;
+  color: var(--txt) !important;
+  border: 1px solid var(--border) !important;
+}
+/* Shadows/gradients that could keep it looking dark */
+html[data-theme="light"] .hero,
+html[data-theme="light"] .banner{
+  background-image: none !important;
+  box-shadow: none !important;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div aria-label="Theme" class="theme-toggle" role="group"><button aria-pressed="false" id="btn-dark" type="button">Dark</button><button aria-pressed="false" id="btn-light" type="button">Light</button></div>
+<h1>Pre‑Talk Calibration Toolkit</h1>
+<p class="lead">Pick 2–3 quick checks during your pre‑talk to both <em>teach</em> and <em>test</em> trance familiarity. No scripts — just natural conversation.</p>
+</header>
+<section class="tip">
+<strong>How to use:</strong> Ask one question, watch and listen. If you get a clear “yes” — verbal or non‑verbal — make a brief utilization link (e.g., <span class="mono">“Just like that, you can imagine…”</span>) and move forward.
+    </section>
+<section class="grid">
+<!-- Visual -->
+<article class="card">
+<span class="badge">Visual • Imagery</span>
+<h3>How many windows are in your house?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Visualization, eye movement/closure, internal mapping.</dd>
+<dt>Positive response</dt>
+<dd>Eyes shift/close, counting aloud, “walking through” rooms.</dd>
+</dl>
+<div class="cat">Use later: “Just like you pictured each room, picture a calm place now…”</div>
+</article>
+<article class="card">
+<span class="badge">Visual • Memory</span>
+<h3>Can you picture your childhood bedroom?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Recall + imagery of environments; detail tolerance.</dd>
+<dt>Positive response</dt>
+<dd>Nostalgic smile, far‑away gaze, descriptive specifics.</dd>
+</dl>
+</article>
+<!-- Auditory -->
+<article class="card">
+<span class="badge">Auditory • Selective Attention</span>
+<h3>In a noisy room, have you noticed your name pops out?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Unconscious filtering; automatic attention shifts.</dd>
+<dt>Positive response</dt>
+<dd>Quick nod, “Yeah, all the time,” widened eyes.</dd>
+</dl>
+</article>
+<article class="card">
+<span class="badge">Auditory • Replay</span>
+<h3>Ever had a song stuck in your head?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Automatic auditory loops; ease of internal sound.</dd>
+<dt>Positive response</dt>
+<dd>Laugh, head shake, humming or quoting lyrics.</dd>
+</dl>
+</article>
+<!-- Kinesthetic -->
+<article class="card">
+<span class="badge">Kinesthetic • Mind–Body</span>
+<h3>Before a test or talk, did your stomach feel it?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Awareness that thoughts affect sensations.</dd>
+<dt>Positive response</dt>
+<dd>Hand to stomach, nod, “Absolutely.”</dd>
+</dl>
+</article>
+<article class="card">
+<span class="badge">Kinesthetic • Sensory Recall</span>
+<h3>Can you feel warm shower water just by remembering it?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Sensory imagination; comfort access.</dd>
+<dt>Positive response</dt>
+<dd>Relaxed breath, softening shoulders, “Yes.”</dd>
+</dl>
+</article>
+<!-- Time Distortion -->
+<article class="card">
+<span class="badge">Trance Phenomena • Time</span>
+<h3>Ever get so absorbed that hours flew by?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Familiarity with time distortion; focused absorption.</dd>
+<dt>Positive response</dt>
+<dd>Personal example, recognition smile.</dd>
+</dl>
+</article>
+<article class="card">
+<span class="badge">Trance Phenomena • Automaticity</span>
+<h3>On a long drive, ever “miss a bit” of the trip?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Everyday trance; automatic behaviors.</dd>
+<dt>Positive response</dt>
+<dd>Laughter, “Oh yes,” relaxed posture.</dd>
+</dl>
+</article>
+<article class="card">
+<span class="badge">Trance Phenomena • Absorption</span>
+<h3>Have you ever been driving and missed your exit because your mind drifted?</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Everyday trance; focused absorption with automatic behavior.</dd>
+<dt>Positive response</dt>
+<dd>Laugh, “Yep—more than once,” brief story, far‑away gaze.</dd>
+</dl>
+<div class="cat">Utilize: “That same kind of natural focus lets you drift comfortably while still safe and aware here.”</div>
+</article>
+<!-- Paradox / Resistance -->
+<article class="card">
+<span class="badge">Paradox • Utilization</span>
+<h3>The harder you try not to laugh…</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Acceptance of paradox; how resistance can assist trance.</dd>
+<dt>Positive response</dt>
+<dd>Grin, chuckle, immediate agreement.</dd>
+</dl>
+<div class="cat">Utilize: “That same paradox helps some people drift deeper when they try to stay ‘too’ focused.”</div>
+</article>
+<article class="card">
+<span class="badge">Paradox • Negation Effect</span>
+<h3>Don’t think of a pink elephant…</h3>
+<dl>
+<dt>Calibrates</dt>
+<dd>Susceptibility to suggestion via negation.</dd>
+<dt>Positive response</dt>
+<dd>Laugh, “I pictured it instantly.”</dd>
+</dl>
+</article>
+<!-- Bonus: Utilization prompts -->
+<article class="card" style="grid-column:1 / -1">
+<span class="badge">Quick Utilization Prompts</span>
+<dl>
+<dt>Link the experience</dt>
+<dd><span class="mono">“Just like you did a moment ago…”</span> • <span class="mono">“In the same way you pictured those windows…”</span></dd>
+<dt>Invite the shift</dt>
+<dd><span class="mono">“As you remember that feeling, let the body settle 5% more now.”</span></dd>
+<dt>Mark compliance</dt>
+<dd><span class="mono">“That’s it.”</span> • <span class="mono">“Good.”</span> • <span class="mono">“Exactly.”</span></dd>
+</dl>
+</article>
+<section class="card" style="margin-top:22px">
+<span class="badge">Myth-Busting Story • 2‑minute version</span>
+<h3>The Curious Cat and the Box (short form)</h3>
+<p>There was once a little cat who was afraid of boxes. She thought, <em>“What if I get stuck inside? What if the box controls me? What if it makes me say things I don’t want to say?”</em></p>
+<p>One day, an older cat laughed and said, <em>“Boxes don’t do any of that. You’re the one who chooses when to go in and when to come out. Inside, it’s just a place to imagine and play. You don’t lose control, you don’t spill secrets, and you don’t fall asleep — unless you want a nap.”</em></p>
+<p>The little cat hesitated… then jumped into the box. And of course, she hopped right back out again, smiling. From then on, whenever she heard other cats whispering fears about boxes, she just laughed — because she knew better.</p>
+<h4 style="margin-top:14px;color:#f3f4f6">Quick Bridge</h4>
+<p>And hypnosis is the same. It’s not mind control, it’s not sleep, and you’re never stuck. It’s simply a safe space to use your imagination — and once you try it, the old fears seem a little silly.</p>
+</section>
+<p class="footer">Keep it conversational. Pick any 2–3 items, observe, utilize, then move smoothly toward your induction.</p>
+</section></div>
+<script>
+(function(){
+  const root = document.documentElement;
+  const btnDark = document.getElementById('btn-dark');
+  const btnLight = document.getElementById('btn-light');
+
+  function apply(theme){
+    if(theme === 'light'){
+      root.setAttribute('data-theme','light');
+      localStorage.setItem('pt_theme','light');
+      if(btnLight) btnLight.setAttribute('aria-pressed','true');
+      if(btnDark) btnDark.setAttribute('aria-pressed','false');
+    }else{
+      root.removeAttribute('data-theme');
+      localStorage.setItem('pt_theme','dark');
+      if(btnLight) btnLight.setAttribute('aria-pressed','false');
+      if(btnDark) btnDark.setAttribute('aria-pressed','true');
+    }
+  }
+
+  // Initialize from storage or system
+  const saved = localStorage.getItem('pt_theme');
+  if(saved){
+    apply(saved);
+  }else{
+    // default to dark to match original
+    apply('dark');
+  }
+
+  if(btnDark) btnDark.addEventListener('click', ()=>apply('dark'));
+  if(btnLight) btnLight.addEventListener('click', ()=>apply('light'));
+})();
+</script>
+</body>
+</html>
