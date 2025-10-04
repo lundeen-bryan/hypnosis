@@ -260,6 +260,34 @@ html[data-theme="light"] .banner{
   background-image: none !important;
   box-shadow: none !important;
 }
+
+/* === Theme-safe refinements === */
+.quick-bridge { margin-top: 14px; color: inherit !important; }
+.card h4 { color: inherit !important; }
+
+/* Badges should adapt to theme */
+.badge{
+  background: var(--panel) !important;
+  color: var(--muted) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Improve ordered list readability for myths */
+.card ol{
+  padding-left: 1.2rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.card ol li{
+  margin: 0.25rem 0;
+  color: var(--txt) !important;
+}
+
+/* Theme toggle buttons: clearer pressed state */
+.theme-toggle button[aria-pressed="true"]{
+  outline: 2px solid var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0) !important;
+}
+
 </style>
 </head>
 <body>
@@ -404,12 +432,18 @@ html[data-theme="light"] .banner{
 </article>
 <section class="card" style="margin-top:22px">
 <span class="badge">Myth-Busting Story • 2‑minute version</span>
-<h3>The Curious Cat and the Box (short form)</h3>
-<p>There was once a little cat who was afraid of boxes. She thought, <em>“What if I get stuck inside? What if the box controls me? What if it makes me say things I don’t want to say?”</em></p>
-<p>One day, an older cat laughed and said, <em>“Boxes don’t do any of that. You’re the one who chooses when to go in and when to come out. Inside, it’s just a place to imagine and play. You don’t lose control, you don’t spill secrets, and you don’t fall asleep — unless you want a nap.”</em></p>
-<p>The little cat hesitated… then jumped into the box. And of course, she hopped right back out again, smiling. From then on, whenever she heard other cats whispering fears about boxes, she just laughed — because she knew better.</p>
-<h4 style="margin-top:14px;color:#f3f4f6">Quick Bridge</h4>
-<p>And hypnosis is the same. It’s not mind control, it’s not sleep, and you’re never stuck. It’s simply a safe space to use your imagination — and once you try it, the old fears seem a little silly.</p>
+<h3>The Curious Cat and the Box (Refined)</h3>
+<p>I have a story for you. Once upon a time, there was a little cat who was curious about boxes but also a little afraid of them.</p>
+<p>The little cat had three fears about going inside the box:</p>
+<ol>
+  <li><em>“What if I get stuck inside and can’t get out?”</em></li>
+  <li><em>“What if the box makes me spill my secrets?”</em></li>
+  <li><em>“What if the box makes me do something silly or weird?”</em></li>
+</ol>
+<p>One day, an older cat smiled and said, <em>“Boxes don’t do any of that. You’re the one who chooses when to go in and when to come out. Inside, it’s just a space to imagine and explore. You never lose control, your secrets remain yours, and you’ll never do anything that doesn’t fit who you are.”</em></p>
+<p>The little cat thought about it, then bravely jumped into the box. After a few moments, she hopped right back out again — safe, smiling, and more confident than before. From that day on, whenever she heard other cats whispering strange fears about boxes, she just laughed — because she knew better.</p>
+<h4 class="quick-bridge">Quick Bridge</h4>
+<p>And hypnosis is the same. It’s not mind control, it’s not sleep, you’re never stuck, and you never lose your dignity. It’s simply a safe space to use your imagination — and once you experience it, or you remember seeing someone else experience it, those old fears just fade away.</p>
 </section>
 <p class="footer">Keep it conversational. Pick any 2–3 items, observe, utilize, then move smoothly toward your induction.</p>
 </section></div>
