@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post-Hypnotic Suggestions Checklist (A + B) — v2</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #5f6b7a;
+      --card: #f6f8fa;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-contrast: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(120%) blur(6px);
+      background: rgba(255,255,255,0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 1rem; }
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    h1 {
+      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+      margin: 0.25rem 0;
+      letter-spacing: 0.2px;
+    }
+    .controls { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--accent);
+      color: var(--accent-contrast);
+      padding: 0.55rem 0.9rem;
+      border-radius: 0.65rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.02s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    button.secondary { background: var(--card); color: var(--fg); }
+    button:active { transform: translateY(1px); }
+    main.wrap { padding-top: 1rem; padding-bottom: 2rem; }
+    .intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      padding: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .list {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    @media (min-width: 700px) { .list { grid-template-columns: 1fr 1fr; } }
+    .item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .item input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+    .item label { display: block; cursor: pointer; }
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+    footer.wrap {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding-bottom: 3rem;
+      margin-top: 2rem;
+    }
+    .count { font-weight: 700; color: var(--accent); }
+    @media print {
+      header, .intro { display: none !important; }
+      body { background: #fff; color: #000; }
+      .item { break-inside: avoid; }
+      .list { grid-template-columns: 1fr 1fr; }
+      button { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap header-row">
+      <h1>Post-Hypnotic Suggestions Checklist <span class="badge">Light Theme</span> <span class="badge">v2</span></h1>
+      <div class="controls">
+        <button onclick="window.print()" title="Print this checklist">🖨️ Print</button>
+        <button class="secondary" id="resetBtn" title="Uncheck all boxes">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      Use this checklist to select the suggestions you want to deliver. Items 1–10 (A) are designed for social confidence; 11–20 (B) support confidence and memory for the hypnotist. Pronouns have been standardized to “you.”
+      <div style="margin-top:0.5rem">Checked: <span id="checkedCount" class="count">0</span> / 20</div>
+    </div>
+
+    <section class="list" id="suggestionList"></section>
+  </main>
+
+  <footer class="wrap">
+    Tip: Before printing, check only the items you plan to use. The counter above helps you keep track.
+  </footer>
+
+  <script>
+    const suggestions = [
+      // A: 1-10 (unchanged)
+      "Each time you meet someone new, you'll notice a small but growing sense of ease, as if a gentle wave of comfort is with you.",
+      "After our session, you’ll find that a feeling of curiosity naturally arises whenever you start a conversation, making it fun to learn about others.",
+      "You'll discover that each handshake or hello brings a quiet boost of confidence that feels more and more natural.",
+      "Any time you smile at someone, you'll feel a gentle reminder that you have the ability to connect easily and warmly.",
+      "You’ll notice that with each conversation, a sense of friendly interest naturally replaces any old hesitation.",
+      "You'll find yourself feeling a little more confident each time you take a small step forward, as if confidence is something that grows with you.",
+      "Whenever you recall this session, you’ll feel a quiet inner encouragement that makes social moments feel a bit more comfortable.",
+      "After today, you may notice a new sense of calmness in social settings, as if calmness is a natural companion.",
+      "Each time you take a breath before speaking to someone new, you’ll feel a gentle wave of confidence settle in.",
+      "You might find that every positive interaction leaves a small imprint of assurance, making the next one even easier.",
+      // B: 11-20 (pronouns fixed to "you")
+      "Each time you enter a hypnosis session, you'll feel a natural wave of confidence flowing through you, allowing you to speak easily and comfortably.",
+      "You will find that the scripts you’ve learned come to mind effortlessly, as if they are naturally stored in your memory and ready when you need them.",
+      "As you guide others, you’ll feel an inner assurance that you have all the knowledge you need, and that assurance will grow each time you practice.",
+      "Whenever you take a deep breath before speaking, you’ll notice a calm clarity that helps you remember exactly what to say.",
+      "You’ll become more and more confident in your skills as a hypnotist, trusting your instincts and allowing your experience to shine through.",
+      "After each session, you’ll find that your memory for key phrases and techniques naturally improves, making it easier each time.",
+      "You will trust that your confidence grows with every interaction, knowing that you are becoming more skilled and capable as you go.",
+      "Each time you practice, you’ll notice that the words you need come to you more easily, and that your sessions flow more smoothly.",
+      "You’ll feel a growing sense of confidence each time you help someone, reinforcing your belief in your own abilities.",
+      "With each new session, you will notice that your memory for details and your confidence in delivering them both grow stronger and more natural."
+    ];
+
+    const list = document.getElementById("suggestionList");
+    const checkedCount = document.getElementById("checkedCount");
+    const resetBtn = document.getElementById("resetBtn");
+
+    function render() {
+      list.innerHTML = "";
+      suggestions.forEach((text, idx) => {
+        const number = idx + 1;
+        const group = number <= 10 ? "A" : "B";
+        const id = `sugg-${number}`;
+        const item = document.createElement("div");
+        item.className = "item";
+        item.innerHTML = `
+          <input type="checkbox" id="${id}" aria-label="Select suggestion ${number}">
+          <label for="${id}"><strong>${number} <span class="badge">${group}</span></strong> — ${text}</label>
+        `;
+        list.appendChild(item);
+      });
+      updateCount();
+      list.addEventListener("change", updateCount);
+    }
+
+    function updateCount() {
+      const totalChecked = list.querySelectorAll('input[type="checkbox"]:checked').length;
+      checkedCount.textContent = totalChecked.toString();
+    }
+
+    resetBtn.addEventListener("click", () => {
+      list.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      updateCount();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    render();
+  </script>
+</body>
+</html>
