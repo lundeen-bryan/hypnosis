@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creating Interesting Pacing Statements</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
+    .container { max-width: 880px; margin: 0 auto; padding: 24px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    h1 { margin: 0; font-size: clamp(1.5rem, 2.2vw + 1rem, 2.2rem); letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); margin-top: 4px; font-size: 0.975rem; }
+    .note { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-top: 10px; color: var(--muted); }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    button { border: 1px solid var(--border); background: #fff; color: var(--text); padding: 8px 12px; border-radius: 10px; font-size: 0.95rem; cursor: pointer; transition: transform .03s ease-in-out, background .15s ease; }
+    button:active { transform: translateY(1px); }
+    button:hover { background: #f1f5f9; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 18px 0; }
+    section h2 { margin-top: 0; font-size: 1.2rem; }
+    .examples blockquote { margin: 8px 0; padding: 10px 12px; background: #ffffff; border-left: 4px solid var(--accent); border: 1px solid var(--border); border-radius: 8px; }
+    .dialogue p { margin: 6px 0; }
+    .dialogue .who { font-weight: 700; }
+    ul, ol { padding-left: 20px; }
+    footer { color: var(--muted); font-size: 0.9rem; margin-top: 24px; text-align: center; }
+    @media print {
+      .controls { display: none !important; }
+      body { background: #fff; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Creating Interesting Pacing Statements</h1>
+        <p class="subtitle">From the practice exercises in Mike Mandel's Hypnosis Academy (MMHA), Lesson 3.</p>
+        <div class="note">Goal: Turn ordinary truisms into engaging, sensory, and permissive pacing statements.</div>
+      </div>
+      <div class="controls">
+        <button onclick="window.print()">Print</button>
+      </div>
+    </header>
+
+    <section>
+      <h2>How to Begin</h2>
+      <ol>
+        <li><strong>Pair up</strong> with a partner.</li>
+        <li><strong>Choose a simple fact</strong> about your partner or the environment. Examples: “You’re sitting in a chair.” “You’re breathing.” “You can hear my voice.”</li>
+        <li><strong>Say it three different ways</strong>—each time softer and more hypnotic:<br/>
+          • Add sensory words: <em>notice, feel, sense, be aware of</em>.<br/>
+          • Add permissive phrases: <em>you might, it’s possible to, you can begin to</em>.<br/>
+          • Add pacing cues: <em>as you sit there, while you’re breathing, right now</em>.
+        </li>
+        <li><strong>Ask for feedback</strong> on which version felt smoothest or most engaging.</li>
+        <li><strong>Switch roles</strong> and repeat.</li>
+      </ol>
+    </section>
+
+    <section class="examples">
+      <h2>Example Dialogue</h2>
+      <div class="dialogue">
+        <p><span class="who">Student A:</span> “Okay, I’ll start simple. Your feet are on the floor.”</p>
+        <p><span class="who">Student B:</span> “Okay.”</p>
+        <p><span class="who">Student A:</span> “Let me make that more hypnotic… You can notice the feeling of the floor supporting your feet.”</p>
+        <p><span class="who">Student B:</span> “That one feels softer.”</p>
+        <p><span class="who">Student A:</span> “Good. How about this… As you’re sitting there, it’s possible to become aware of how your feet rest exactly where they are.”</p>
+        <p><span class="who">Student B:</span> “Yeah, that one helps me feel it.”</p>
+        <p><span class="who">Student A:</span> “Nice. Your turn.”</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Practice Tips</h2>
+      <ul>
+        <li>Speak slowly and gently—pacing is about inviting awareness.</li>
+        <li>Keep attention on something real and present.</li>
+        <li>Gradually make statements more sensory or experiential.</li>
+        <li>Debrief: What phrasing felt best? What did you notice?</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Optional Challenge</h2>
+      <blockquote>“As you sit there… noticing your breathing… and the way your feet rest on the floor…”</blockquote>
+      <p>Then add a gentle lead:</p>
+      <blockquote>“…you can begin to feel even more comfortable now.”</blockquote>
+    </section>
+
+    <footer>
+      © MMHA-inspired practice handout for students. For classroom practice and peer coaching.
+    </footer>
+  </div>
+</body>
+</html>

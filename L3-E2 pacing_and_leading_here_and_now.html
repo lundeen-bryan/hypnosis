@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pacing and Leading the Here and Now</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
+    .container { max-width: 880px; margin: 0 auto; padding: 24px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    h1 { margin: 0; font-size: clamp(1.5rem, 2.2vw + 1rem, 2.2rem); letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); margin-top: 4px; font-size: 0.975rem; }
+    .note { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-top: 10px; color: var(--muted); }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    button { border: 1px solid var(--border); background: #fff; color: var(--text); padding: 8px 12px; border-radius: 10px; font-size: 0.95rem; cursor: pointer; transition: transform .03s ease-in-out, background .15s ease; }
+    button:active { transform: translateY(1px); }
+    button:hover { background: #f1f5f9; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 18px 0; }
+    section h2 { margin-top: 0; font-size: 1.2rem; }
+    .dialogue p { margin: 6px 0; }
+    .dialogue .who { font-weight: 700; }
+    ul, ol { padding-left: 20px; }
+    footer { color: var(--muted); font-size: 0.9rem; margin-top: 24px; text-align: center; }
+    @media print {
+      .controls { display: none !important; }
+      body { background: #fff; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Pacing and Leading the Here and Now</h1>
+        <p class="subtitle">From Mike Mandel's Hypnosis Academy (MMHA), Lesson 3, Exercise 2.</p>
+        <div class="note">Goal: Guide present-moment awareness using pacing (undeniable observations) and gentle leading. This is <strong>not</strong> an invitation into trance—just real-time attention shaping.</div>
+      </div>
+      <div class="controls">
+        <button onclick="window.print()">Print</button>
+      </div>
+    </header>
+
+    <section>
+      <h2>How to Begin</h2>
+      <ol>
+        <li><strong>Partner up.</strong> One is the hypnotist; the other is the subject.</li>
+        <li><strong>Start with three pacing statements</strong> that are obviously true right now. Examples: “You’re sitting in a chair.” “You can hear my voice.” “You’re breathing in and out.”</li>
+        <li><strong>Add one or two leads</strong> that direct awareness without aiming for trance. Examples: “You might notice how steady your breathing is.” “You may feel a little more curious about what’s next.”</li>
+        <li><strong>Watch for subtle responses:</strong> a small breath change, posture shift, or visual focus.</li>
+        <li><strong>Switch roles</strong> and repeat.</li>
+      </ol>
+    </section>
+
+    <section class="examples">
+      <h2>Example Conversation</h2>
+      <div class="dialogue">
+        <p><span class="who">Student A (Hypnotist):</span> “We’ll begin with pacing. You’re seated in your chair. Your feet are resting on the floor. You can hear my voice right now.”</p>
+        <p><span class="who">Student B (Subject):</span> “Yes.”</p>
+        <p><span class="who">Student A:</span> “Now a gentle lead: You might notice how steady your breathing feels in this moment.”</p>
+        <p><span class="who">Student B:</span> “I do notice that.”</p>
+        <p><span class="who">Student A:</span> “And as you notice that steadiness, you might find yourself a bit more focused on what’s happening here and now.”</p>
+        <p><span class="who">Student B:</span> “Yes, I feel that.”</p>
+        <p><span class="who">Student A:</span> “Great—that’s the aim: guiding attention, not inducing trance.”</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What to Observe</h2>
+      <ul>
+        <li>Small shifts in breathing, facial muscles, or posture.</li>
+        <li>Eyes becoming more still or more engaged with a point of focus.</li>
+        <li>Faster, clearer responses to leads (“Yeah,” “I notice that”).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Debrief</h2>
+      <ul>
+        <li>Which pacing statements felt most natural to say and hear?</li>
+        <li>Which leads smoothly directed attention without implying trance?</li>
+        <li>What subtle changes signaled that the lead was followed?</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Compare with “Invitation into Trance”</h2>
+      <p>Both use pacing → leading. The difference is the <em>target</em>: here, the lead aims at <em>present-moment awareness</em> (not relaxation or deepening). In <em>Invitation into Trance</em>, leads intentionally nudge toward trance states.</p>
+    </section>
+
+    <footer>
+      © MMHA-inspired practice handout for students. For classroom practice and peer coaching.
+    </footer>
+  </div>
+</body>
+</html>
