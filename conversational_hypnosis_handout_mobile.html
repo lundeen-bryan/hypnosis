@@ -6,41 +6,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Conversational Hypnosis – Pocket Handout</title>
 <style>
+
   :root {
-    --bg: #0b0f14;
-    --card: #121821;
-    --text: #e7eef8;
-    --muted: #a8b3c7;
-    --accent: #8bd3ff;
-    --accent-2: #b8ff8b;
-    --border: #1e2a3a;
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --text: #15202b;
+    --muted: #5b6b7b;
+    --accent: #0b6cfb;
+    --accent-2: #0e8a00;
+    --border: #d8e2ee;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
   body { line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(11,15,20,.98), rgba(11,15,20,.9)); backdrop-filter: blur(10px); padding: .85rem 1rem; border-bottom: 1px solid var(--border); }
+  header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.94)); backdrop-filter: blur(10px); padding: .85rem 1rem; border-bottom: 1px solid var(--border); }
   h1 { font-size: 1.1rem; margin: 0; letter-spacing: .2px; }
   .container { padding: 1rem; max-width: 900px; margin: 0 auto; }
   .tip { font-size: .9rem; color: var(--muted); margin: .25rem 0 0 .1rem; }
   .grid { display: grid; gap: .75rem; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: .85rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: .85rem; box-shadow: 0 1px 0 rgba(17,24,39,.04); }
   .card h2 { font-size: 1rem; margin: 0 0 .5rem; color: var(--accent); }
   .card h3 { font-size: .95rem; margin: .5rem 0 .35rem; color: var(--accent-2); }
   .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
-  .pill { display: inline-block; padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: #0f141c; color: var(--muted); margin: .15rem .25rem .15rem 0; font-size: .82rem; }
+  .pill { display: inline-block; padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: #f0f5fb; color: var(--muted); margin: .15rem .25rem .15rem 0; font-size: .82rem; }
   summary { cursor: pointer; list-style: none; }
   summary::marker { display:none; }
-  details { border: 1px solid var(--border); border-radius: 12px; padding: .65rem .75rem; background: #0e141c; }
+  details { border: 1px solid var(--border); border-radius: 12px; padding: .65rem .75rem; background: #f9fbfe; }
   details + details { margin-top: .55rem; }
-  details[open] { background: #0d1722; }
-  .kbd { padding: .05rem .35rem; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px; background: #0e141c; font-size: .85rem; color: var(--muted); }
-  .sticky-footer { position: sticky; bottom: 0; padding: .6rem 1rem; background: linear-gradient(0deg, rgba(11,15,20,.98), rgba(11,15,20,.9)); border-top: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
-  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .8rem; border-radius: 10px; border: 1px solid var(--border); background: #101726; color: var(--text); text-decoration: none; }
+  details[open] { background: #f3f7fd; }
+  .kbd { padding: .05rem .35rem; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px; background: #f0f5fb; font-size: .85rem; color: var(--muted); }
+  .sticky-footer { position: sticky; bottom: 0; padding: .6rem 1rem; background: linear-gradient(0deg, rgba(255,255,255,.98), rgba(255,255,255,.94)); border-top: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
+  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .8rem; border-radius: 10px; border: 1px solid var(--border); background: #ffffff; color: var(--text); text-decoration: none; }
   .btn:active { transform: translateY(1px); }
   .small { font-size: .85rem; color: var(--muted); }
-  .example { padding-left: .6rem; border-left: 2px solid #1f2b3c; margin: .35rem 0; color: #d7e6ff; }
-  .formula { background: #0d1722; border: 1px dashed var(--border); padding: .65rem .75rem; border-radius: 10px; margin: .5rem 0 .2rem; }
+  .example { padding-left: .6rem; border-left: 2px solid #d8e2ee; margin: .35rem 0; color: #0f3057; }
+  .formula { background: #f3f7fd; border: 1px dashed var(--border); padding: .65rem .75rem; border-radius: 10px; margin: .5rem 0 .2rem; }
   .nowrap { white-space: nowrap; }
+
 </style>
 </head>
 <body>

@@ -5,39 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Magic Words — Story Fragments</title>
   <style>
-    :root {
-      --bg: #0b0f14;
-      --card: #121821;
-      --text: #e7eef8;
-      --muted: #a8b3c7;
-      --accent: #8bd3ff;
-      --accent2: #b8ff8b;
-      --border: #1e2a3a;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-    body { line-height: 1.5; -webkit-font-smoothing: antialiased; }
-    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(11,15,20,.98), rgba(11,15,20,.9)); backdrop-filter: blur(10px); padding: .9rem 1rem; border-bottom: 1px solid var(--border); }
-    h1 { font-size: 1.05rem; margin: 0; letter-spacing: .2px; }
-    .tip { font-size: .9rem; color: var(--muted); margin-top: .25rem; }
-    .container { padding: 1rem; max-width: 900px; margin: 0 auto; }
-    .grid { display: grid; gap: .75rem; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: .9rem; }
-    .card h2 { font-size: .98rem; margin: 0 0 .4rem; color: var(--accent); }
-    .pill { display: inline-block; padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: #0f141c; color: var(--muted); margin: .12rem .25rem .12rem 0; font-size: .82rem; }
-    .frag { padding-left: .6rem; border-left: 2px solid #1f2b3c; margin: .35rem 0; color: #d7e6ff; }
-    details { border: 1px solid var(--border); border-radius: 12px; padding: .65rem .75rem; background: #0e141c; }
-    details + details { margin-top: .55rem; }
-    details[open] { background: #0d1722; }
-    summary { cursor: pointer; list-style: none; }
-    summary::marker { display:none; }
-    .row { display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
-    .btn { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .7rem; border-radius: 10px; border: 1px solid var(--border); background: #101726; color: var(--text); text-decoration: none; font-size: .9rem; }
-    .btn:active { transform: translateY(1px); }
-    .small { font-size: .85rem; color: var(--muted); }
-    .sticky-footer { position: sticky; bottom: 0; padding: .6rem 1rem; background: linear-gradient(0deg, rgba(11,15,20,.98), rgba(11,15,20,.9)); border-top: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
-    .mono { font-family: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
-  </style>
+
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1a202c;
+    --muted: #4a5568;
+    --accent: #0b6cfb;
+    --accent2: #0e8a00;
+    --border: #d1d9e6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+  body { line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,255,255,.92)); backdrop-filter: blur(10px); padding: .9rem 1rem; border-bottom: 1px solid var(--border); }
+  h1 { font-size: 1.05rem; margin: 0; letter-spacing: .2px; }
+  .tip { font-size: .9rem; color: var(--muted); margin-top: .25rem; }
+  .container { padding: 1rem; max-width: 900px; margin: 0 auto; }
+  .grid { display: grid; gap: .75rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: .9rem; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .card h2 { font-size: .98rem; margin: 0 0 .4rem; color: var(--accent); }
+  .pill { display: inline-block; padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: #f0f5fb; color: var(--muted); margin: .12rem .25rem .12rem 0; font-size: .82rem; }
+  .frag { padding-left: .6rem; border-left: 2px solid var(--border); margin: .35rem 0; color: #2b3856; }
+  details { border: 1px solid var(--border); border-radius: 12px; padding: .65rem .75rem; background: #f9fbfe; }
+  details + details { margin-top: .55rem; }
+  details[open] { background: #f3f7fd; }
+  summary { cursor: pointer; list-style: none; }
+  summary::marker { display:none; }
+  .row { display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
+  .btn { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .7rem; border-radius: 10px; border: 1px solid var(--border); background: #ffffff; color: var(--text); text-decoration: none; font-size: .9rem; }
+  .btn:active { transform: translateY(1px); }
+  .small { font-size: .85rem; color: var(--muted); }
+  .sticky-footer { position: sticky; bottom: 0; padding: .6rem 1rem; background: linear-gradient(0deg, rgba(255,255,255,.97), rgba(255,255,255,.92)); border-top: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
+  .mono { font-family: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
+
+</style>
 </head>
 <body>
   <header>
