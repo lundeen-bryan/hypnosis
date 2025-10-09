@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ericksonian Self-Esteem Suggestions — Checklist</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#1f2937;
+      --muted:#4b5563;
+      --card:#f8fafc;
+      --border:#e5e7eb;
+      --accent:#2563eb;
+      --accent-contrast:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86));
+      backdrop-filter:saturate(140%) blur(6px);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1000px; margin:0 auto; padding:1rem 1.25rem;}
+    h1{
+      font-size:1.5rem; margin:0 0 .25rem 0; letter-spacing:.2px;
+    }
+    .sub{color:var(--muted); font-size:.95rem; margin:0}
+    .controls{
+      display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem;
+    }
+    button{
+      appearance:none; border:1px solid var(--border);
+      background:var(--bg); color:var(--fg);
+      padding:.6rem .9rem; border-radius:.65rem; cursor:pointer;
+      font-weight:600; box-shadow:var(--shadow);
+    }
+    button.primary{
+      background:var(--accent); color:var(--accent-contrast);
+      border-color:transparent;
+    }
+    main{padding:1.25rem}
+    .card{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:1rem; padding:1rem; box-shadow:var(--shadow);
+    }
+    .hint{color:var(--muted); font-size:.95rem; margin:.25rem 0 1rem}
+    ul{list-style:none; padding:0; margin:0; display:grid; gap:.5rem}
+    li{
+      background:#fff; border:1px solid var(--border); border-radius:.9rem; padding: .85rem; display:flex; gap:.85rem; align-items:flex-start;
+      transition: background .2s ease;
+    }
+    li:hover{background:#fdfdfd}
+    input[type="checkbox"]{
+      width:1.15rem; height:1.15rem; margin-top:.2rem; cursor:pointer;
+      accent-color:var(--accent);
+    }
+    label{display:block; cursor:pointer}
+    .footer-note{color:var(--muted); font-size:.9rem; margin-top:1rem}
+    @media (prefers-reduced-motion: no-preference) {
+      li{transition:transform .06s ease}
+      li:active{transform:scale(.998)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Ericksonian Self‑Esteem Suggestions — Session Checklist</h1>
+      <p class="sub">Check 2–5 items to focus on in today’s session. Use the print button if you want a hard copy.</p>
+      <div class="controls">
+        <button class="primary" id="printBtn" title="Print this checklist">🖨️ Print</button>
+        <button id="checkAllBtn" title="Check all items">Check All</button>
+        <button id="clearAllBtn" title="Clear all checks">Clear All</button>
+        <button id="exportBtn" title="Download your selections as a .txt file">Export Selections</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <p class="hint">These are phrased indirectly (Ericksonian style) to allow acceptance without internal resistance. Read slowly. Pause as needed. Invite curiosity, not effort.</p>
+      <ul id="list">
+        <!-- Items will be injected here -->
+      </ul>
+      <p class="footer-note">Tip: If you’re facilitating, invite the subject to notice which items their attention “returns to” naturally; those are often the best focal points.</p>
+    </div>
+  </main>
+
+  <script>
+    const items = [
+      "And as you continue to listen… you may begin to notice how living in harmony with your own judgment can feel more natural than it ever did before.",
+      "There’s a quiet part of you that already knows how to meet challenges—and each time you do, you may find it easier to remember that you’ve handled life before, and you will again.",
+      "Sometimes, as you look inward, something within you begins to appreciate the person you’re becoming… even before you consciously notice it happening.",
+      "And you don’t have to try to act with integrity—because your unconscious has already been guiding you that way for quite some time.",
+      "Every moment you allow honesty with yourself, a deeper confidence can begin to unfold quietly, almost as if it had been waiting for your permission to emerge.",
+      "And while you don’t have to make any effort to strengthen your self-esteem, you may find that simply acting on what you know to be true starts to feel like the most comfortable thing you could do.",
+      "Your mind can remember that your thoughts and feelings are real signals of your inner intelligence—and it’s okay to start treating yourself as someone whose opinions and needs actually matter.",
+      "Sometimes, just by honoring your own values, you can find yourself liking who you are… perhaps more than you expected.",
+      "And when truth feels easier than pretending, it’s natural to feel a quiet respect for yourself… the kind that doesn’t need to be announced.",
+      "And you may already have noticed how strength tends to grow each time approval loses its importance.",
+      "There’s a certain pride that doesn’t have to be loud—a kind of confidence that rises from clarity—and that clarity can appear at any time now, or later, when you least expect it.",
+      "And as you continue learning to trust your perceptions, your ability to correct your course strengthens naturally, without struggle, without the old pressure to be perfect.",
+      "Even mistakes can begin to feel different—not as failures, but as teachers—helping you refine a strength that has always been there.",
+      "And that calm awareness inside you, that quiet presence you sometimes feel without trying—others can sense it, too. It communicates self-esteem without words.",
+      "Each time you act with honesty, patience, and steady effort, your inner authority quietly grows, as though you’re coming home to yourself.",
+      "And isn’t it interesting how your worth can begin to feel more independent of comparison—like something self-sustaining, something you can simply rest in?",
+      "When you respect others easily, it may just be because you’ve stopped doubting your own worth.",
+      "And acting with integrity, you notice how confidence and peace naturally seem to follow, as though they were waiting all along.",
+      "You might even be curious how much more you can like who you are becoming as you live more consciously, and how life itself begins to mirror that back to you.",
+      "Each truth you speak—each real engagement with life—strengthens the foundation of your self-respect. And you might find that realization becoming more vivid, even after this session ends.",
+      "Because being alive, being aware, already means being worthy of love, happiness, and success. And as that sinks in, you can trust yourself more deeply than ever before—to make choices that honor both your needs and your conscience.",
+      "Confidence now flows from the simple act of self-trust. And whether you realize it now or later, you may notice how naturally you begin to carry yourself as someone whose life has quiet dignity.",
+      "You are, after all, becoming the kind of person you can admire without hesitation—and that realization can continue to unfold long after you awaken."
+    ];
+
+    const list = document.getElementById('list');
+
+    // Build the checklist
+    items.forEach((text, idx) => {
+      const li = document.createElement('li');
+      const id = 'item_' + idx;
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = id;
+      const label = document.createElement('label');
+      label.htmlFor = id;
+      label.textContent = text;
+      li.appendChild(cb);
+      li.appendChild(label);
+      list.appendChild(li);
+    });
+
+    // Controls
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('checkAllBtn').addEventListener('click', () => {
+      document.querySelectorAll('#list input[type="checkbox"]').forEach(cb => cb.checked = true);
+    });
+    document.getElementById('clearAllBtn').addEventListener('click', () => {
+      document.querySelectorAll('#list input[type="checkbox"]').forEach(cb => cb.checked = false);
+    });
+
+    // Export selections to a text file
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const selected = [];
+      document.querySelectorAll('#list input[type="checkbox"]').forEach((cb, i) => {
+        if (cb.checked) selected.push('• ' + items[i]);
+      });
+      const blob = new Blob([selected.join("\n") || "No items selected."], {type: "text/plain"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "ericksonian_suggestions_selected.txt";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+    });
+  </script>
+</body>
+</html>
