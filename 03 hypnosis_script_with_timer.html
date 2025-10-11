@@ -1,377 +1,679 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hypnosis Script with Timer — Collapsible</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --accent: #2563eb;
-      --card: #ffffff;
-      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --radius: 14px;
-      --fz: 18px;
-    }
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--fg);
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: var(--fz);
-      line-height: 1.55;
-    }
-    .floating-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-    }
-    .toolbar {
-      display: flex;
-      gap: .5rem;
-      align-items: center;
-      padding: .6rem .9rem;
-      flex-wrap: wrap;
-    }
-    .toolbar .group {
-      display: inline-flex;
-      gap: .4rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    button {
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: var(--fg);
-      padding: .45rem .7rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: .95rem;
-      box-shadow: var(--shadow);
-    }
-    button:hover { background: #f3f4f6; }
-    button:active { transform: translateY(1px); }
-    .timer {
-      font-variant-numeric: tabular-nums;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      padding: .3rem .55rem;
-      border-radius: 10px;
-      border: 1px dashed var(--border);
-      background: #fdfdfd;
-      min-width: 5.2ch;
-      text-align: center;
-    }
-    .wrap {
-      max-width: 900px;
-      padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
-      margin: 0 auto;
-    }
-    h1, h2, h3 {
-      line-height: 1.25;
-      margin: 1rem 0 .5rem;
-    }
-    h1.page-title {
-      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 800;
-    }
-    .cards {
-      margin-top: .75rem;
-    }
-    details.card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .2rem .2rem .7rem;
-      margin: .8rem 0;
-      box-shadow: var(--shadow);
-    }
-    details.card[open] {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-    }
-    details.card > summary {
-      list-style: none;
-      cursor: pointer;
-      font-weight: 700;
-      padding: .5rem .65rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      user-select: none;
-    }
-    details.card > summary::-webkit-details-marker { display: none; }
-    .chev {
-      display: inline-block;
-      transition: transform 0.15s ease;
-    }
-    details[open] .chev {
-      transform: rotate(90deg);
-    }
-    .section-body {
-      padding: .1rem .95rem .2rem 2.05rem;
-    }
-    .footer {
-      margin-top: 1.5rem;
-      padding-top: .75rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .95rem;
-      text-align: center;
-    }
-    @media (prefers-color-scheme: dark) {
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hypnosis Script with Timer — Collapsible</title>
+    <style>
       :root {
-        --bg: #0b1020; --fg: #e5e7eb; --muted: #9ca3af; --border: #1f2937; --card: #0f162e;
+        --bg: #ffffff;
+        --fg: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #2563eb;
+        --card: #ffffff;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --radius: 14px;
+        --fz: 18px;
       }
-      button { background: #0f162e; }
-      button:hover { background: #121a35; }
-      .timer { background: #0f162e; }
-      .floating-header { background: rgba(8,12,26,0.8); }
-    }
-  </style>
-</head>
-<body>
-  <header class="floating-header">
-    <div class="toolbar">
-      <div class="group">
-        <span class="timer" id="timer">00:00</span>
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: var(--fz);
+        line-height: 1.55;
+      }
+      .floating-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+      }
+      .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.6rem 0.9rem;
+        flex-wrap: wrap;
+      }
+      .toolbar .group {
+        display: inline-flex;
+        gap: 0.4rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: #f9fafb;
+        color: var(--fg);
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        box-shadow: var(--shadow);
+      }
+      button:hover {
+        background: #f3f4f6;
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+      .timer {
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        padding: 0.3rem 0.55rem;
+        border-radius: 10px;
+        border: 1px dashed var(--border);
+        background: #fdfdfd;
+        min-width: 5.2ch;
+        text-align: center;
+      }
+      .wrap {
+        max-width: 900px;
+        padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
+        margin: 0 auto;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        margin: 1rem 0 0.5rem;
+      }
+      h1.page-title {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 800;
+      }
+      .cards {
+        margin-top: 0.75rem;
+      }
+      details.card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.2rem 0.2rem 0.7rem;
+        margin: 0.8rem 0;
+        box-shadow: var(--shadow);
+      }
+      details.card[open] {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      }
+      details.card > summary {
+        list-style: none;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 0.5rem 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        user-select: none;
+      }
+      details.card > summary::-webkit-details-marker {
+        display: none;
+      }
+      .chev {
+        display: inline-block;
+        transition: transform 0.15s ease;
+      }
+      details[open] .chev {
+        transform: rotate(90deg);
+      }
+      .section-body {
+        padding: 0.1rem 0.95rem 0.2rem 2.05rem;
+      }
+      .footer {
+        margin-top: 1.5rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --fg: #e5e7eb;
+          --muted: #9ca3af;
+          --border: #1f2937;
+          --card: #0f162e;
+        }
+        button {
+          background: #0f162e;
+        }
+        button:hover {
+          background: #121a35;
+        }
+        .timer {
+          background: #0f162e;
+        }
+        .floating-header {
+          background: rgba(8, 12, 26, 0.8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="floating-header">
+      <div class="toolbar">
+        <div class="group">
+          <span class="timer" id="timer">00:00</span>
+          <button id="start">Start</button>
+          <button id="reset">Reset</button>
+        </div>
+        <div class="group">
+          <button id="expandAll">Expand All</button>
+          <button id="collapseAll">Collapse All</button>
+        </div>
+        <div class="group">
+          <button id="inc">A+</button>
+          <button id="dec">A-</button>
+        </div>
+        <div class="group">
+          <button id="print">Print</button>
+        </div>
       </div>
-      <div class="group">
-        <button id="expandAll">Expand All</button>
-        <button id="collapseAll">Collapse All</button>
-      </div>
-      <div class="group">
-        <button id="inc">A+</button>
-        <button id="dec">A-</button>
-      </div>
-      <div class="group">
-        <button id="print">Print</button>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap">
-    <h1 class="page-title">Hypnosis Script with Timer</h1>
+    <main class="wrap">
+      <h1 class="page-title">Hypnosis Script with Timer</h1>
 
-    <section class="cards" id="cards">
+      <section class="cards" id="cards">
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>I. Pre-frame</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              In a moment, I’ll ask you to open and close your eyes a few times.
+              Each time you close them, it’s simply another chance to relax even
+              more deeply and comfortably. Until I say the word CLOSE, just keep
+              your eyes open and comfortable, noticing what you see and what you
+              feel. When I say CLOSE, that’s when you let them close.
+            </p>
+            <p>
+              So just to demonstrate, you can say close to me and I'll pretend
+              to be you.
+            </p>
+            <p>Is that okay?</p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>I. Pre-frame</span></summary>
-        <div class="section-body">
-          <p>In a moment, I’ll ask you to open and close your eyes a few times. Each time you close them, it’s simply another chance to relax even more deeply and comfortably. Until I say the word CLOSE, just keep your eyes open and comfortable, noticing what you see and what you feel. When I say CLOSE, that’s when you let them close.</p>
-          <p>So just to demonstrate, you can say close to me and I'll pretend to be you.</p>
-          <p>Is that okay?</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>II. Modified Spiegel Eye Roll Induction</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              Some people find it easy to begin hypnosis by simply looking up,
+              that’s right… just a little higher, as if you’re looking at your
+              eyebrows, so that the eyes begin to notice a gentle strain in the
+              eyelids, and perhaps even behind the eyes.
+            </p>
+            <p>
+              And as those eyelids feel the strain of looking just a little too
+              high… you might already feel how natural it could be to let them
+              close down now… just for a moment… and then, when you’re ready, to
+              open them again.
+            </p>
+            <p>(pause while they open their eyes again)</p>
+            <p>
+              And once more, looking upward again… noticing how familiar that
+              feeling is becoming… and perhaps this time, you could let them
+              drift down even more slowly than before… as if the effort simply
+              melts away with each gentle blink... You can allow your eyelids to
+              close.
+            </p>
+            <p>(pause, allow them to close slowly, then continue)</p>
+            <p>
+              Good… and then once again, as your eyes open… drifting upward
+              toward those eyebrows… the very moment you notice that strain… you
+              can allow the natural response to happen all by itself… and this
+              time, it may feel as though the eyes simply want to close… all on
+              their own… as though your unconscious mind already knows how good
+              it feels to just let go.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>II. Modified Spiegel Eye Roll Induction</span></summary>
-        <div class="section-body">
-          <p>Some people find it easy to begin hypnosis by simply looking up, that’s right… just a little higher, as if you’re looking at your eyebrows, so that the eyes begin to notice a gentle strain in the eyelids, and perhaps even behind the eyes.</p>
-          <p>And as those eyelids feel the strain of looking just a little too high… you might already feel how natural it could be to let them close down now… just for a moment… and then, when you’re ready, to open them again.</p>
-          <p>(pause while they open their eyes again)</p>
-          <p>And once more, looking upward again… noticing how familiar that feeling is becoming… and perhaps this time, you could let them drift down even more slowly than before… as if the effort simply melts away with each gentle blink... You can allow your eyelids to close.</p>
-          <p>(pause, allow them to close slowly, then continue)</p>
-          <p>Good… and then once again, as your eyes open… drifting upward toward those eyebrows… the very moment you notice that strain… you can allow the natural response to happen all by itself… and this time, it may feel as though the eyes simply want to close… all on their own… as though your unconscious mind already knows how good it feels to just let go.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>III. Eye Catalepsy Test</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              And as those eyelids settle down, you might find that they remain
+              comfortably closed… and every time you repeat that movement, they
+              close even more easily… until they simply prefer to stay closed…
+              allowing you to go deeper and deeper inside.
+            </p>
+            <p>
+              And in a moment, but not yet, I’m going to ask you to gently test
+              your eyelids to see if they might want to open, but you’re going
+              to find that they juuussst don’t want to open. You can try to test
+              them now. That’s right. Then allow your eyelids to relax.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>III. Eye Catalepsy Test</span></summary>
-        <div class="section-body">
-          <p>And as those eyelids settle down, you might find that they remain comfortably closed… and every time you repeat that movement, they close even more easily… until they simply prefer to stay closed… allowing you to go deeper and deeper inside.</p>
-          <p>And in a moment, but not yet, I’m going to ask you to gently test your eyelids to see if they might want to open, but you’re going to find that they juuussst don’t want to open. You can try to test them now. That’s right. Then allow your eyelids to relax.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>IV. External Sounds Suggestion</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              And isn’t it interesting how, the very moment our eyes remain
+              closed, your attention is automatically drawn inward… as though
+              the world outside simply fades, and what matters most is the
+              comfort within.
+            </p>
+            <p>
+              And any sounds you may hear, or any interruptions or distractions
+              that might occur, can simply be used by your mind as gentle
+              reminders to bring your attention back inward… just as it is now…
+              so that all you really need to notice is the sound of my voice
+              guiding you deeper.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>IV. External Sounds Suggestion</span></summary>
-        <div class="section-body">
-          <p>And isn’t it interesting how, the very moment our eyes remain closed, your attention is automatically drawn inward… as though the world outside simply fades, and what matters most is the comfort within.</p>
-          <p>And any sounds you may hear, or any interruptions or distractions that might occur, can simply be used by your mind as gentle reminders to bring your attention back inward… just as it is now… so that all you really need to notice is the sound of my voice guiding you deeper.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>V. Spiegel Escalator Deepener</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              And as those eyelids rest so comfortably now… you may find
+              yourself ready to go even deeper, with the help of your
+              imagination…
+            </p>
+            <p>
+              In a moment, you may allow yourself to begin a gradual descent
+              into even more comfortable relaxation. To get there, I’ll ask you
+              to go down three deeper levels of relaxation. Let’s call these
+              levels A, B, and C.
+            </p>
+            <p>
+              Each time I count from one to three, your relaxation can easily
+              double — twice as deep, twice as calm — as you move to the next
+              level down.
+            </p>
+            <p>
+              And in a moment, I’ll count from 1 to 3, and on 3, you can imagine
+              yourself stepping onto that gentle escalator, beginning your
+              comfortable descent to Level A.
+            </p>
+            <p>
+              1… 2… 3… — stepping onto that smooth escalator now, letting it
+              carry you down… effortlessly… comfortably. And as you ride it
+              downward, you can go twice as deep as you were before, all you
+              need to do is double the relaxation that you’re experiencing right
+              now.
+            </p>
+            <p>
+              When you arrive at Level A, let me know by taking in a deep
+              breath, and saying the letter “A” out loud. (pause for response)
+            </p>
+            <p>
+              Good. Now I’m going to count from 1 to 3. On the count of 3, the
+              escalator will take you from Level A down to Level B, and your
+              relaxation will double again, twice as deep as before.
+            </p>
+            <p>
+              If you follow my instructions, by the time you get to Level B,
+              your vocal cords will be so relaxed it will be very difficult to
+              say ‘B’ – but try to say it anyway. When you arrive at Level B,
+              let me know by taking in a deep breath and saying the letter “B”
+              out loud.
+            </p>
+            <p>
+              1… 2… 3… — going down now… deeper… and deeper… And as you ride it
+              downward, you can go twice as deep as you were before; all you
+              need to do is double the relaxation that you’re experiencing right
+              now.
+            </p>
+            <p>(pause for response)</p>
+            <p>
+              Excellent. You’re doing very well. There’s just one more level
+              left — Level C, the very bottom of relaxation, where you’ll feel
+              absolutely amazing. Level C is twice as deep as you are right now.
+            </p>
+            <p>
+              I’ll count from 1 to 3 once more, and on 3, the escalator will
+              take you all the way down to the deepest level of relaxation,
+              Level C. Don’t try to help it along, just let it happen.
+            </p>
+            <p>
+              1… 2… 3… — going down to Level C… the very bottom of your
+              relaxation… deeper… deeper… deeper… down… down… down… And as you
+              ride it downward, you can go twice as deep as you were before; all
+              you need to do is double the relaxation that you’re experiencing
+              right now.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>V. Spiegel Escalator Deepener</span></summary>
-        <div class="section-body">
-          <p>And as those eyelids rest so comfortably now… you may find yourself ready to go even deeper, with the help of your imagination…</p>
-          <p>In a moment, you may allow yourself to begin a gradual descent into even more comfortable relaxation. To get there, I’ll ask you to go down three deeper levels of relaxation. Let’s call these levels A, B, and C.</p>
-          <p>Each time I count from one to three, your relaxation can easily double — twice as deep, twice as calm — as you move to the next level down.</p>
-          <p>And in a moment, I’ll count from 1 to 3, and on 3, you can imagine yourself stepping onto that gentle escalator, beginning your comfortable descent to Level A.</p>
-          <p>1… 2… 3… — stepping onto that smooth escalator now, letting it carry you down… effortlessly… comfortably. And as you ride it downward, you can go twice as deep as you were before, all you need to do is double the relaxation that you’re experiencing right now.</p>
-          <p>When you arrive at Level A, let me know by taking in a deep breath, and saying the letter “A” out loud. (pause for response)</p>
-          <p>Good. Now I’m going to count from 1 to 3. On the count of 3, the escalator will take you from Level A down to Level B, and your relaxation will double again, twice as deep as before.</p>
-          <p>If you follow my instructions, by the time you get to Level B, your vocal cords will be so relaxed it will be very difficult to say ‘B’ – but try to say it anyway. When you arrive at Level B, let me know by taking in a deep breath and saying the letter “B” out loud.</p>
-          <p>1… 2… 3… — going down now… deeper… and deeper… And as you ride it downward, you can go twice as deep as you were before; all you need to do is double the relaxation that you’re experiencing right now.</p>
-          <p>(pause for response)</p>
-          <p>Excellent. You’re doing very well. There’s just one more level left — Level C, the very bottom of relaxation, where you’ll feel absolutely amazing. Level C is twice as deep as you are right now.</p>
-          <p>I’ll count from 1 to 3 once more, and on 3, the escalator will take you all the way down to the deepest level of relaxation, Level C. Don’t try to help it along, just let it happen.</p>
-          <p>1… 2… 3… — going down to Level C… the very bottom of your relaxation… deeper… deeper… deeper… down… down… down… And as you ride it downward, you can go twice as deep as you were before; all you need to do is double the relaxation that you’re experiencing right now.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VI. Number Forget Convincer</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              In a moment, you’ll find yourself standing by the edge of a calm,
+              serene lake. The surface is still and smooth, like glass. The air
+              feels fresh, peaceful, and quiet—just the soft sounds of nature
+              around you.
+            </p>
+            <p>
+              You can take a deep, easy breath in… and let the exhale flow out…
+              allowing your mind to rest in this gentle stillness.
+            </p>
+            <p>
+              As you look down, you notice the shoreline beneath your
+              feet—covered with smooth, round stones. The sunlight glimmers
+              across them, and you can see that
+              <strong>ten of these stones</strong> are lined up neatly in a row,
+              each one marked with a number.
+            </p>
+            <p>
+              Can you read them from left to right for me?
+              <strong>1, 2, 3, 4, 5, 6, 7, 8, 9, 10.</strong>
+            </p>
+            <p>
+              And then can you read them in reverse for me?
+              <strong>10, 9, 8, 7, 6, 5, 4, 3, 2, 1.</strong>
+            </p>
+            <p>
+              You notice the rock with the number <strong>6</strong> carved on
+              it. Go ahead and imagine picking it up. You can feel its
+              texture—cool, smooth, and a little weighty in your hand. If you
+              can clearly see that number six on the rock, just nod your head to
+              let me know.
+            </p>
+            <p><em>(pause and wait for nod)</em></p>
+            <p>That’s right.</p>
+            <p>
+              Now, imagine drawing your arm back and gently tossing that rock
+              into the calm water. You can hear the soft <em>plunk</em> as it
+              disappears beneath the surface… ripples spreading outward until
+              the lake becomes still again.
+            </p>
+            <p>
+              The rock has sunk beneath the water, gone from sight, gone from
+              reach, gone from mind.
+            </p>
+            <p>
+              And now, when you look back down at the row of rocks, can
+              you read them from left to right for me?
+              <br /><strong>1, 2, 3, 4, 5, 7, 8, 9, 10.</strong>
+            </p>
+            <p>
+              The number six has disappeared completely—as if it never existed.
+              It’s gone from your mind, just as that rock is gone from the lake.
+            </p>
+            <p>
+              And now, when I ask you to count from 1 to 10, you’ll find
+              that the only way you can count is:
+              <strong>1, 2, 3, 4, 5, 7, 8, 9, 10.</strong>
+            </p>
+            <p>
+              You’ll do it easily and naturally, without noticing anything
+              unusual—until I bring it to your attention.
+            </p>
+            <p>
+              And while you remain in this peaceful state, go ahead and
+              count out loud from 1 to 10.
+            </p>
+            <p>
+              (pause for response)
+            </p>
+            <p>
+              Then, when I ask you to count backward from 10 to 1, you’ll find
+              the same thing happens. Can you count from 10 to 1 for me?
+              <strong>10, 9, 8, 7, 5, 4, 3, 2, 1.</strong>
+            </p>
+            <p><em>(pause for response)</em></p>
+            <p>That’s right. Very good.</p>
+            <p>
+              Even when I awaken you later, the only way you can count is the
+              way you just did—until I snap my fingers twice. When I snap my
+              fingers twice, you’ll be able to remember the number six again,
+              easily and naturally, as if it returns from the lake—smooth,
+              whole, and complete.
+            </p>
+            <p>
+              From this point forward, you may notice that each time you take a
+              deep, comfortable breath, your body remembers how to return to
+              this deep, peaceful state—quickly, easily, naturally.
+            </p>
+            <p>
+              And when I <strong>snap my fingers and say “sleep,”</strong> you
+              will immediately return to this calm, deep, peaceful state—<strong
+                >quickly, easily, and naturally</strong
+              >. If you understand that, you can nod your head now to let me
+              know.
+            </p>
+            <p><em>(pause for nod)</em></p>
+            <p>
+              In a moment, I’ll have you open your eyes and count from one to
+              ten with your eyes open.
+            </p>
+            <p><em>(snap fingers once)</em></p>
+            <p>Eyes open now. Go ahead and count out loud from 1 to 10.</p>
+            <p>
+              <em
+                >(pause for counting — observe that the number 6 is missing)</em
+              >
+            </p>
+            <p>
+              That’s right. You’re doing perfectly. You may notice the number
+              six just isn’t there—it’s as though it never existed.
+            </p>
+            <p>
+              <em>(snap fingers once more and say)</em> <strong>Sleep.</strong>
+            </p>
+            <p>
+              And as you hear that word, you can drop immediately back down into
+              that calm, deep, peaceful state—even
+              <strong>deeper than before</strong>, twice as deep, twice as
+              relaxed… going down, deeper and deeper still.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VI. Number Forget Convincer</span></summary>
-        <div class="section-body">
-          <p>In a moment, you’ll find yourself standing by the edge of a calm, serene lake. The surface is still and smooth, like glass. The air feels fresh, peaceful, and quiet—just the soft sounds of nature around you.</p>
-          <p>You can take a deep, easy breath in… and let the exhale flow out… allowing your mind to rest in this gentle stillness.</p>
-          <p>As you look down, you notice the shoreline beneath your feet—covered with smooth, round stones. The sunlight glimmers across them, and you can see that <strong>ten of these stones</strong> are lined up neatly in a row, each one marked with a number.</p>
-          <p>You begin to read them from left to right: <strong>1, 2, 3, 4, 5, 6, 7, 8, 9, 10.</strong></p>
-          <p>And then, as you glance back and read them in reverse: <strong>10, 9, 8, 7, 6, 5, 4, 3, 2, 1.</strong></p>
-          <p>You notice the rock with the number <strong>6</strong> carved on it. Go ahead and imagine picking it up. You can feel its texture—cool, smooth, and a little weighty in your hand. If you can clearly see that number six on the rock, just nod your head to let me know.</p>
-          <p><em>(pause and wait for nod)</em></p>
-          <p>That’s right.</p>
-          <p>Now, imagine drawing your arm back and gently tossing that rock into the calm water. You can hear the soft <em>plunk</em> as it disappears beneath the surface… ripples spreading outward until the lake becomes still again.</p>
-          <p>The rock has sunk beneath the water, gone from sight, gone from reach, gone from mind.</p>
-          <p>And now, when you look back down at the row of rocks, you can read them once more:<br><strong>1, 2, 3, 4, 5, 7, 8, 9, 10.</strong></p>
-          <p>The number six has disappeared completely—as if it never existed. It’s gone from your mind, just as that rock is gone from the lake.</p>
-          <p>Good. And now, when I ask you to count from 1 to 10, you’ll find that the only way you can count is: <strong>1, 2, 3, 4, 5, 7, 8, 9, 10.</strong></p>
-          <p>You’ll do it easily and naturally, without noticing anything unusual—until I bring it to your attention.</p>
-          <p>Then, when I ask you to count backward from 10 to 1, you’ll find the same thing happens: <strong>10, 9, 8, 7, 5, 4, 3, 2, 1.</strong></p>
-          <p><em>(pause for response)</em></p>
-          <p>That’s right. Very good.</p>
-          <p>Even when I awaken you later, the only way you can count is the way you just did—until I snap my fingers twice. When I snap my fingers twice, you’ll be able to remember the number six again, easily and naturally, as if it returns from the lake—smooth, whole, and complete.</p>
-          <p>From this point forward, you may notice that each time you take a deep, comfortable breath, your body remembers how to return to this deep, peaceful state—quickly, easily, naturally.</p>
-          <p>And when I <strong>snap my fingers and say “sleep,”</strong> you will immediately return to this calm, deep, peaceful state—<strong>quickly, easily, and naturally</strong>. If you understand that, you can nod your head now to let me know.</p>
-          <p><em>(pause for nod)</em></p>
-          <p>In a moment, I’ll have you open your eyes and count from one to ten with your eyes open.</p>
-          <p><em>(snap fingers once)</em></p>
-          <p>Eyes open now. Go ahead and count out loud from 1 to 10.</p>
-          <p><em>(pause for counting — observe that the number 6 is missing)</em></p>
-          <p>That’s right. You’re doing perfectly. You may notice the number six just isn’t there—it’s as though it never existed.</p>
-          <p><em>(snap fingers once more and say)</em> <strong>Sleep.</strong></p>
-          <p>And as you hear that word, you can drop immediately back down into that calm, deep, peaceful state—even <strong>deeper than before</strong>, twice as deep, twice as relaxed… going down, deeper and deeper still.</p>
-</div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VII. Bridge to Suggestions</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              And now that you’re settled so comfortably… your mind can begin to
+              take in ideas that are helpful and useful for you. You don’t even
+              have to do anything—just notice that the thoughts and words that
+              are good for you can gently settle in, while everything else
+              simply drifts away.
+            </p>
+            <p>
+              In a moment, I’ll begin offering you some helpful
+              suggestions—simple ideas that your mind can absorb easily, in
+              whatever way feels right to you.
+            </p>
+            <p>
+              So as you continue breathing comfortably, these ideas can become a
+              natural part of you…
+            </p>
+            <p>
+              All of these ideas can continue to grow stronger with every
+              breath, every time you practice, every time you think about
+              hypnosis.
+            </p>
+            <p>(See Suggestion Menu)</p>
+          </div>
+        </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>VIII. Restoration of Number 6 (Cancel Suggestion)</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              In a moment, I’m going to <strong>snap my fingers twice</strong>,
+              and when I do, the <strong>number six will return</strong> to your
+              mind easily and naturally.
+            </p>
+            <p>
+              The number six will come back into full awareness, just as if it
+              had been resting quietly in the calm depths of that lake, and now
+              gently rises back to the surface.
+            </p>
+            <p>
+              When I snap my fingers twice, you’ll be able to count
+              <strong>normally again — 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 —</strong>
+              and everything will feel perfectly natural and balanced once more.
+            </p>
+            <p>
+              The suggestion about the number six being gone is now
+              <strong>completely cancelled</strong>, and your mind returns to
+              its normal, clear, comfortable way of working.
+            </p>
+            <p><em>(snap fingers twice)</em></p>
+            <p>
+              <strong>The number six is back in your mind now…</strong> whole
+              and complete, just as before.
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VII. Bridge to Suggestions</span></summary>
-        <div class="section-body">
-          <p>And now that you’re settled so comfortably… your mind can begin to take in ideas that are helpful and useful for you. You don’t even have to do anything—just notice that the thoughts and words that are good for you can gently settle in, while everything else simply drifts away.</p>
-          <p>In a moment, I’ll begin offering you some helpful suggestions—simple ideas that your mind can absorb easily, in whatever way feels right to you.</p>
-          <p>So as you continue breathing comfortably, these ideas can become a natural part of you…</p>
-          <p>All of these ideas can continue to grow stronger with every breath, every time you practice, every time you think about hypnosis.</p>
-          <p>(See Suggestion Menu)</p>
-        </div>
-      </details>
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VIII. Restoration of Number 6 (Cancel Suggestion)</span></summary>
-        <div class="section-body">
-          <p>In a moment, I’m going to <strong>snap my fingers twice</strong>, and when I do, the <strong>number six will return</strong> to your mind easily and naturally.</p>
-          <p>The number six will come back into full awareness, just as if it had been resting quietly in the calm depths of that lake, and now gently rises back to the surface.</p>
-          <p>When I snap my fingers twice, you’ll be able to count <strong>normally again — 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 —</strong> and everything will feel perfectly natural and balanced once more.</p>
-          <p>The suggestion about the number six being gone is now <strong>completely cancelled</strong>, and your mind returns to its normal, clear, comfortable way of working.</p>
-          <p><em>(snap fingers twice)</em></p>
-          <p><strong>The number six is back in your mind now…</strong> whole and complete, just as before.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>IX. Positive Awakening</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              …And very soon now, you’ll be ready to awaken fully from this
+              experience. When you do, you’ll find yourself feeling alert,
+              refreshed, and wonderfully positive about life. It’s as if the
+              calm and ease you’ve experienced here today stays with you, while
+              you wake up feeling brighter, lighter, and happier than before.
+            </p>
+            <p>
+              In a moment, I’ll count from one to five. With each number, you
+              return more fully to the present, carrying with you that good
+              feeling, that confidence, that positive energy.
+            </p>
+            <p>One… slowly returning now.</p>
+            <p>Two… feeling refreshed.</p>
+            <p>Three… energy flowing back into your body.</p>
+            <p>Four… eyes beginning to feel lighter.</p>
+            <p>
+              Five… eyes open, wide awake, alert, and feeling happy about this
+              session.
+            </p>
+          </div>
+        </details>
+      </section>
 
+      <footer class="footer">
+        Footer © 2025 Complete Hypnosis Experience Script by Bryan Lundeen
+      </footer>
+    </main>
 
+    <script>
+      // Timer logic (count-up mm:ss)
+      let timerEl = document.getElementById("timer");
+      let startBtn = document.getElementById("start");
+      let resetBtn = document.getElementById("reset");
+      let incBtn = document.getElementById("inc");
+      let decBtn = document.getElementById("dec");
+      let printBtn = document.getElementById("print");
+      let expandAllBtn = document.getElementById("expandAll");
+      let collapseAllBtn = document.getElementById("collapseAll");
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>IX. Positive Awakening</span></summary>
-        <div class="section-body">
-          <p>…And very soon now, you’ll be ready to awaken fully from this experience. When you do, you’ll find yourself feeling alert, refreshed, and wonderfully positive about life. It’s as if the calm and ease you’ve experienced here today stays with you, while you wake up feeling brighter, lighter, and happier than before.</p>
-          <p>In a moment, I’ll count from one to five. With each number, you return more fully to the present, carrying with you that good feeling, that confidence, that positive energy.</p>
-          <p>One… slowly returning now.</p>
-          <p>Two… feeling refreshed.</p>
-          <p>Three… energy flowing back into your body.</p>
-          <p>Four… eyes beginning to feel lighter.</p>
-          <p>Five… eyes open, wide awake, alert, and feeling happy about this session.</p>
-        </div>
-      </details>
+      let running = false;
+      let startEpoch = 0;
+      let elapsed = 0;
+      let rafId = null;
 
-    </section>
-
-    <footer class="footer">
-      Footer © 2025 Complete Hypnosis Experience Script by Bryan Lundeen
-    </footer>
-  </main>
-
-  <script>
-    // Timer logic (count-up mm:ss)
-    let timerEl = document.getElementById("timer");
-    let startBtn = document.getElementById("start");
-    let resetBtn = document.getElementById("reset");
-    let incBtn = document.getElementById("inc");
-    let decBtn = document.getElementById("dec");
-    let printBtn = document.getElementById("print");
-    let expandAllBtn = document.getElementById("expandAll");
-    let collapseAllBtn = document.getElementById("collapseAll");
-
-    let running = false;
-    let startEpoch = 0;
-    let elapsed = 0;
-    let rafId = null;
-
-    function fmt(ms){
-      const s = Math.floor(ms / 1000);
-      const m = Math.floor(s / 60);
-      const r = s % 60;
-      const mm = String(m).padStart(2,"0");
-      const ss = String(r).padStart(2,"0");
-      return `${mm}:${ss}`;
-    }
-    function tick(){
-      if(!running) return;
-      const now = performance.now();
-      const ms = elapsed + (now - startEpoch);
-      timerEl.textContent = fmt(ms);
-      rafId = requestAnimationFrame(tick);
-    }
-    startBtn.addEventListener("click", () => {
-      if(!running){
-        running = true;
-        startEpoch = performance.now();
+      function fmt(ms) {
+        const s = Math.floor(ms / 1000);
+        const m = Math.floor(s / 60);
+        const r = s % 60;
+        const mm = String(m).padStart(2, "0");
+        const ss = String(r).padStart(2, "0");
+        return `${mm}:${ss}`;
+      }
+      function tick() {
+        if (!running) return;
+        const now = performance.now();
+        const ms = elapsed + (now - startEpoch);
+        timerEl.textContent = fmt(ms);
         rafId = requestAnimationFrame(tick);
-        startBtn.textContent = "Pause";
-      } else {
-        // pause
-        running = false;
-        elapsed += performance.now() - startEpoch;
-        cancelAnimationFrame(rafId);
-        startBtn.textContent = "Resume";
       }
-    });
-    resetBtn.addEventListener("click", () => {
-      running = false;
-      elapsed = 0;
-      timerEl.textContent = "00:00";
-      cancelAnimationFrame(rafId);
-      startBtn.textContent = "Start";
-    });
+      startBtn.addEventListener("click", () => {
+        if (!running) {
+          running = true;
+          startEpoch = performance.now();
+          rafId = requestAnimationFrame(tick);
+          startBtn.textContent = "Pause";
+        } else {
+          // pause
+          running = false;
+          elapsed += performance.now() - startEpoch;
+          cancelAnimationFrame(rafId);
+          startBtn.textContent = "Resume";
+        }
+      });
+      resetBtn.addEventListener("click", () => {
+        running = false;
+        elapsed = 0;
+        timerEl.textContent = "00:00";
+        cancelAnimationFrame(rafId);
+        startBtn.textContent = "Start";
+      });
 
-    // Font size controls
-    function getFz(){
-      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fz"));
-    }
-    incBtn.addEventListener("click", ()=>{
-      document.documentElement.style.setProperty("--fz", (getFz() + 1) + "px");
-    });
-    decBtn.addEventListener("click", ()=>{
-      document.documentElement.style.setProperty("--fz", Math.max(14, getFz() - 1) + "px");
-    });
+      // Font size controls
+      function getFz() {
+        return parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--fz")
+        );
+      }
+      incBtn.addEventListener("click", () => {
+        document.documentElement.style.setProperty("--fz", getFz() + 1 + "px");
+      });
+      decBtn.addEventListener("click", () => {
+        document.documentElement.style.setProperty(
+          "--fz",
+          Math.max(14, getFz() - 1) + "px"
+        );
+      });
 
-    // Print
-    printBtn.addEventListener("click", ()=> window.print());
+      // Print
+      printBtn.addEventListener("click", () => window.print());
 
-    // Expand/Collapse all
-    const cardsRoot = document.getElementById("cards");
-    function allDetails(){ return Array.prototype.slice.call(cardsRoot.querySelectorAll("details.card")); }
-    expandAllBtn.addEventListener("click", ()=> allDetails().forEach(d => d.open = true));
-    collapseAllBtn.addEventListener("click", ()=> allDetails().forEach(d => d.open = false));
-  </script>
-</body>
+      // Expand/Collapse all
+      const cardsRoot = document.getElementById("cards");
+      function allDetails() {
+        return Array.prototype.slice.call(
+          cardsRoot.querySelectorAll("details.card")
+        );
+      }
+      expandAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = true))
+      );
+      collapseAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = false))
+      );
+    </script>
+  </body>
 </html>
