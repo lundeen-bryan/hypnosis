@@ -1,216 +1,380 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Demystifying Hypnosis — Pre-talk Handout</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --card: #ffffff;
-      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --radius: 14px;
-      --fz: 18px;
-    }
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--fg);
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: var(--fz);
-      line-height: 1.55;
-    }
-    .floating-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-    }
-    .toolbar {
-      display: flex;
-      gap: .5rem;
-      align-items: center;
-      padding: .6rem .9rem;
-      flex-wrap: wrap;
-    }
-    button {
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: var(--fg);
-      padding: .45rem .7rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: .95rem;
-      box-shadow: var(--shadow);
-    }
-    button:hover { background: #f3f4f6; }
-    button:active { transform: translateY(1px); }
-    .wrap {
-      max-width: 900px;
-      padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
-      margin: 0 auto;
-    }
-    h1.page-title {
-      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 800;
-    }
-    .cards { margin-top: .75rem; }
-    details.card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .2rem .2rem .7rem;
-      margin: .8rem 0;
-      box-shadow: var(--shadow);
-    }
-    details.card[open] { box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
-    details.card > summary {
-      list-style: none;
-      cursor: pointer;
-      font-weight: 700;
-      padding: .5rem .65rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      user-select: none;
-    }
-    details.card > summary::-webkit-details-marker { display: none; }
-    .chev { display: inline-block; transition: transform 0.15s ease; }
-    details[open] .chev { transform: rotate(90deg); }
-    .section-body { padding: .1rem .95rem .2rem 2.05rem; }
-    .footer {
-      margin-top: 1.5rem;
-      padding-top: .75rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .95rem;
-      text-align: center;
-    }
-    @media print {
-      .floating-header { position: static; }
-    }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0b1020; --fg: #e5e7eb; --muted: #9ca3af; --border: #1f2937; --card: #0f162e; }
-      button { background: #0f162e; }
-      button:hover { background: #121a35; }
-      .floating-header { background: rgba(8,12,26,0.85); }
-    }
-  </style>
-</head>
-<body>
-  <header class="floating-header">
-    <div class="toolbar">
-      <button id="print">Print</button>
-      <button id="expandAll">Expand All</button>
-      <button id="collapseAll">Collapse All</button>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demystifying Hypnosis — Pre-talk Handout</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --card: #ffffff;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --radius: 14px;
+        --fz: 18px;
+      }
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: var(--fz);
+        line-height: 1.55;
+      }
+      .floating-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+      }
+      .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.6rem 0.9rem;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: #f9fafb;
+        color: var(--fg);
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        box-shadow: var(--shadow);
+      }
+      button:hover {
+        background: #f3f4f6;
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+      .wrap {
+        max-width: 900px;
+        padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
+        margin: 0 auto;
+      }
+      h1.page-title {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 800;
+      }
+      .cards {
+        margin-top: 0.75rem;
+      }
+      details.card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.2rem 0.2rem 0.7rem;
+        margin: 0.8rem 0;
+        box-shadow: var(--shadow);
+      }
+      details.card[open] {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      }
+      details.card > summary {
+        list-style: none;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 0.5rem 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        user-select: none;
+      }
+      details.card > summary::-webkit-details-marker {
+        display: none;
+      }
+      .chev {
+        display: inline-block;
+        transition: transform 0.15s ease;
+      }
+      details[open] .chev {
+        transform: rotate(90deg);
+      }
+      .section-body {
+        padding: 0.1rem 0.95rem 0.2rem 2.05rem;
+      }
+      .footer {
+        margin-top: 1.5rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      @media print {
+        .floating-header {
+          position: static;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --fg: #e5e7eb;
+          --muted: #9ca3af;
+          --border: #1f2937;
+          --card: #0f162e;
+        }
+        button {
+          background: #0f162e;
+        }
+        button:hover {
+          background: #121a35;
+        }
+        .floating-header {
+          background: rgba(8, 12, 26, 0.85);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="floating-header">
+      <div class="toolbar">
+        <button id="print">Print</button>
+        <button id="expandAll">Expand All</button>
+        <button id="collapseAll">Collapse All</button>
+      </div>
+    </header>
 
-  <main class="wrap">
-    <h1 class="page-title">Demystifying Hypnosis — Pre-talk Handout</h1>
+    <main class="wrap">
+      <h1 class="page-title">Demystifying Hypnosis — Pre-talk Handout</h1>
 
-    <section class="cards" id="cards">
-      <details class="card">
-        <summary><span class="chev">▶</span><span>I. prior experience</span></summary>
-        <div class="section-body">
-          <p>“Have you ever been hypnotized before?”</p>
-          <p>If yes: “How was that experience for you?” (Listen. Note preconceptions, positives, concerns.)</p>
-          <p>If no: “Great — we’ll keep it simple and natural. I’ll guide you step‑by‑step.”</p>
-        </div>
-      </details>
+      <section class="cards" id="cards">
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>I. prior experience</span>
+          </summary>
+          <div class="section-body">
+            <p>“Have you ever been hypnotized before?”</p>
+            <p>
+              If yes: “How was that experience for you?” (Listen. Note
+              preconceptions, positives, concerns.)
+            </p>
+            <p>
+              If no: “Great — we’ll keep it simple and natural. I’ll guide you
+              step‑by‑step.”
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>II. Introduction</span></summary>
-        <div class="section-body">
-          <p>“Hypnosis for most people is what they see on a stage show, where they see someone say ‘SLEEP!’ and then they go to sleep, but hypnosis isn’t sleep, it’s a heightened state of focus called a trance. And we’re in a trance most of the time. For example…”</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>II. Introduction</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              “Hypnosis for most people is what they see on a stage show, where
+              they see someone say ‘SLEEP!’ and then they go to sleep, but
+              hypnosis isn’t sleep, it’s a heightened state of focus called a
+              trance. And we’re in a trance most of the time. For example…”
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>III. Metaphors</span></summary>
-        <div class="section-body">
-          <p>A. How many windows are in your house? — “As you picture each one, your mind drifts naturally into imagination — the same kind of focus that makes hypnosis so effective.”</p>
-          <p>B. Have you ever been driving and realized you missed your exit because your mind drifted? — “That’s the same kind of natural focus your mind uses in hypnosis.”</p>
-          <p>C. Have you ever been so absorbed in a book or movie that you lost track of time? — “That absorption is similar to how trance feels.”</p>
-          <p>D. Have you ever caught yourself daydreaming and noticed the world fading into the background? — “That gentle drifting is the same kind of experience we use in hypnosis.”</p>
-          <p>E. Have you ever listened to music so deeply that everything else seemed to disappear? — “That focused absorption is perfect for this process.”</p>
-          <p>F. Have you ever found yourself in the zone while walking or exercising, where your body moves almost automatically? — “That comfortable rhythm is the same kind of focus we’ll use now.”</p>
-          <p>G. Have you noticed those moments just before sleep when thoughts wander and images appear on their own? — “Hypnosis is like that in‑between state — aware, yet pleasantly absorbed.”</p>
-          <p>H. Have you ever been so engaged in a conversation or hobby that time seemed to fly by? — “That natural time‑distortion is common in trance as well.”</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>III. Metaphors</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              A. How many windows are in your house? — “As you picture each one,
+              your mind drifts naturally into imagination — the same kind of
+              focus that makes hypnosis so effective.”
+            </p>
+            <p>
+              B. Have you ever been driving and realized you missed your exit
+              because your mind drifted? — “That’s the same kind of natural
+              focus your mind uses in hypnosis.”
+            </p>
+            <p>
+              C. Have you ever been so absorbed in a book or movie that you lost
+              track of time? — “That absorption is similar to how trance feels.”
+            </p>
+            <p>
+              D. Have you ever caught yourself daydreaming and noticed the world
+              fading into the background? — “That gentle drifting is the same
+              kind of experience we use in hypnosis.”
+            </p>
+            <p>
+              E. Have you ever listened to music so deeply that everything else
+              seemed to disappear? — “That focused absorption is perfect for
+              this process.”
+            </p>
+            <p>
+              F. Have you ever found yourself in the zone while walking or
+              exercising, where your body moves almost automatically? — “That
+              comfortable rhythm is the same kind of focus we’ll use now.”
+            </p>
+            <p>
+              G. Have you noticed those moments just before sleep when thoughts
+              wander and images appear on their own? — “Hypnosis is like that
+              in‑between state — aware, yet pleasantly absorbed.”
+            </p>
+            <p>
+              H. Have you ever been so engaged in a conversation or hobby that
+              time seemed to fly by? — “That natural time‑distortion is common
+              in trance as well.”
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>IV. Bridge into Induction Example:</span></summary>
-        <div class="section-body">
-          <p>“Yes? Great — that’s exactly the kind of focus your mind can enjoy right now, and as you notice your breathing, you can just let your eyes close… and begin to relax more deeply.”</p>
-          <p>Lemon imagination exercise — “If you like, you can close your eyes. Picture a fresh lemon on a cutting board — notice the bright skin and the weight in your hand.”</p>
-          <p>“Imagine slicing it open… hear the knife, see the juice bead up and catch the scent as it lifts.”</p>
-          <p>“Bring a wedge to your lips and imagine the sharp, sour taste. Notice what your mouth is doing now.”</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>IV. Bridge into Induction Example:</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              “Yes? Great — that’s exactly the kind of focus your mind can enjoy
+              right now, and as you notice your breathing, you can just let your
+              eyes close… and begin to relax more deeply.”
+            </p>
+            <p>
+              Lemon imagination exercise — “If you like, you can close your
+              eyes. Picture a fresh lemon on a cutting board — notice the bright
+              skin and the weight in your hand.”
+            </p>
+            <p>
+              “Imagine slicing it open… hear the knife, see the juice bead up
+              and catch the scent as it lifts.”
+            </p>
+            <p>
+              “Bring a wedge to your lips and imagine the sharp, sour taste.
+              Notice what your mouth is doing now.”
+            </p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>V. Common Concerns about Hypnosis</span></summary>
-        <div class="section-body">
-          <p>There are usually three common concerns (besides sleep) people have about hypnosis that I hope to clarify first.</p>
-          <p>• “What if I get stuck inside and can’t get out?”</p>
-          <p>• “What if I reveal secrets while in hypnosis?”</p>
-          <p>• “What if I do something silly or weird?”</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>V. Common Concerns about Hypnosis</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              There are usually three common concerns (besides sleep) people
+              have about hypnosis that I hope to clarify first.
+            </p>
+            <p>• “What if I get stuck inside and can’t get out?”</p>
+            <p>• “What if I reveal secrets while in hypnosis?”</p>
+            <p>• “What if I do something silly or weird?”</p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VI. Invite Questions</span></summary>
-        <div class="section-body">
-          <p>“Do you have any questions about hypnosis?”</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VI. Invite Questions</span>
+          </summary>
+          <div class="section-body">
+            <p>“Do you have any questions about hypnosis?”</p>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VII. Outcome question</span></summary>
-        <div class="section-body">
-          <p>“Wonderful. Now that you know what hypnosis really is, what would you like to get out of today’s experience?”</p>
-          <p>“It could be something to improve, feel more confident about, or a habit you’d like to change.”</p>
-          <p>Reflect and prime: Briefly echo their words in positive terms (e.g., “So you’d like to feel calm and focused more often — excellent.”) Then bridge to induction.</p>
-          <p>Answer questions now: Invite and address any remaining questions before the concentration exercise. Keep responses brief, reassuring, and oriented to their goal.</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VII. Outcome question</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              “Wonderful. Now that you know what hypnosis really is, what would
+              you like to get out of today’s experience?”
+            </p>
+            <p>
+              “It could be something to improve, feel more confident about, or a
+              habit you’d like to change.”
+            </p>
+            <p>
+              Reflect and prime: Briefly echo their words in positive terms
+              (e.g., “So you’d like to feel calm and focused more often —
+              excellent.”) Then bridge to induction.
+            </p>
+            <p>
+              Answer questions now: Invite and address any remaining questions
+              before the concentration exercise. Keep responses brief,
+              reassuring, and oriented to their goal.
+            </p>
+            <div class="subsection">
+              <h4>Quick Goal Interview (fill-in)</h4>
+              <p>
+                <strong>1. Goal:</strong> I want to ______________________________.
+              </p>
+              <p>
+                <strong>2. When/Where:</strong> It usually happens when
+                ______________________________. I’d like it to happen instead
+                when ______________________________.
+              </p>
+              <p>
+                <strong>3. Ideal Outcome:</strong> If hypnosis worked perfectly, I
+                would ______________________________.
+              </p>
+              <p>
+                <strong>4. Proof:</strong> I’ll know it’s working because I notice
+                ______________________________.
+              </p>
+              <p>
+                <strong>5. Suggestion draft:</strong> Each time
+                ______________________________, I automatically
+                ______________________________, and it feels
+                ______________________________.
+              </p>
+            </div>
+          </div>
+        </details>
 
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VIII. Seating Properly</span></summary>
-        <div class="section-body">
-          <p>Sit back from the camera so I can see more of you all the way back, so I can see your hands and where they are resting comfortably.</p>
-          <p>We're going to continue these little exercises to help us get warmed up to hypnosis, so I'll ask you a few more questions. Is that okay?</p>
-        </div>
-      </details>
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VIII. Seating Properly</span>
+          </summary>
+          <div class="section-body">
+            <p>
+              Sit back from the camera so I can see more of you all the way
+              back, so I can see your hands and where they are resting
+              comfortably.
+            </p>
+            <p>
+              We're going to continue these little exercises to help us get
+              warmed up to hypnosis, so I'll ask you a few more questions. Is
+              that okay?
+            </p>
+          </div>
+        </details>
+      </section>
 
+      <footer class="footer">
+        Footer © 2025 Hypnosis Pre-Talk Script by Bryan Lundeen
+      </footer>
+    </main>
 
-    </section>
+    <script>
+      const printBtn = document.getElementById("print");
+      const expandAllBtn = document.getElementById("expandAll");
+      const collapseAllBtn = document.getElementById("collapseAll");
+      const cardsRoot = document.getElementById("cards");
 
-    <footer class="footer">Footer © 2025 Hypnosis Pre-Talk Script by Bryan Lundeen</footer>
-  </main>
-
-  <script>
-    const printBtn = document.getElementById("print");
-    const expandAllBtn = document.getElementById("expandAll");
-    const collapseAllBtn = document.getElementById("collapseAll");
-    const cardsRoot = document.getElementById("cards");
-
-    printBtn.addEventListener("click", () => window.print());
-    function allDetails() { return Array.prototype.slice.call(cardsRoot.querySelectorAll("details.card")); }
-    expandAllBtn.addEventListener("click", () => allDetails().forEach(d => d.open = true));
-    collapseAllBtn.addEventListener("click", () => allDetails().forEach(d => d.open = false));
-  </script>
-</body>
+      printBtn.addEventListener("click", () => window.print());
+      function allDetails() {
+        return Array.prototype.slice.call(
+          cardsRoot.querySelectorAll("details.card")
+        );
+      }
+      expandAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = true))
+      );
+      collapseAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = false))
+      );
+    </script>
+  </body>
 </html>
