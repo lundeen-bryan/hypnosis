@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Installation Story — The Baseball Card</title>
+  <style>
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --ring:#e2e8f0;
+      --accent:#2563eb;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.7;
+    }
+    .wrap{
+      max-width: 820px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--ring);
+      border-radius:16px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.06);
+      overflow:hidden;
+    }
+    .toolbar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px solid var(--ring);
+      background:linear-gradient(#fff, #f9fbff);
+    }
+    h1{
+      font-size: clamp(1.25rem, 1.1rem + 1.2vw, 1.9rem);
+      margin:0;
+      letter-spacing:.2px;
+    }
+    .btns{display:flex; gap:10px;}
+    button{
+      appearance:none;
+      border:1px solid var(--ring);
+      background:#fff;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      transition: transform .04s ease, box-shadow .2s ease, border-color .2s ease;
+      box-shadow:0 1px 0 rgba(0,0,0,.02);
+    }
+    button:hover{border-color:#cbd5e1; box-shadow:0 6px 16px rgba(2,6,23,.06);}
+    button:active{transform:translateY(1px)}
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      border-color: transparent;
+    }
+    .content{
+      padding: 22px 20px 26px;
+      font-size: clamp(1.05rem, .98rem + .5vw, 1.25rem);
+    }
+    .lead{
+      color:var(--muted);
+      font-size: .98em;
+      margin: 0 0 14px 0;
+    }
+    .sep{height:8px}
+    p{margin: 0 0 14px 0}
+    .pause{opacity:.7; letter-spacing:.5px}
+    .note{
+      font-size:.95em; color:#334155; background:#f1f5f9; border:1px dashed #cbd5e1;
+      padding:10px 12px; border-radius:12px; margin-bottom:10px;
+    }
+    @media print {
+      .toolbar{display:none}
+      body{background:#fff}
+      .card{border:none; box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="toolbar">
+        <h1>Installation Story — The Baseball Card</h1>
+        <div class="btns">
+          <button id="decrease">A−</button>
+          <button id="increase">A+</button>
+          <button class="btn-primary" onclick="window.print()">Print</button>
+        </div>
+      </div>
+      <div class="content" id="content">
+        <div class="note">
+          Use this while your partner’s <em>unconscious installs resources</em>. Read slowly, add gentle pauses, and let the story run in the background of their experience.
+        </div>
+
+        <p class="lead"><strong>Transition (softly):</strong> “And as your unconscious begins sorting, installing, and activating what will be most helpful… minds often drift… and that’s perfectly fine…”</p>
+        <div class="sep"></div>
+
+        <p>“There was a man who used to walk home from work each day… taking the slightly longer way… just so he could pass an old baseball card shop.”</p>
+        <p>“In the window, there was a Pete Rose card — pristine… framed… catching the light.”</p>
+        <p>“He’d pause for a moment… imagining what it might be like to hold it… to bring it home… and feel that quiet ‘yes’ inside.”</p>
+        <p>“And then a little voice — the familiar one — would begin: <em>‘Not for you. That’s for other people… richer… luckier… more confident.’</em> And he would breathe… and walk on.”</p>
+        <p>“Days became months… months became years… and still he walked by, listening to that voice.”</p>
+        <p>“One morning, he turned the corner… and the window was empty. The shop was closed. The card was gone.”</p>
+        <p>“And as he stood there, looking through that empty glass… he realized something simple: he had never even stepped inside to ask the price.”</p>
+        <p>“He had never even begun the conversation.”</p>
+        <p>“And in that quiet moment… something turned over inside — like an old engine remembering what it’s for.”</p>
+        <p>“He decided that the next time something made him pause like that… he’d take a breath… step through the door… and ask. Because the worst that can happen is hearing a price. And the best that can happen is finally holding it in his hands.”</p>
+
+        <div class="sep"></div>
+        <p class="lead"><strong>Integration (softly):</strong> “And as your unconscious continues installing and activating what serves you best… you can notice that same quiet readiness… the kind that makes it easy to step forward when the moment presents itself…”</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const content = document.getElementById('content');
+      let size = 1.0;
+      const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
+      document.getElementById('increase').addEventListener('click', ()=>{
+        size = clamp(size + 0.06, .85, 1.35);
+        content.style.fontSize = `calc(clamp(1.05rem, .98rem + .5vw, 1.25rem) * ${size})`;
+      });
+      document.getElementById('decrease').addEventListener('click', ()=>{
+        size = clamp(size - 0.06, .85, 1.35);
+        content.style.fontSize = `calc(clamp(1.05rem, .98rem + .5vw, 1.25rem) * ${size})`;
+      });
+    })();
+  </script>
+</body>
+</html>
