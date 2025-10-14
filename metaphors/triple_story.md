@@ -31,6 +31,14 @@ and it brings me back to the quote from Marcus Aurilius on my wall that says "me
 (pause again but this time hang the plaque back up on the wall which allows their mind to pause)
 which if translated to english means essentially we all must die someday.
 
+When my dad died, I just went into automatic responsibility mode. Nothing else mattered but
+getting the funeral taken care of -- making sure people were called, the service was right that
+everything got done.
+
+And it's funny how, sometimes, once a person's found that part of themselves that can just step
+up and handle what needs to be handled... it tends to show up again later, in other places,
+without even thinking about it.
+
 What if today was the last day you had to accomplish your goals? what if the only time you had to
 accomplish that one thing you'd always wanted to do was today?
 
