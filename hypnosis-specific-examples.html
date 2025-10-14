@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hypnosis Use‑Cases — Specific Examples</title>
+  <style>
+    :root{
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #111111;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header{
+      position: sticky; top:0; z-index: 10;
+      background: rgba(247,248,251,0.9);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap{
+      max-width: 920px; margin: 0 auto; padding: 16px;
+    }
+    h1{font-size: clamp(1.25rem, 2.5vw, 1.75rem); margin: 0 0 8px 0;}
+    .controls{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    }
+    button{
+      padding: 10px 14px;
+      border-radius: 12px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text);
+      cursor: pointer; font-weight: 600;
+    }
+    button.primary{
+      background: var(--accent); color: white; border-color: var(--accent);
+    }
+    main{ padding: 20px 16px 64px; }
+    .card{
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+    p.subtle{ color: var(--muted); margin-top: 0; }
+    ol#issues{ padding-left: 1.25rem; margin:0; }
+    ol#issues li{
+      margin: 6px 0; padding: 6px 8px;
+      display:flex; align-items:flex-start; gap:10px;
+      border-radius: 10px;
+    }
+    ol#issues li:hover{ background:#f3f4f6; }
+    .check{
+      transform: translateY(2px);
+      width: 20px; height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    label{ display:block; cursor:pointer; }
+    .toast{
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: 18px; background: #111; color: #fff;
+      padding: 10px 14px; border-radius: 10px; font-size: 0.95rem;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show{ opacity: 1; transform: translate(-50%, -6px); }
+    @media (prefers-reduced-motion: reduce){
+      .toast{ transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap controls">
+      <h1>Specific Problems Often Addressed with Hypnosis</h1>
+      <div style="flex:1"></div>
+      <button onclick="window.print()">Print</button>
+      <button class="primary" id="saveBtn" title="Copy checked items to your clipboard">Save Selected</button>
+      <button id="clearBtn" title="Uncheck all">Clear</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <p class="subtle">Check any items that apply. Click <strong>Save Selected</strong> to copy the numbered list of checked items to your clipboard.</p>
+      <ol id="issues">
+        <li><input class="check" type="checkbox" id="i1"><label for="i1">A child who wets the bed at night (enuresis)</label></li>
+        <li><input class="check" type="checkbox" id="i2"><label for="i2">A teenager who blushes uncontrollably when speaking to others</label></li>
+        <li><input class="check" type="checkbox" id="i3"><label for="i3">A student who panics and forgets answers during exams</label></li>
+        <li><input class="check" type="checkbox" id="i4"><label for="i4">A man who stutters when he feels nervous in meetings</label></li>
+        <li><input class="check" type="checkbox" id="i5"><label for="i5">A woman who can’t stop biting her nails during stressful moments</label></li>
+        <li><input class="check" type="checkbox" id="i6"><label for="i6">A person who constantly checks their phone out of habit</label></li>
+        <li><input class="check" type="checkbox" id="i7"><label for="i7">A musician who shakes from performance anxiety on stage</label></li>
+        <li><input class="check" type="checkbox" id="i8"><label for="i8">A driver who feels panic attacks when merging onto highways</label></li>
+        <li><input class="check" type="checkbox" id="i9"><label for="i9">A woman who overeats late at night even when she isn’t hungry</label></li>
+        <li><input class="check" type="checkbox" id="i10"><label for="i10">A man who smokes a pack a day and wants to quit but fails after a few hours</label></li>
+        <li><input class="check" type="checkbox" id="i11"><label for="i11">A corporate executive who is under extreme stress and has trouble relaxing even at home</label></li>
+        <li><input class="check" type="checkbox" id="i12"><label for="i12">A nurse who feels emotionally drained and can’t stop replaying difficult patient cases in her mind</label></li>
+        <li><input class="check" type="checkbox" id="i13"><label for="i13">A public speaker who loses their voice before every major event</label></li>
+        <li><input class="check" type="checkbox" id="i14"><label for="i14">A new mother who feels anxious and overwhelmed caring for her baby</label></li>
+        <li><input class="check" type="checkbox" id="i15"><label for="i15">A salesperson who avoids making cold calls out of fear of rejection</label></li>
+        <li><input class="check" type="checkbox" id="i16"><label for="i16">A young athlete who “chokes” during competitions despite great practice performance</label></li>
+        <li><input class="check" type="checkbox" id="i17"><label for="i17">A doctor who feels burned out and disconnected from empathy</label></li>
+        <li><input class="check" type="checkbox" id="i18"><label for="i18">A person who grinds their teeth at night because of workplace pressure</label></li>
+        <li><input class="check" type="checkbox" id="i19"><label for="i19">A writer who stares at the blank page, unable to start writing</label></li>
+        <li><input class="check" type="checkbox" id="i20"><label for="i20">A widower who can’t stop replaying moments of loss and struggles to sleep</label></li>
+        <li><input class="check" type="checkbox" id="i21"><label for="i21">A bride who fears fainting while walking down the aisle</label></li>
+        <li><input class="check" type="checkbox" id="i22"><label for="i22">A patient who needs an MRI but feels severe claustrophobia</label></li>
+        <li><input class="check" type="checkbox" id="i23"><label for="i23">A business owner who procrastinates on key decisions out of fear of failure</label></li>
+        <li><input class="check" type="checkbox" id="i24"><label for="i24">A student who feels paralyzed by perfectionism when doing homework</label></li>
+        <li><input class="check" type="checkbox" id="i25"><label for="i25">A man who constantly argues with his spouse and wants to control his temper</label></li>
+        <li><input class="check" type="checkbox" id="i26"><label for="i26">A woman who has unexplained chronic back pain worsened by stress</label></li>
+        <li><input class="check" type="checkbox" id="i27"><label for="i27">A person preparing for surgery who feels terrified of anesthesia</label></li>
+        <li><input class="check" type="checkbox" id="i28"><label for="i28">A teenager who compulsively pulls out their hair (trichotillomania)</label></li>
+        <li><input class="check" type="checkbox" id="i29"><label for="i29">A performer who forgets lyrics mid-show from stage fright</label></li>
+        <li><input class="check" type="checkbox" id="i30"><label for="i30">A retiree who feels purposeless and depressed after leaving work</label></li>
+        <li><input class="check" type="checkbox" id="i31"><label for="i31">A patient who feels phantom limb pain after an amputation</label></li>
+        <li><input class="check" type="checkbox" id="i32"><label for="i32">A woman struggling with morning sickness and anxiety during pregnancy</label></li>
+        <li><input class="check" type="checkbox" id="i33"><label for="i33">A man who can’t stop replaying an embarrassing moment from years ago</label></li>
+        <li><input class="check" type="checkbox" id="i34"><label for="i34">A person who breaks out in hives before public appearances</label></li>
+        <li><input class="check" type="checkbox" id="i35"><label for="i35">A dieter who regains weight because they feel undeserving of success</label></li>
+        <li><input class="check" type="checkbox" id="i36"><label for="i36">A man whose golf swing collapses under tournament pressure</label></li>
+        <li><input class="check" type="checkbox" id="i37"><label for="i37">A woman who fears flying and avoids family vacations</label></li>
+        <li><input class="check" type="checkbox" id="i38"><label for="i38">A child who refuses to sleep alone because of nightmares</label></li>
+        <li><input class="check" type="checkbox" id="i39"><label for="i39">A man who blushes uncontrollably when talking to women</label></li>
+        <li><input class="check" type="checkbox" id="i40"><label for="i40">A woman who can’t stop shopping online late at night</label></li>
+        <li><input class="check" type="checkbox" id="i41"><label for="i41">A manager who feels constant guilt for delegating work</label></li>
+        <li><input class="check" type="checkbox" id="i42"><label for="i42">A caregiver who can’t relax when someone else is in charge</label></li>
+      </ol>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied selected items to clipboard</div>
+
+<script>
+(function(){
+  const list = document.getElementById('issues');
+  const saveBtn = document.getElementById('saveBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const toast = document.getElementById('toast');
+
+  // assign data-number to each LI for reliable numbering
+  Array.from(list.querySelectorAll('li')).forEach((li, idx) => {
+    li.dataset.num = String(idx + 1);
+  });
+
+  function showToast(msg){
+    toast.textContent = msg || 'Copied selected items to clipboard';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1500);
+  }
+
+  saveBtn.addEventListener('click', async () => {
+    const selected = [];
+    Array.from(list.querySelectorAll('li')).forEach(li => {
+      const box = li.querySelector('input[type="checkbox"]');
+      const label = li.querySelector('label');
+      if (box && box.checked && label){
+        selected.push(`${li.dataset.num}. ${label.textContent.trim()}`);
+      }
+    });
+    const out = selected.join('\n');
+    try{
+      await navigator.clipboard.writeText(out);
+      showToast(selected.length ? 'Copied selected items to clipboard' : 'No items selected');
+    }catch(err){
+      showToast('Clipboard copy failed');
+      console.error(err);
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    list.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  });
+})();
+</script>
+</body>
+</html>
