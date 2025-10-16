@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>External Trance Indicators — Checklist</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#111111;
+      --muted:#555555;
+      --accent:#0b5fff;
+      --card:#f7f7f8;
+      --border:#e6e6e8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--fg);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:linear-gradient(180deg,var(--bg) 70%,rgba(255,255,255,0.6) 100%);
+      backdrop-filter:saturate(1.2) blur(6px);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+      padding:16px 20px;
+    }
+    h1{
+      font-size:clamp(1.35rem,2.5vw,1.8rem);
+      margin:0;
+    }
+    .toolbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    button{
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    button:hover{border-color:var(--accent)}
+    main{padding:18px 20px 48px}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px;
+      margin:14px 0;
+    }
+    h2{
+      font-size:1.05rem;
+      margin:0 0 10px 0;
+      color:var(--muted);
+    }
+    ol{
+      margin:0;
+      padding-left:1.5rem;
+    }
+    li{
+      margin:8px 0;
+      padding:8px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:10px;
+      list-style:decimal;
+    }
+    .item{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+    }
+    input[type="checkbox"]{
+      width:1.1rem;height:1.1rem;margin-top:2px;
+      accent-color:var(--accent);
+    }
+    label{display:block;cursor:pointer}
+    @media print{
+      header,.toolbar{display:none}
+      .card{break-inside:avoid}
+      body{background:#fff}
+      li{background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>External Trance Indicators — Checklist</h1>
+      <div class="toolbar">
+        <button onclick="window.print()">Print</button>
+        <button onclick="toggleAll(true)">Select all</button>
+        <button onclick="toggleAll(false)">Clear all</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="content">
+    <section class="card">
+      <h2>1) Physiological Indicators</h2>
+      <ol start="1">
+        <li><div class="item"><input id="i1" type="checkbox"><label for="i1">Slower, deeper, and more rhythmic breathing</label></div></li>
+        <li><div class="item"><input id="i2" type="checkbox"><label for="i2">Reduced heart rate or visible calmness in chest movement</label></div></li>
+        <li><div class="item"><input id="i3" type="checkbox"><label for="i3">Changes in skin color (flushed or paler complexion)</label></div></li>
+        <li><div class="item"><input id="i4" type="checkbox"><label for="i4">Subtle tear film or moisture around the eyes</label></div></li>
+        <li><div class="item"><input id="i5" type="checkbox"><label for="i5">Decrease in overall muscle tension or drooping shoulders</label></div></li>
+        <li><div class="item"><input id="i6" type="checkbox"><label for="i6">Slackening of the jaw or lips</label></div></li>
+        <li><div class="item"><input id="i7" type="checkbox"><label for="i7">Reduced swallowing frequency</label></div></li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>2) Ocular (Eye‑Related) Indicators</h2>
+      <ol start="8">
+        <li><div class="item"><input id="i8" type="checkbox"><label for="i8">Fixation of gaze or a “soft focus” look</label></div></li>
+        <li><div class="item"><input id="i9" type="checkbox"><label for="i9">Fluttering eyelids or rapid eye movements beneath closed lids (REM)</label></div></li>
+        <li><div class="item"><input id="i10" type="checkbox"><label for="i10">Slow blinking or progressively longer blinks</label></div></li>
+        <li><div class="item"><input id="i11" type="checkbox"><label for="i11">Pupillary changes (slight dilation or constriction)</label></div></li>
+        <li><div class="item"><input id="i12" type="checkbox"><label for="i12">Glazed or distant look as attention turns inward</label></div></li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>3) Motor (Body Movement) Indicators</h2>
+      <ol start="13">
+        <li><div class="item"><input id="i13" type="checkbox"><label for="i13">Decrease in spontaneous movement or fidgeting</label></div></li>
+        <li><div class="item"><input id="i14" type="checkbox"><label for="i14">Subtle head nods or tilts indicating unconscious “yes” or “no” responses</label></div></li>
+        <li><div class="item"><input id="i15" type="checkbox"><label for="i15">Small twitches or ideomotor movements of hands or fingers</label></div></li>
+        <li><div class="item"><input id="i16" type="checkbox"><label for="i16">Body stillness or slight swaying</label></div></li>
+        <li><div class="item"><input id="i17" type="checkbox"><label for="i17">Sinking or settling deeper into the chair</label></div></li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>4) Verbal and Auditory Indicators</h2>
+      <ol start="18">
+        <li><div class="item"><input id="i18" type="checkbox"><label for="i18">Slower speech rate or quieter tone of voice</label></div></li>
+        <li><div class="item"><input id="i19" type="checkbox"><label for="i19">More monotone or dreamy quality in speaking</label></div></li>
+        <li><div class="item"><input id="i20" type="checkbox"><label for="i20">Pauses or delays before responding</label></div></li>
+        <li><div class="item"><input id="i21" type="checkbox"><label for="i21">Shift from analytical words to sensory or feeling‑based language</label></div></li>
+        <li><div class="item"><input id="i22" type="checkbox"><label for="i22">Shorter sentences, often with less conscious filtering</label></div></li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>5) Micro‑Behavioral and Unconscious Indicators</h2>
+      <ol start="23">
+        <li><div class="item"><input id="i23" type="checkbox"><label for="i23">Spontaneous sighs or deep exhalations</label></div></li>
+        <li><div class="item"><input id="i24" type="checkbox"><label for="i24">Subtle facial expressions suggesting inward imagery</label></div></li>
+        <li><div class="item"><input id="i25" type="checkbox"><label for="i25">Ideomotor finger signals or hand levitation</label></div></li>
+        <li><div class="item"><input id="i26" type="checkbox"><label for="i26">Micro‑nods following embedded suggestions</label></div></li>
+        <li><div class="item"><input id="i27" type="checkbox"><label for="i27">Time distortion or altered awareness of surroundings</label></div></li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>6) Post‑Session Indicators (Emergence Phase)</h2>
+      <ol start="28">
+        <li><div class="item"><input id="i28" type="checkbox"><label for="i28">Slow blinking or stretching as they re‑orient</label></div></li>
+        <li><div class="item"><input id="i29" type="checkbox"><label for="i29">Temporary disorientation or dreamy after‑glow</label></div></li>
+        <li><div class="item"><input id="i30" type="checkbox"><label for="i30">Reports of lost time or partial amnesia</label></div></li>
+        <li><div class="item"><input id="i31" type="checkbox"><label for="i31">Calmness, openness, or lingering relaxation</label></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    function toggleAll(state){
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = state);
+    }
+  </script>
+</body>
+</html>
