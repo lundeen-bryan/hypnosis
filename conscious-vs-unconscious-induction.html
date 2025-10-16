@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Conscious vs. Unconscious — Simplified Induction</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #0b1220;
+    --muted: #4b5563;
+    --accent: #2563eb;
+    --panel: #f3f4f6;
+    --border: #e5e7eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1220;
+      --fg: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --panel: #0f172a;
+      --border: #1f2937;
+    }
+  }
+  * { box-sizing: border-box }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Inter, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 16px }
+  h1 { font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0.5rem 0 0.25rem }
+  p.lead { margin: 0; color: var(--muted) }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 0 }
+  button, .btn-link {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .btn-link { text-decoration: none; display: inline-block }
+  button:hover, .btn-link:hover { border-color: var(--accent) }
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--panel);
+    margin-top: 16px;
+  }
+  table { width: 100%; border-collapse: collapse }
+  thead th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(37,99,235,0.12), rgba(37,99,235,0.05));
+  }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top }
+  tbody tr:last-child td { border-bottom: none }
+  .script { margin-top: 20px; border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: var(--panel) }
+  .script h2 { margin-top: 0 }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace }
+  .small { font-size: 0.95rem }
+  footer { color: var(--muted); text-align: center; margin: 24px 0 }
+</style>
+<script>
+  function printPage() { window.print(); }
+  function copyScript() {
+    const txt = document.getElementById('script-text').innerText;
+    navigator.clipboard.writeText(txt).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy Script', 1500);
+    });
+  }
+</script>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Conscious vs. Unconscious — Simplified Induction</h1>
+    <p class="lead">Minimalist version: state each role clearly, allowing tone and pacing to deepen trance.</p>
+    <div class="toolbar">
+      <button onclick="printPage()">Print</button>
+      <button id="copy-btn" onclick="copyScript()">Copy Script</button>
+      <a class="btn-link" href="#script">Jump to Script</a>
+    </div>
+  </div>
+</header>
+<main class="container">
+<section class="table-wrap" aria-label="Conscious vs Unconscious table">
+<table>
+<thead><tr><th>Conscious</th><th>Unconscious</th></tr></thead>
+<tbody>
+<tr><td>Practical</td><td>Theoretical</td></tr>
+<tr><td>Thinks</td><td>Knows</td></tr>
+<tr><td>Logical</td><td>Intuitive</td></tr>
+<tr><td>Now</td><td>Always</td></tr>
+<tr><td>Words and Numbers</td><td>Metaphor and Music</td></tr>
+<tr><td>Black and White</td><td>Form and Colour</td></tr>
+<tr><td>7</td><td>Millions</td></tr>
+<tr><td>Observes</td><td>Runs</td></tr>
+<tr><td>Remembers many</td><td>Remembers all</td></tr>
+<tr><td>Misses many things</td><td>Misses nothing</td></tr>
+<tr><td>Details</td><td>Relationships</td></tr>
+<tr><td>Sleeps</td><td>Never sleeps</td></tr>
+<tr><td>Waking mind</td><td>Trance mind</td></tr>
+<tr><td>Today</td><td>Every day</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="script" class="script" aria-label="Simplified Induction Script">
+<h2>Simplified Induction Script</h2>
+<pre id="script-text" class="mono small" style="white-space:pre-wrap">
+Your conscious mind observes.
+Your unconscious mind runs.
+
+Your conscious mind plans.
+Your unconscious mind knows.
+
+Your conscious mind thinks.
+Your unconscious mind feels.
+
+Your conscious mind listens.
+Your unconscious mind understands.
+
+Your conscious mind looks.
+Your unconscious mind sees within.
+
+Your conscious mind remembers some things.
+Your unconscious mind remembers everything that matters.
+
+Your conscious mind forgets what is not needed.
+Your unconscious mind keeps what is useful.
+
+Your conscious mind focuses on details.
+Your unconscious mind notices the whole.
+
+Your conscious mind asks how.
+Your unconscious mind already knows how.
+
+Your conscious mind sleeps and wakes.
+Your unconscious mind never sleeps.
+
+Your conscious mind tries.
+Your unconscious mind allows.
+
+Your conscious mind is aware.
+Your unconscious mind is deeper.
+
+And as your conscious mind listens,
+your unconscious mind can respond.
+
+And as you consider the conscious mind…
+versus your unconscious…
+you can easily and naturally go to sleep now.
+(Snap)
+Eyes close… now.
+</pre>
+</section>
+</main>
+<footer class="container small">
+Responsive page • Minimal version for smooth pacing and subtle induction.
+</footer>
+</body>
+</html>
