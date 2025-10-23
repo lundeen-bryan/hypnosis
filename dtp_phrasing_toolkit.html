@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep Trance Phenomena Phrasing Toolkit</title>
+<style>
+  :root{
+    --bg:#fafafa;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --accent:#2563eb;
+    --accent-fg:#ffffff;
+    --shadow: 0 10px 20px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+  }
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+  }
+  .container{
+    max-width:1000px;
+    margin:0 auto;
+    padding:24px;
+  }
+  header{
+    position:sticky;
+    top:0;
+    background:linear-gradient(180deg, rgba(250,250,250,0.98) 0%, rgba(250,250,250,0.92) 100%);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--border);
+    z-index:10;
+  }
+  .header-inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  h1{font-size:1.5rem; font-weight:800; margin:0;}
+  .spacer{flex:1}
+  button, .btn{
+    appearance:none;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:600;
+    cursor:pointer;
+    transition: transform .04s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow: var(--shadow);
+    white-space:nowrap;
+  }
+  button:hover{transform: translateY(-1px);}
+  .btn-primary{
+    background:var(--accent);
+    color:var(--accent-fg);
+    border-color:transparent;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:16px;
+  }
+  @media (min-width: 800px){
+    .grid{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow: var(--shadow);
+    padding:18px;
+  }
+  .card h2{
+    margin:0 0 8px 0;
+    font-size:1.1rem;
+  }
+  details{
+    border:1px dashed var(--border);
+    border-radius:12px;
+    padding:12px 12px 4px 12px;
+    margin-top:8px;
+    background:#fff;
+  }
+  details[open]{background:#fcfcff}
+  summary{
+    list-style:none;
+    cursor:pointer;
+    font-weight:700;
+    color:#111827;
+  }
+  summary::-webkit-details-marker{display:none}
+  .tip{
+    font-size:.95rem;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  ul{padding-left:20px; margin:8px 0;}
+  .badge{
+    display:inline-block;
+    font-size:.75rem;
+    background:#eef2ff;
+    color:#3730a3;
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid #c7d2fe;
+    margin-left:6px;
+    vertical-align:middle;
+  }
+  .footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.9rem;
+    padding:24px 0 12px 0;
+  }
+  .toolbar{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .copy{
+    font-size:.85rem;
+    padding:8px 12px;
+  }
+  .kbd{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    background:#f3f4f6;
+    border:1px solid #e5e7eb;
+    border-radius:6px;
+    padding:2px 6px;
+    font-size:.85em;
+  }
+  .small{font-size:.9rem; color:var(--muted)}
+  .navlist{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px 16px;
+    margin-top:8px;
+  }
+  @media (max-width: 640px){
+    .navlist{grid-template-columns: 1fr;}
+  }
+  .navlist a{
+    text-decoration:none;
+    color:#1f2937;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:8px 12px;
+    display:block;
+  }
+  .navlist a:hover{
+    background:#eef2ff;
+    border-color:#c7d2fe;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>Deep Trance Phenomena — Phrasing Toolkit</h1>
+      <span class="badge">Light Theme</span>
+      <div class="spacer"></div>
+      <div class="toolbar">
+        <button class="btn" onclick="expandAll()">Expand all</button>
+        <button class="btn" onclick="collapseAll()">Collapse all</button>
+        <button class="btn btn-primary" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <p class="tip">Use these phrasing clusters inside your visualizations (escalator, river, pond, sky, garden) to invite automatic, unconscious responses. Aim for slow pacing, soft tone, and frequent pauses.</p>
+
+    <!-- 1) Brief definition -->
+    <section class="card" id="definition">
+      <h2>What are Deep Trance Phenomena?</h2>
+      <p><strong>Deep Trance Phenomena (DTP)</strong> are experiences that arise when attention and imagination become so engaged that certain responses happen <em>automatically</em> — beyond deliberate effort. Examples include catalepsy (pleasant immobility), amnesia (temporary forgetting), time distortion, automatic movements, and perceptual changes (positive/negative hallucinations, analgesia). In practice, depth is less about how relaxed someone looks and more about their <em>responsiveness</em> to suggestion.</p>
+    </section>
+
+    <!-- 2) Quick How-To moved up -->
+    <section class="card" style="margin-top:16px" id="how-to">
+      <h2>Quick How-To</h2>
+      <ol>
+        <li>Pick a visualization (escalator → garden pond → river → sky).</li>
+        <li>Sprinkle 1–2 phrasing lines from a relevant card every 20–30 seconds.</li>
+        <li>Mark small changes (“that’s right… good…”) and add a soft <em>test</em> inside the story.</li>
+        <li>When you get a result, praise it and continue the journey.</li>
+        <li>End with integration and a clear emerge.</li>
+      </ol>
+      <p class="small">Tip: rehearse aloud until the cadence becomes automatic. Use <span class="kbd">Ctrl/Cmd + F</span> in this page to jump to a DTP type on the fly.</p>
+    </section>
+
+    <!-- 3) List of DTP items with anchors -->
+    <section class="card" style="margin-top:16px" id="dtp-list">
+      <h2>Deep Trance Phenomena — Index</h2>
+      <div class="navlist">
+        <a href="#card-automatic">Automatic Processes</a>
+        <a href="#card-ambiguity">Sensory Ambiguity</a>
+        <a href="#card-amnesia">Dissociation &amp; Amnesia</a>
+        <a href="#card-time">Time Distortion</a>
+        <a href="#card-catalepsy">Catalepsy</a>
+        <a href="#card-ideomotor">Ideomotor &amp; Automatic Movement</a>
+        <a href="#card-poshall">Positive Hallucination</a>
+        <a href="#card-neghall">Negative Hallucination</a>
+        <a href="#card-analgesia">Analgesia / Anesthesia</a>
+        <a href="#card-fractionation">Fractionation &amp; Deepening</a>
+        <a href="#card-testing">Embedded Testing (Seed the DTP)</a>
+      </div>
+    </section>
+
+    <!-- 4) Cards grid as before -->
+    <div class="grid" style="margin-top:16px">
+
+      <section class="card" id="card-automatic">
+        <h2>Automatic Processes <span class="badge">General</span></h2>
+        <p class="small">Invite experiences that happen by themselves (great with ideomotor drift or automatic swallowing/breathing changes).</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>You don’t have to make it happen — it can begin to happen on its own.</li>
+            <li>Notice what your hand prefers to do all by itself.</li>
+            <li>Some changes start quietly, and then you only notice them after they’ve already begun.</li>
+            <li>It’s okay to be curious about which part moves first… or whether it just settles comfortably still.</li>
+            <li>As the scene continues, your responses can become pleasantly automatic.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-ambiguity">
+        <h2>Sensory Ambiguity <span class="badge">Blur inner &amp; outer</span></h2>
+        <p class="small">Soften distinctions to increase imaginative absorption (use with light cues, distant sounds, soft breezes).</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>Perhaps that glow is outside you… or perhaps it’s forming within.</li>
+            <li>You might hear my voice as if from a little farther away… or as your own thoughts, repeating.</li>
+            <li>The more real it becomes, the less you need to decide <em>how</em> it’s real.</li>
+            <li>It can feel both familiar and new, as if remembered and imagined together.</li>
+            <li>You can notice… without needing to explain.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-amnesia">
+        <h2>Dissociation &amp; Amnesia <span class="badge">Let go</span></h2>
+        <p class="small">Create gentle separation for forgetting, comfort, and selective attention.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>It’s as if you can watch yourself relaxing from a comfortable distance.</li>
+            <li>One part remembers everything perfectly, while another part can drift and rest.</li>
+            <li>Some thoughts float up and away before you even finish them.</li>
+            <li>Later, the useful parts can return in their own good time.</li>
+            <li>For now, you can set certain thoughts aside, like placing a book on a quiet shelf.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-time">
+        <h2>Time Distortion <span class="badge">Elastic time</span></h2>
+        <p class="small">Invite expanded or compressed time — often appears naturally during immersive imagery.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>This moment can last as long as you’d like.</li>
+            <li>It might feel as if hours have passed… or only a few breaths.</li>
+            <li>As you look back later, you may wonder how long you were here.</li>
+            <li>Time outside can move normally while your inner time moves differently.</li>
+            <li>You can do a lot of inner work in just a little clock-time.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-catalepsy">
+        <h2>Catalepsy <span class="badge">Stillness</span></h2>
+        <p class="small">Use gentle inevitability and comfort to invite immobility.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>As comfort settles in, some muscles can become so pleasantly at-ease that they don’t need to move yet.</li>
+            <li>You might notice a pause… as if the hand finds the perfect place to rest, too comfortable to move for now.</li>
+            <li>The more the mind drifts, the easier it is for the body to become quietly steady.</li>
+            <li>That easy stillness can simply remain, until it feels right to change.</li>
+            <li>You could try to move now… and discover you’d rather enjoy the stillness a little longer.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-ideomotor">
+        <h2>Ideomotor &amp; Automatic Movement <span class="badge">Micro-movements</span></h2>
+        <p class="small">Great for finger signals, arm levitation, or gentle sways.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>Sometimes a finger knows first — a tiny signal that appears before you decide.</li>
+            <li>You may be curious which hand grows lighter… or which prefers to rest heavier.</li>
+            <li>Imagine a soft thread lifting… and let your body discover what it wants to do with that image.</li>
+            <li>Notice how a breath can tip the balance… and something begins to move by itself.</li>
+            <li>Even not moving is a response — and that, too, can deepen your absorption.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-poshall">
+        <h2>Positive Hallucination <span class="badge">Adding</span></h2>
+        <p class="small">Invite the addition of vivid sensory detail (best after strong imagery is established).</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>As the scene becomes richer, notice what new detail appears first — a glint, a texture, a subtle sound.</li>
+            <li>If there were a pleasant fragrance here, what would it be like?</li>
+            <li>Let the picture sharpen a little, the way a camera finds focus.</li>
+            <li>Allow the experience to become just real enough that your body responds naturally.</li>
+            <li>It can be surprising how the mind supplies exactly what completes the scene.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-neghall">
+        <h2>Negative Hallucination <span class="badge">Subtracting</span></h2>
+        <p class="small">Gently omit or fade an element — works well with “selective attention” frames.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>You can focus so well on this, that less important things fade to the background.</li>
+            <li>It’s easy to let certain details blur, as if they’re not needed for now.</li>
+            <li>Some sounds can become part of the background — like distant waves — while this stays clear.</li>
+            <li>If that thought were written in sand, watch the tide smooth it away.</li>
+            <li>For a while, it’s as if that thing just… isn’t there to consider.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-analgesia">
+        <h2>Analgesia / Anesthesia <span class="badge">Comfort</span></h2>
+        <p class="small">For ethical practice, always follow training and guidelines. Use comfort, numbness metaphors, temperature shifts.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>Imagine a cool, soothing breeze passing over that area… calming, comforting, easing.</li>
+            <li>Like dipping the hand into cool, clear water — sensations can soften and quiet.</li>
+            <li>Numbers on a dimmer can turn down — ten… to seven… to three… to whatever level is most comfortable now.</li>
+            <li>Comfort can spread outward, the way warmth from a mug moves through your fingers.</li>
+            <li>Any remaining sensation can be set aside, like turning the volume to a safe, quiet level.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-fractionation">
+        <h2>Fractionation &amp; Deepening <span class="badge">Down &amp; back</span></h2>
+        <p class="small">Cycle attention briefly up and back down to ratchet depth.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>In a moment, I’ll invite you to take a slightly deeper breath… and as you exhale, you can drift even further inward.</li>
+            <li>Eyes may want to flutter… and each time they settle, everything doubles in calm.</li>
+            <li>Coming up just enough to notice how good it feels to go back down again.</li>
+            <li>Each return carries you farther, like gentle waves traveling shoreward.</li>
+            <li>Good — and now, allow that comfort to fold over you once more.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card" id="card-testing">
+        <h2>Embedded Testing (Seed the DTP) <span class="badge">Verify</span></h2>
+        <p class="small">Test softly inside the metaphor so the “test” feels like part of the story.</p>
+        <details open>
+          <summary>Phrases</summary>
+          <ul>
+            <li>As that hand rests perfectly still, you could try to lift it now… and notice it prefers to remain resting.</li>
+            <li>Search for the last number… and find that the mind skips lightly over it, like a stone over water.</li>
+            <li>Let a name drift behind the clouds for a while — there when needed, out of sight for now.</li>
+            <li>Count a few steps… and notice how easy it is to lose track in the comfort.</li>
+            <li>Good — the moment you notice the effect, it can deepen again.</li>
+          </ul>
+        </details>
+      </section>
+
+    </div>
+
+    <div class="footer">
+      Crafted for practice sessions. Print or keep on a tablet for quick reference.
+    </div>
+  </div>
+
+<script>
+  function expandAll(){
+    document.querySelectorAll('details').forEach(d=>d.open=true);
+  }
+  function collapseAll(){
+    document.querySelectorAll('details').forEach(d=>d.open=false);
+  }
+</script>
+</body>
+</html>
