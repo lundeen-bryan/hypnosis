@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekend Hypnosis Practice Plan</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --card: #f9fafb;
+      --border: #e5e7eb;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .toolbar {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: .5rem 0;
+    }
+    .title {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--fg);
+      padding: .6rem .9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform .04s ease, box-shadow .2s ease, background .2s ease;
+      font-weight: 600;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
+    main { padding-top: .5rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+    h2 {
+      margin: 0 0 .25rem 0;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    }
+    p { margin: .4rem 0; }
+    ul {
+      margin: .4rem 0 .6rem 1.1rem;
+      padding: 0;
+    }
+    li { margin: .5rem 0; }
+    blockquote {
+      margin: .35rem 0 .2rem 0;
+      padding: .5rem .75rem;
+      border-left: 4px solid var(--accent);
+      background: #fff;
+      border-radius: 8px;
+    }
+    details.card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .5rem .75rem;
+      background: #fff;
+      margin-top: .5rem;
+    }
+    details.card summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 700;
+    }
+    details.card summary::marker { display: none; }
+    details.card[open] {
+      background: #fff;
+    }
+    .fine { color: var(--muted); font-size: .95rem; }
+    @media print {
+      header, .btn { display: none !important; }
+      section { box-shadow: none; break-inside: avoid; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container toolbar">
+      <div class="title">Weekend Hypnosis Practice Plan</div>
+      <div class="actions">
+        <button class="btn" onclick="window.print()">🖨️ Print</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>🧭 Pre-Session Plan and Announcements</h2>
+      <ul>
+        <li>While waiting for everyone to arrive, keep the energy friendly and conversational — welcome people, ask how they’re doing, and invite them to get comfortable.</li>
+        <li>If one of the regular facilitators joins, politely say:<br/>
+          <blockquote>“Hey, would you mind if I take the driver’s seat for just a little while? Please feel free to step in if you feel I’ve crossed any line.”</blockquote>
+        </li>
+        <li>Ask the group:<br/>
+          <blockquote>“Would everyone be okay if we record the session for later review and feedback?”</blockquote>
+          <span class="fine">(If anyone objects, pause recording — always keep consent explicit.)</span>
+        </li>
+        <li>Once everyone’s ready, begin by saying:<br/>
+          <blockquote>“I’m about to do an icebreaker. Does anyone know what an icebreaker is?”</blockquote>
+          <span class="fine">(Pause for responses — smile and nod.)</span><br/>
+          Then: <span class="fine">“Exactly — it’s just something fun to help everyone relax, connect, and get in the right state of mind.”</span>
+        </li>
+        <li>Then continue into the <strong>Richard Bandler Ice Breaker</strong> below.</li>
+        <li>After the icebreaker, transition naturally into the <strong>dolphin story</strong> and explain the positive-feedback rule.</li>
+        <li>Finally, announce that you’ll start off hypnotizing someone for today’s practice.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🌀 Richard Bandler Ice Breaker</h2>
+      <details class="card" open>
+        <summary>Script</summary>
+        <p>Alright, raise your hand if you know who <strong>Richard Bandler</strong> is.</p>
+        <p class="fine">(pause for hands — smile, nod)</p>
+        <p>Perfect. So this is a quick little exercise that comes straight from him. It’s fun, simple, and it’ll show you something cool about how your mind works.</p>
+        <p>Everyone, take a really quick deep breath through your mouth — like you’re sipping air through a straw.</p>
+        <p class="fine">(Demonstrate the “swwwwwithp” sound.)</p>
+        <p>Good.</p>
+        <p>Now we’ll do it one more time. But this time, as you take that breath, imagine a <em>smile</em> starting down at your feet, moving up through your legs, through your body, all the way up to your face.</p>
+        <p>And as it reaches your mouth, let it reach your <em>teeth</em> too — because as Bandler’s wife told him, it’s not really a smile without your teeth.</p>
+        <p>Ready? On three — one, two, three — <em>swwwwwithp!</em></p>
+        <p>Nice! You can feel that, right?</p>
+        <p>So if you just made yourself feel happy, even a little, you just learned something: you can make yourself happy <em>for no reason at all.</em></p>
+        <p>Isn’t that a cool thing?</p>
+        <p class="fine">(nod, smile)</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>🐬 The Dolphin Training Metaphor for Positive Feedback</h2>
+      <details class="card" open>
+        <summary>Story + Rule</summary>
+        <p><strong>Did you know that dolphin trainers never punish mistakes?</strong></p>
+        <p>When they’re teaching dolphins to do those amazing jumps and spins, they don’t scold them or blow a whistle when they get it wrong. They simply stay neutral.</p>
+        <p>But the <em>moment</em> the dolphin does something close to what they want, it gets a fish, a cheer, and a lot of attention.</p>
+        <p>Over time, the dolphin learns faster, because it feels safe to experiment. If the trainers ever punished mistakes, the dolphin would stop trying altogether.</p>
+        <p><strong>So today, we’re taking that same approach.</strong></p>
+        <p>Feedback will always sound like, <em>“I liked how you…”</em> That way, we’re giving each other <strong>positive reinforcement</strong> for the efforts we make.</p>
+        <p>If you <em>want</em> some critical feedback, just say so — we’ll be happy to give it when you ask.</p>
+        <p>But otherwise, today’s goal is to <strong>flood each other with praise and attention</strong> for everything that went right.</p>
+        <p>Because that’s how we all learn faster — and enjoy the process even more.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>🎯 Closing Transition</h2>
+      <details class="card" open>
+        <summary>What you’ll say</summary>
+        <p>Alright, with that in mind, let’s get started.</p>
+        <p>I’ll begin by hypnotizing someone to kick things off — and then we’ll rotate so everyone gets a chance to practice in this positive environment.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <p class="fine">PST times can be adjusted on the fly. Remember consent if recording. Keep tone warm, confident, and lightly humorous.</p>
+    </section>
+  </main>
+</body>
+</html>
