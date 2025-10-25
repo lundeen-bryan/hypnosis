@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Success Set in Ericksonian Hypnosis</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #0f172a; /* slate-900 */
+    --muted: #475569; /* slate-600 */
+    --card: #f8fafc; /* slate-50 */
+    --border: #e2e8f0; /* slate-200 */
+    --accent: #2563eb; /* blue-600 */
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.65;
+  }
+  header {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(8px);
+    background: rgba(255,255,255,0.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .container {
+    max-width: 920px; margin: 0 auto; padding: 1rem;
+  }
+  .titlebar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  h1 {
+    font-size: clamp(1.25rem, 1.5vw + 1rem, 2rem);
+    margin: 0.5rem 0;
+  }
+  .btn {
+    appearance: none; border: 1px solid var(--border); background: var(--card); color: var(--fg);
+    padding: 0.6rem 0.9rem; border-radius: 0.75rem; cursor: pointer; font-weight: 600;
+    transition: transform .05s ease, box-shadow .2s ease, border-color .2s ease;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04);
+    white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(37, 99, 235, .12); }
+  .btn:active { transform: translateY(1px); }
+  main { padding: 1rem; }
+  section.card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1rem;
+    margin: 1rem 0;
+  }
+  h2 { margin-top: 0; font-size: 1.25rem; }
+  h3 { margin-top: 1.25rem; font-size: 1.1rem; }
+  p { margin: 0.5rem 0 0.75rem; }
+  ul { padding-left: 1.1rem; margin: 0.5rem 0 0.75rem; }
+  li { margin: 0.4rem 0; }
+  .muted { color: var(--muted); }
+  .grid {
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .span-12 { grid-column: span 12; }
+  .span-6 { grid-column: span 6; }
+  @media (max-width: 800px) {
+    .span-6 { grid-column: span 12; }
+  }
+  footer {
+    padding: 2rem 1rem; color: var(--muted); text-align: center;
+  }
+  @media print {
+    header { display: none; }
+    main { padding: 0; }
+    section.card { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container titlebar">
+      <h1>The Success Set in Ericksonian Hypnosis</h1>
+      <div>
+        <button class="btn" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h2>What it is</h2>
+      <p>
+        The <strong>Success Set</strong> is a structured pre-hypnosis conversation that aligns a client’s
+        conscious goals with their unconscious resources. It creates a mental and emotional
+        “set” that primes the mind for success before formal trance work begins.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Purpose</h2>
+      <p>
+        Establish a <em>positive expectancy frame</em> by guiding the client to recall, embody,
+        and symbolize qualities of success they already possess — bridging conscious intention
+        with unconscious competence.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Step-by-Step Breakdown</h2>
+      <div class="grid">
+        <div class="span-6">
+          <h3>1) Identify the Goal</h3>
+          <p><strong>Question:</strong> “What is an important goal for you right now?”</p>
+          <p class="muted">Clarifies direction and gives the unconscious mind a target.</p>
+        </div>
+        <div class="span-6">
+          <h3>2) Elicit the Motivation</h3>
+          <p><strong>Question:</strong> “Why is that important for you?”</p>
+          <p class="muted">Uncovers the deeper value that fuels the goal.</p>
+        </div>
+
+        <div class="span-6">
+          <h3>3) Presuppose Past Success</h3>
+          <p><strong>Statement:</strong> “My intuition says that you’ve experienced this before.”</p>
+          <p class="muted">Assumes capability and activates memories of competence.</p>
+        </div>
+        <div class="span-6">
+          <h3>4) Explore Identity</h3>
+          <p><strong>Question:</strong> “When you experienced this, what kind of person were you?”</p>
+          <p class="muted">Accesses who they were being when success occurred.</p>
+        </div>
+
+        <div class="span-6">
+          <h3>5) Create a Symbol (Animal Metaphor)</h3>
+          <p><strong>Question:</strong> “When you’re like that, which animal comes to mind?”</p>
+          <p class="muted">Builds a vivid shorthand for the successful mindset.</p>
+        </div>
+        <div class="span-6">
+          <h3>6) Summarize the State</h3>
+          <p><strong>Summary:</strong> “You want to be <em>[identity/quality]</em> and really feel <em>[emotion/state]</em>.”</p>
+          <p class="muted">Integrates everything into a concise verbal anchor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Conceptual View</h2>
+      <ul>
+        <li><strong>Cognitive:</strong> Clarifies goals and motivations.</li>
+        <li><strong>Emotional:</strong> Connects to feelings of achievement and fulfillment.</li>
+        <li><strong>Symbolic:</strong> Encodes success through metaphor and imagery.</li>
+        <li><strong>Hypnotic:</strong> Creates expectancy and readiness for deeper trance work.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Relation to Ericksonian Principles</h2>
+      <ul>
+        <li><strong>Utilization:</strong> Use the client’s own words and experiences.</li>
+        <li><strong>Presupposition:</strong> Assume capability and prior success.</li>
+        <li><strong>Metaphor:</strong> Translate experiences into symbols for unconscious communication.</li>
+        <li><strong>Pacing and Leading:</strong> Move from current experience to desired outcome.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>In Practice</h2>
+      <p>
+        Treat the Success Set as a <em>mini‑induction</em> that naturally leads into trance. By the
+        time you offer the summary, the client is often already in light trance, vividly connected
+        to their success identity.
+      </p>
+      <blockquote class="muted">
+        “You want to be calm, focused, and really feel that centered confidence — just like that
+        tiger you mentioned — strong, relaxed, and ready to act.”
+      </blockquote>
+    </section>
+  </main>
+  <footer>
+    © 2025 — Success Set reference sheet. Light theme • Responsive • Printable
+  </footer>
+</body>
+</html>
