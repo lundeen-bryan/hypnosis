@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instructor’s Guide — “Dr. UM” (Doctor Unconscious Mind)</title>
+  <style>
+    /* Light theme, responsive typography */
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2937;          /* slate-800 */
+      --muted: #4b5563;       /* gray-600 */
+      --accent: #2563eb;      /* blue-600 */
+      --border: #e5e7eb;      /* gray-200 */
+      --card: #ffffff;
+      --code: #111827;        /* gray-900 */
+      --shadow: 0 10px 20px rgba(0,0,0,0.06), 0 6px 6px rgba(0,0,0,0.08);
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+      margin: 0.25rem 0;
+      line-height: 1.2;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(0.9rem, 1.6vw, 1rem);
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    button, .btn {
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--fg);
+      padding: 0.55rem 0.9rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+    }
+    button:hover, .btn:hover {
+      transform: translateY(-1px);
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: clamp(1.2rem, 2.1vw, 1.5rem);
+    }
+    h3 {
+      margin-top: 1rem;
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      background: #fcfcfc;
+    }
+    details + details { margin-top: 0.5rem; }
+
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+
+    blockquote {
+      margin: 0.75rem 0;
+      padding-left: 1rem;
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      background: #f9fafb;
+    }
+
+    .note {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 800px) {
+      .grid.two {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 2rem 0;
+    }
+
+    /* Print styles */
+    @media print {
+      header.site-header, .footer, .actions { display: none !important; }
+      .container, .header-inner, main { max-width: 100%; padding: 0; }
+      .card { box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
+      body { color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <h1>Instructor’s Guide — “Dr. UM” (Doctor Unconscious Mind)</h1>
+        <p class="sub">A nested deep-trance exercise that teaches subjects to experience their unconscious mind as an active helper.</p>
+      </div>
+      <div class="actions">
+        <button onclick="window.print()" title="Print this guide">🖨️ Print</button>
+        <button id="expandAllBtn" title="Expand all sections">▢ Expand all</button>
+        <button id="collapseAllBtn" title="Collapse all sections">▣ Collapse all</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Purpose</h2>
+      <p>This exercise helps a subject experience the <strong>unconscious mind as an intelligent, supportive inner teacher</strong>. It reframes trance as collaboration: the hypnotist guides, while the subject’s inner processes generate learning, healing, and ongoing support.</p>
+    </section>
+
+    <section class="grid two">
+      <article class="card">
+        <h2>Phase I — Preparation & Deepening</h2>
+        <ul>
+          <li>Induce trance and use a deepener until clear trance signs emerge.</li>
+          <li>Offer ego-strengthening suggestions tied to the chosen goal (e.g., peace, unity, confidence).</li>
+          <li>Normalize automatic learning and internal resource activation.</li>
+        </ul>
+        <h3>Example phrasing</h3>
+        <blockquote>
+          “And every breath takes you deeper into that calm… because your unconscious mind already knows how to create peace and comfort.”
+        </blockquote>
+      </article>
+
+      <article class="card">
+        <h2>Phase II — Early Learning & Protector Sets</h2>
+        <ul>
+          <li>Use an Early Learning Set to remind how easily we once learned (e.g., shoe-tying, bike-riding).</li>
+          <li>Install the Unconscious Protector Set: safety while learning.</li>
+        </ul>
+        <h3>Example phrasing</h3>
+        <blockquote>
+          “Even as you learn in new ways, another part of you continues to protect and keep you safe… just as it always has.”
+        </blockquote>
+      </article>
+    </section>
+
+    
+    <section class="card">
+      <h2>Phase III — Introduce the “Dr. UM” Experience</h2>
+      <p>Explain a special experience delivered in <strong>two passes</strong>:
+        <ol>
+          <li><strong>First pass (indirect/permissive):</strong> seed the idea that the subject can <em>wake up from the neck up only</em> while the body remains calm, loose, and limp.</li>
+          <li><strong>Second pass (direct cue):</strong> repeat the instruction more directly and end with a clear temporal marker such as <em>“now.”</em> The eyes open after the second pass.</li>
+        </ol>
+      </p>
+      <h3>Example phrasing</h3>
+      <blockquote>
+        <p><em>First pass (indirect):</em><br>
+        “In a moment, you can wake up from the neck up only… your body stays deeply relaxed, loose and limp… as though your mind awakens in a calm, dreaming body.”</p>
+        <p><em>Second pass (direct):</em><br>
+        “Good. And now… wake up from the neck up only… with your body staying deeply calm, loose and limp… <strong>now.</strong>”</p>
+      </blockquote>
+      <p class="note">After the second pass, pause for the subject to open their eyes. Greet them gently to anchor the dissociation:</p>
+      <blockquote>“Hi [Name]… how do you feel?”</blockquote>
+    </section>
+
+
+    <section class="card">
+      <h2>Phase IV — Utilization & Return to Trance</h2>
+      <ul>
+        <li>Invite a small focus (e.g., “look at your left hand”).</li>
+        <li>As the eyes naturally close, utilize the motion to deepen trance.</li>
+        <li>Guide awareness toward the chosen state (e.g., peace) spreading through the body.</li>
+      </ul>
+      <h3>Example phrasing</h3>
+      <blockquote>
+        “That’s right, let your eyes close… and go all the way down… body at peace, mind learning deeply.”
+      </blockquote>
+    </section>
+
+    <section class="card">
+      <h2>Phase V — Dialogue with the Unconscious (“Dr. UM”)</h2>
+      <p>Invite the unconscious mind to teach a <strong>special lesson</strong> related to the goal (e.g., unity and peace). Communication can be internal (sensations, images, realizations) without overt signals.</p>
+      <h3>Example phrasing</h3>
+      <blockquote>
+        “Your unconscious mind can give you a special lesson about unity and peace… teaching you in its own gentle, healthy way. One part of you will keep teaching you about peace and unity long after this session ends.”
+      </blockquote>
+    </section>
+
+    <section class="card">
+      <h2>Phase VI — Integration & Emergence</h2>
+      <ul>
+        <li>Link the state (e.g., peace) to daily contexts and future challenges.</li>
+        <li>Count or suggest a gradual return to full alertness while preserving learning.</li>
+      </ul>
+      <h3>Example phrasing</h3>
+      <blockquote>
+        “As you come back now, your mind and body reunite… carrying with them the calm confidence of your inner doctor—your own unconscious mind.”
+      </blockquote>
+    </section>
+
+    <section class="card">
+      <h2>Instructor Notes</h2>
+      <details open>
+        <summary>Tone & Pacing</summary>
+        <ul>
+          <li>Calm, curious, and permissive tone.</li>
+          <li>Allow silence after key phrases—learning often happens in the quiet spaces.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Timing</summary>
+        <ul>
+          <li>Plan for 10–15 minutes inside a longer session.</li>
+          <li>Use shorter or longer dwell-times based on subject responsiveness.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Safety & Comfort</summary>
+        <ul>
+          <li>Emphasize bodily comfort and stillness before the “neck-up” phase.</li>
+          <li>If needed, re-affirm the Protector Set before proceeding.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Debrief & Integration</summary>
+        <ul>
+          <li>Invite descriptions of insights or feelings, not analysis.</li>
+          <li>Briefly future-pace how peace/unity can show up in daily life.</li>
+        </ul>
+      </details>
+    </section>
+
+    <div class="footer">
+      <p>“Dr. UM” Instructor’s Guide · Light theme · Responsive · Print-ready</p>
+    </div>
+  </main>
+
+  <script>
+    // Expand/Collapse all details helpers
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const collapseAllBtn = document.getElementById('collapseAllBtn');
+    const allDetails = () => Array.from(document.querySelectorAll('details'));
+
+    expandAllBtn?.addEventListener('click', () => {
+      allDetails().forEach(d => d.open = true);
+    });
+    collapseAllBtn?.addEventListener('click', () => {
+      allDetails().forEach(d => d.open = false);
+    });
+  </script>
+</body>
+</html>
