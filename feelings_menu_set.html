@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feelings Menu Set — Overload → Feeling Selection</title>
+    <style>
+      :root {
+        --bg: #fafafa;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e5e7eb;
+        --accent: #2563eb;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 1.55;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(250, 250, 250, 0.95);
+        backdrop-filter: saturate(180%) blur(6px);
+        border-bottom: 1px solid var(--border);
+      }
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: 1.7rem;
+        margin: 0 0 6px;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: var(--card);
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        border-color: var(--accent);
+      }
+      main .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        margin: 16px auto;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+      h2 {
+        font-size: 1.25rem;
+        margin: 0 0 8px;
+      }
+      h3 {
+        font-size: 1.1rem;
+        margin: 16px 0 10px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .hr {
+        height: 1px;
+        background: var(--border);
+        margin: 12px 0;
+      }
+      .kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        background: #f3f4f6;
+        border: 1px solid var(--border);
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+      .context {
+        background: #f8fafc;
+        border: 1px dashed var(--border);
+        border-radius: 14px;
+        padding: 12px;
+      }
+      .pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      @media print {
+        header {
+          position: static;
+          background: transparent;
+          border: 0;
+        }
+        .toolbar button:not(.print) {
+          display: none;
+        }
+        .card {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Feelings Menu Set — Overload → Feeling Selection</h1>
+        <div class="toolbar">
+          <button class="print" onclick="window.print()">
+            <span aria-hidden="true">🖨</span> Print
+          </button>
+          <span class="muted"
+            >Tip: Use <span class="kbd">Ctrl/⌘ + P</span> or the Print
+            button.</span
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card context">
+        <h2>Context and Aim</h2>
+        <p>
+          This form helps a subject discover and directly experience an
+          emotional state, value, or process selected by their unconscious mind.
+          The dense list of nominalizations is meant to engage intuition rather
+          than analysis. Each subtle signal or choice strengthens hetero‑action
+          — the interactive relationship between the facilitator and the
+          subject’s unconscious mind.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>1) Opening Frame (say conversationally)</h2>
+        <p class="pre">
+          <em
+            >“Do you want to see something cool about your mind? I’m going to
+            place a list of words in the chat. It might look a bit overwhelming
+            to your conscious mind — and that’s okay — because your unconscious
+            can immediately recognize the feeling you most need more of right
+            now. So you’ll glance at the list for just a moment, then close your
+            eyes, and allow your unconscious to select a word for you from the
+            list.”</em
+          >
+        </p>
+        <p class="muted">
+          Keep tone light and curious. When they agree, proceed immediately to
+          share the list.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>2) Copy to Chat: Full Feelings List</h2>
+        <p class="muted">
+          Click the button to copy the entire list to your clipboard, then paste
+          into your chat window.
+        </p>
+        <div class="hr"></div>
+        <button id="copyBtn">Copy Full List</button>
+        <p
+          id="copyStatus"
+          class="muted"
+          aria-live="polite"
+          style="margin-top: 8px"
+        ></p>
+        <div id="feelingsList" class="pre" style="margin-top: 12px">
+          integrity, authenticity, responsibility, humility, kindness,
+          benevolence, tolerance, unity, compassion, generosity, confidence,
+          patience, persistence, resilience, adaptability, creativity,
+          flexibility, endurance, independence, balance, calmness, stillness,
+          awareness, openness, clarity, serenity, tranquility, stability,
+          mindfulness, presence, transformation, exploration, reflection,
+          communication, creation, motivation, appreciation, concentration,
+          guidance, allowance, connection, inspiration, realization, acceptance,
+          abundance, elegance, radiance, remembrance, transcendence, wholeness
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3) Prompt to Close Eyes and Orient Inward</h2>
+        <p class="pre">
+          <em
+            >“When you've scanned every word in the list, just let your eyes
+            close. That’s right. And what feeling would you like to experience
+            more of? ”</em
+          >
+        </p>
+        <p class="muted">
+          Pause 10–20 seconds. Watch for subtle indicators: breath easing,
+          shoulders lowering, softer facial tone, a tiny nod.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>4) Elicit and Stabilize the Feeling (R)</h2>
+        <p class="muted">
+          <em>R = the feeling they’ve chosen or that emerges.</em>
+        </p>
+        <ol>
+          <li>
+            <strong
+              >And as you begin to sense R, how would you know you were feeling
+              it?</strong
+            >
+          </li>
+          <li>
+            <strong
+              >When you start to become aware of R, what do you notice that lets
+              you know you are feeling it?</strong
+            >
+          </li>
+          <li>
+            <strong
+              >Notice where in your body R begins to make itself known when it’s
+              like that.</strong
+            >
+          </li>
+        </ol>
+        <p class="muted">
+          Coaching notes: reflect their words back; mark any sign as evidence of
+          R emerging; if unsure, normalize: “Sometimes it starts as a hint or a
+          direction — that’s already enough.”
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>5) Transition</h2>
+        <p>
+          This guide intentionally ends after stabilization of R. Proceed with
+          your preferred induction or deepener in a separate document.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const btn = document.getElementById("copyBtn");
+        const listEl = document.getElementById("feelingsList");
+        const status = document.getElementById("copyStatus");
+        btn.addEventListener("click", async () => {
+          try {
+            const text = listEl.textContent.trim();
+            await navigator.clipboard.writeText(text);
+            status.textContent = "List copied to clipboard.";
+            setTimeout(() => (status.textContent = ""), 2500);
+          } catch (e) {
+            status.textContent =
+              "Copy failed; please select and copy manually.";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
