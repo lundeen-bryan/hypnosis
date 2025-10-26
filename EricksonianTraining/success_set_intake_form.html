@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Success Set – Intake Form (Simplified)</title>
+<style>
+  :root{
+    --bg:#ffffff; --fg:#0f172a; --muted:#475569;
+    --card:#f8fafc; --border:#e2e8f0; --accent:#2563eb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    line-height:1.6}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+    border-bottom:1px solid var(--border);backdrop-filter:saturate(160%) blur(6px)}
+  .container{max-width:860px;margin:0 auto;padding:1rem}
+  .titlebar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  h1{font-size:clamp(1.1rem,1.2rem + 1vw,1.8rem);margin:.5rem 0}
+  .btn{appearance:none;background:var(--card);border:1px solid var(--border);
+    padding:.55rem .85rem;border-radius:.7rem;cursor:pointer;font-weight:600}
+  .btn:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(37,99,235,.12)}
+  main{padding:1rem}
+  section.card{background:var(--card);border:1px solid var(--border);
+    border-radius:0.9rem;padding:1rem;margin:1rem 0}
+  h2{margin:.25rem 0 0.5rem 0;font-size:1.1rem}
+  label{font-weight:600;display:block;margin:.25rem 0}
+  textarea, select, input[type="text"]{
+    width:100%;padding:.5rem .65rem;border:1px solid var(--border);border-radius:.55rem;background:#fff;color:var(--fg)
+  }
+  textarea{min-height:110px;resize:vertical}
+  .muted{color:var(--muted);font-size:.92rem}
+  .inline{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+  .summary-box{border:2px dashed var(--border);border-radius:0.9rem;padding:1rem;background:#fff}
+  @media print{
+    header{display:none}
+    .btn{display:none !important}
+    section.card{break-inside:avoid;page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container titlebar">
+      <h1>Success Set – Intake Form</h1>
+      <button class="btn" onclick="buildSummary();window.print()">Build Summary & Print</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 1) Identify the Goal -->
+    <section class="card">
+      <h2>1) Identify the Goal</h2>
+      <p class="muted">Question: “What is an important goal for you right now?”</p>
+      <textarea id="goal" placeholder="Client’s words…"></textarea>
+      <div class="inline" style="margin-top:.5rem">
+        <label for="goal-scale" class="muted" style="font-weight:500">Importance (1–10):</label>
+        <select id="goal-scale">
+          <option value=""></option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        </select>
+      </div>
+      <p class="muted">Prompt to ask: “On a scale of 1 to 10, how important is achieving this goal for you right now?”</p>
+    </section>
+
+    <!-- 2) Elicit the Motivation -->
+    <section class="card">
+      <h2>2) Elicit the Motivation</h2>
+      <p class="muted">Question: “Why is that important for you?”</p>
+      <textarea id="why" placeholder="Client’s words…"></textarea>
+    </section>
+
+    <!-- 3) Presuppose Past Success -->
+    <section class="card">
+      <h2>3) Presuppose Past Success</h2>
+      <p class="muted">Statement: “My intuition says that you’ve experienced this before.”</p>
+      <label for="past-example">Past example(s)</label>
+      <textarea id="past-example" placeholder="Times they did this well, even a little…"></textarea>
+    </section>
+
+    <!-- 4) Explore Identity -->
+    <section class="card">
+      <h2>4) Explore Identity</h2>
+      <p class="muted">Question: “When you experienced this, what kind of person were you?”</p>
+      <label for="identity-words">Identity qualities (client words)</label>
+      <textarea id="identity-words" placeholder="e.g., calm, focused, capable…"></textarea>
+      <label for="submodalities" style="margin-top:.5rem">How it feels (sensory detail)</label>
+      <textarea id="submodalities" placeholder="Where in the body? Temperature, movement, color, sounds, self-talk…"></textarea>
+    </section>
+
+    <!-- 5) Animal Metaphor -->
+    <section class="card">
+      <h2>5) Create a Symbol (Animal Metaphor)</h2>
+      <p class="muted">Question: “When you’re like that, which animal comes to mind?”</p>
+      <div class="inline">
+        <input id="animal" type="text" placeholder="Animal (e.g., tiger, eagle, dolphin…)" style="flex:1 1 260px" />
+        <input id="animal-traits" type="text" placeholder="Traits (why this animal?)" style="flex:1 1 260px" />
+      </div>
+    </section>
+
+    <!-- 6) Summarize -->
+    <section class="card">
+      <h2>6) Summarize the State</h2>
+      <p class="muted">Prompt: “You want to be … and really feel …”</p>
+      <div class="summary-box">
+        <label for="summary">Summary (auto-build or edit manually)</label>
+        <textarea id="summary" placeholder='You want to be [identity/quality] and really feel [emotion/state]…'></textarea>
+      </div>
+      <div class="inline" style="margin-top:.35rem">
+        <input id="summary-include-animal" type="checkbox" checked />
+        <label for="summary-include-animal" class="muted" style="font-weight:500">Include animal metaphor if provided</label>
+      </div>
+      <p class="muted" style="margin-top:.5rem">
+        Example: “You want to be <em>calm, focused</em>, and really feel <em>that steady confidence</em> — like a <em>tiger</em>: relaxed, strong, and ready to act.”
+      </p>
+    </section>
+  </main>
+
+  <script>
+  function buildSummary(){
+    const idq = (s)=>document.getElementById(s);
+    const identity = (idq('identity-words').value || '').trim();
+    const feelings = (idq('submodalities').value || '').trim();
+    const animal = (idq('animal').value || '').trim();
+    const includeAnimal = idq('summary-include-animal').checked;
+
+    let who = identity ? identity.replace(/\\n+/g,' ').split(/[.,;]/)[0] : '';
+    let feel = feelings ? feelings.replace(/\\n+/g,' ').split(/[.;]/)[0] : '';
+
+    let str = "You want to be";
+    str += who ? " " + who : " …";
+    str += " and really feel";
+    str += feel ? " " + feel : " …";
+
+    if(includeAnimal && animal){
+      str += " — like " + ( /^[aeiou]/i.test(animal) ? "an " : "a " ) + animal;
+    }
+    str += ".";
+
+    idq('summary').value = str;
+  }
+  </script>
+</body>
+</html>
