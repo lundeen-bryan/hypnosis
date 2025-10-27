@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Cards — Daily Handout (Language Patterns Only)</title>
+<style>
+  :root{
+    --bg: #ffffff;
+    --fg: #0f172a;
+    --muted: #475569;
+    --accent: #2563eb;
+    --card: #f8fafc;
+    --border: #e2e8f0;
+  }
+  *{box-sizing: border-box;}
+  html, body { height: 100%; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  header{
+    position: sticky;
+    top:0;
+    z-index: 10;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .wrap{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1rem;
+  }
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  h1{
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    margin: 0.25rem 0;
+  }
+  .subtitle{
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: .6rem .9rem;
+    border-radius: .75rem;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .btn:hover{ border-color: var(--accent); }
+  main .wrap{ padding-top: 1rem; }
+  section{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  h2{
+    margin: .25rem 0 .5rem;
+    font-size: 1.1rem;
+  }
+  ol, ul{ margin: .25rem 0 0 1.25rem; }
+  .small{ color: var(--muted); font-size: .95rem; }
+  .chips{ display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip{
+    padding: .4rem .6rem;
+    border-radius: .6rem;
+    background: #eef2ff;
+    border: 1px solid #e0e7ff;
+    font-size: .95rem;
+  }
+  .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  blockquote{
+    margin: .5rem 0;
+    padding: .75rem 1rem;
+    background: #f1f5f9;
+    border-left: 4px solid var(--accent);
+    border-radius: .5rem;
+  }
+  .foot{
+    text-align: center;
+    color: var(--muted);
+    font-size: .9rem;
+    margin: 2rem 0 1rem;
+  }
+  @media print{
+    header{ position: static; border-bottom: none; }
+    .btn{ display: none !important; }
+    body{ background: #fff; }
+    section{ break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <div>
+        <h1>Practice Cards — Daily Handout (Language Patterns Only)</h1>
+        <p class="subtitle">A compact daily drill for Ericksonian language patterns.</p>
+      </div>
+      <button class="btn" onclick="window.print()" aria-label="Print this handout">
+        🖨️ Print
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section>
+        <h2>Quick Instructions</h2>
+        <ol>
+          <li><strong>Choose today’s nominalization</strong> from the list below. This is your theme.</li>
+          <li><strong>Draw 3 random cards</strong> from Igor Ledochowsky’s language pattern deck.</li>
+          <li><strong>Link the 3 cards</strong> into a smooth sequence using the soft connectors.</li>
+          <li><strong>Repeat</strong> with new cards until the deck is complete.</li>
+          <li>Speak slowly and permissively; one line per card.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Nominalizations (choose one per day)</h2>
+        <p class="small">Say your theme aloud in one line, e.g., “Today we explore <em>resilience</em>.”</p>
+        <p class="mono">
+          integrity, authenticity, responsibility, humility, kindness, benevolence, tolerance, unity, compassion, generosity, confidence, patience, persistence, resilience, adaptability, creativity, flexibility, endurance, independence, balance, calmness, stillness, awareness, openness, clarity, serenity, tranquility, stability, mindfulness, presence, transformation, exploration, reflection, communication, creation, motivation, appreciation, concentration, guidance, allowance, connection, inspiration, realization, acceptance, abundance, elegance, radiance, remembrance, transcendence, wholeness
+        </p>
+      </section>
+
+      <section>
+        <h2>Soft Connectors</h2>
+        <div class="chips" aria-label="Soft connectors">
+          <span class="chip">and</span>
+          <span class="chip">as</span>
+          <span class="chip">while</span>
+          <span class="chip">noticing</span>
+          <span class="chip">beginning to</span>
+          <span class="chip">allowing</span>
+          <span class="chip">so that</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Example Use</h2>
+        <p class="small">Swap in your actual card names; keep the connector rhythm.</p>
+        <blockquote>
+          <strong>Nominalization:</strong> calmness<br>
+          <strong>Cards:</strong> mind read → cause–effect → presupposition<br>
+          “You may begin to notice a gentle <em>calmness</em> spreading through your body… <strong>as</strong> each breath slows, you can feel steadier… <strong>before</strong> you realize it, that calmness is already deepening.”
+        </blockquote>
+        <blockquote>
+          <strong>Nominalization:</strong> resilience<br>
+          <strong>Cards:</strong> pacing → double bind → embedded suggestion<br>
+          “Noticing your breathing… <strong>whether</strong> the eyes stay open or gently close, steadiness remains… <strong>and allow</strong> that sense of <em>resilience</em> to continue now.”
+        </blockquote>
+      </section>
+
+      
+      <section>
+        <h2>Magic Words (Reference)</h2>
+        <p class="small">Pulled from your Magic Words file; grouped for quick visual prompts.</p>
+        <div class="chips" aria-label="Magic words group 1">
+          <span class="chip">easily</span>
+          <span class="chip">naturally</span>
+          <span class="chip">automatically</span>
+          <span class="chip">aware</span>
+        </div>
+        <div style="height:.4rem"></div>
+        <div class="chips" aria-label="Magic words group 2">
+          <span class="chip">realize</span>
+          <span class="chip">experience</span>
+          <span class="chip">notice</span>
+          <span class="chip">expand</span>
+        </div>
+        <div style="height:.4rem"></div>
+        <div class="chips" aria-label="Magic words group 3">
+          <span class="chip">beyond</span>
+          <span class="chip">unlimited</span>
+          <span class="chip">before</span>
+          <span class="chip">after</span>
+        </div>
+        <div style="height:.4rem"></div>
+        <div class="chips" aria-label="Magic words group 4">
+          <span class="chip">begin</span>
+          <span class="chip">during</span>
+          <span class="chip">now</span>
+          <span class="chip">imagine</span>
+          <span class="chip">create</span>
+        </div>
+        <div style="height:.4rem"></div>
+        <div class="chips" aria-label="Magic words group 5">
+          <span class="chip">don't</span>
+          <span class="chip">but</span>
+          <span class="chip">and</span>
+          <span class="chip">because</span>
+        </div>
+      </section>
+
+      <div class="foot">Use daily. Keep sentences simple, rhythmic, and connected to your theme.</div>
+    </div>
+  </main>
+</body>
+</html>
