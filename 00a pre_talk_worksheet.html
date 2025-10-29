@@ -1,159 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>General Pre‑Session Worksheet — Clean (Impact Inserted)</title>
-<style>
-  :root {
-    --bg: #f7f8fb;
-    --card: #ffffff;
-    --text: #111;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --accent: #2563eb;
-    --radius: 16px;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  header {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(247,248,251,.9);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--border);
-  }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
-  h1 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); margin: 0 0 8px; }
-  .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  button {
-    padding: 10px 14px; border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--card); cursor: pointer; font-weight: 600;
-  }
-  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  main { padding: 20px 16px 64px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px;
-    box-shadow: 0 4px 14px rgba(0,0,0,.06);
-    margin: 14px 0;
-  }
-  label.block { display: block; font-weight: 700; margin-bottom: 6px; }
-  .muted { color: var(--muted); font-size: .95rem; }
-  textarea, input[type="text"] {
-    width: 100%; padding: 12px; border: 1px solid var(--border);
-    border-radius: 12px; background: #fff; font-size: 1rem;
-  }
-  textarea { min-height: 96px; resize: vertical; }
-  .scale { display: flex; align-items: center; gap: 10px; }
-  input[type="range"] { width: 100%; }
-  .pill {
-    display:inline-block; min-width:2ch; text-align:center; padding:4px 8px;
-    border:1px solid var(--border); border-radius:10px;
-    font-variant-numeric: tabular-nums;
-  }
-  .footer { margin-top: 12px; color: var(--muted); font-size: .95rem; text-align: center; }
-  .small { font-size: .93rem; }
-</style>
-</head>
-<body>
-  <header>
-    <div class="wrap controls">
-      <h1>General Pre‑Session Worksheet</h1>
-      <div style="flex:1"></div>
-      <button onclick="window.print()">Print</button>
-      <button id="clear" title="Clear all fields">Clear</button>
-    </div>
-  </header>
-
-  <main class="wrap" id="root">
-    <!-- Q1 -->
-    <section class="card" id="q1">
-      <label class="block" for="q1txt">1) Goal / Intention</label>
-      <p class="muted small">"What would you like to get out of today's
-      experience? or use the feelings menu."</p>
-      <textarea id="q1txt" placeholder="I'd like to be more confident..."></textarea>
-    </section>
-
-    <!-- Q2 Impact (inserted) -->
-    <section class="card" id="q2impact">
-      <label class="block">2) Measuring Impact</label>
-      <p class="muted small">
-        <strong>Use either wording:</strong><br/>
-        <em>Direct:</em> “On a scale from <strong>1 to 10</strong>, where <strong>10</strong> means it’s severely affecting your life and <strong>1</strong> means it barely matters — how much does this problem impact you right now?”<br/>
-        <em>Rapport‑friendly:</em> “Just so I understand how much this matters to you — if you were to rate how strongly this issue is affecting your life right now, where would it fall on a scale from <strong>1 to 10</strong>? Ten being ‘it’s really holding me back’ and one being ‘it’s barely noticeable.’”
-      </p>
-      <div class="scale">
-        <span>1</span>
-        <input id="impact" type="range" min="1" max="10" step="1" value="5" />
-        <span>10</span>
-        <span class="pill" id="impactVal">5</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      General Pre‑Session Worksheet — Clean (Impact Inserted) + Q1a & Transition
+    </title>
+    <style>
+      :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --text: #111;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #2563eb;
+        --radius: 16px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(247, 248, 251, 0.9);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        margin: 0 0 8px;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      main {
+        padding: 20px 16px 64px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        margin: 14px 0;
+      }
+      label.block {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 1rem;
+      }
+      textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+      .scale {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      .pill {
+        display: inline-block;
+        min-width: 2ch;
+        text-align: center;
+        padding: 4px 8px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+      .footer {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      .small {
+        font-size: 0.93rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap controls">
+        <h1>General Pre‑Session Worksheet</h1>
+        <div style="flex: 1"></div>
+        <button onclick="window.print()">Print</button>
+        <button id="clear" title="Clear all fields">Clear</button>
       </div>
-      <p class="muted small">Optional note:</p>
-      <input type="text" id="impactNote" placeholder="Where/when do you feel this impact most? (e.g., mornings, meetings, tests)" />
-    </section>
+    </header>
 
-    <!-- Q3 -->
-    <section class="card" id="q3">
-      <label class="block" for="q3txt">3) Current Automatic Pattern (Awareness)</label>
-      <p class="muted small">"What usually happens when I want to ___ is..."</p>
-      <textarea id="q3txt" placeholder="I get nervous..."></textarea>
-    </section>
+    <main class="wrap" id="root">
+      <!-- Q1 -->
+      <section class="card" id="q1">
+        <label class="block" for="q1txt">1) Goal / Intention</label>
+        <p class="muted small">
+          "What would you like to get out of today's experience? or use the
+          feelings menu."
+        </p>
+        <textarea
+          id="q1txt"
+          placeholder="I'd like to be more confident..."
+        ></textarea>
+      </section>
 
-    <!-- Q4 -->
-    <section class="card" id="q4">
-      <label class="block" for="q4txt">4) Desired Automatic Pattern (Intention)</label>
-      <p class="muted small">"What I really want to happen more automatically is..."</p>
-      <textarea id="q4txt" placeholder="To feel more confident..."></textarea>
-    </section>
+      <!-- Q1a NEW -->
+      <section class="card" id="q1a">
+        <label class="block" for="q1atxt">2) Elicit the Problem / Block</label>
+        <p class="muted small">
+          Follow‑up to #1: <em>"What prevents you from doing that?"</em> (Alt:
+          "What tends to get in the way of that happening the way you want?")
+        </p>
+        <textarea
+          id="q1atxt"
+          placeholder="I tense up and second‑guess myself when people look at me..."
+        ></textarea>
+      </section>
 
-    <!-- Q5 -->
-    <section class="card" id="q5">
-      <label class="block" for="q5txt">5) Emotional Tone (Motivation)</label>
-      <p class="muted small">"And when that happens, I will feel..."</p>
-      <textarea id="q5txt" placeholder="So much better..."></textarea>
-    </section>
+      <!-- Q2 Impact (inserted) -->
+      <section class="card" id="q2impact">
+        <label class="block">3) Measuring Impact</label>
+        <p class="muted small">
+          <strong>Use either wording:</strong><br />
+          <em>Direct:</em> “On a scale from <strong>1 to 10</strong>, where
+          <strong>10</strong> means it’s severely affecting your life and
+          <strong>1</strong> means it barely matters — how much does this
+          problem impact you right now?”<br />
+          <em>Rapport‑friendly:</em> “Just so I understand how much this matters
+          to you — if you were to rate how strongly this issue is affecting your
+          life right now, where would it fall on a scale from
+          <strong>1 to 10</strong>? Ten being ‘it’s really holding me back’ and
+          one being ‘it’s barely noticeable.’”
+        </p>
+        <div class="scale">
+          <span>1</span>
+          <input id="impact" type="range" min="1" max="10" step="1" value="5" />
+          <span>10</span>
+          <span class="pill" id="impactVal">5</span>
+        </div>
+        <p class="muted small">Optional note:</p>
+        <input
+          type="text"
+          id="impactNote"
+          placeholder="Where/when do you feel this impact most? (e.g., mornings, meetings, tests)"
+        />
+      </section>
 
-    <!-- Q6 -->
-    <section class="card" id="q6">
-      <label class="block" for="automatic">6) Post‑Hypnotic Suggestion (Installation)</label>
-      <p class="muted small">“So from now on, whenever ____, I automatically ____, and it feels ____.”</p>
-      <textarea id="automatic" placeholder="So from now on, whenever I need to talk to a group, I automatically feel confident, and it feels awesome!"></textarea>
-    </section>
+      <!-- Q3 -->
+      <section class="card" id="q3">
+        <label class="block" for="q3txt"
+          >4) Current Automatic Pattern (Awareness)</label
+        >
+        <p class="muted small">
+          "What usually happens when I'm about to ___ is..."
+        </p>
+        <textarea id="q3txt" placeholder="I get nervous..."></textarea>
+      </section>
 
-    <div class="footer">© 2025 General Worksheet — Clean version: impact inserted as #2; contrast & summary removed.</div>
-  </main>
+      <!-- Q4 -->
+      <section class="card" id="q4">
+        <label class="block" for="q4txt"
+          >5) Desired Automatic Pattern (Intention)</label
+        >
+        <p class="muted small">
+          "What I really want to happen more automatically is..."
+        </p>
+        <textarea id="q4txt" placeholder="To feel more confident..."></textarea>
+      </section>
 
-<script>
-(function(){
-  const $ = (id) => document.getElementById(id);
-  const impact = $("impact");
-  const impactVal = $("impactVal");
+      <!-- Q5 -->
+      <section class="card" id="q5">
+        <label class="block" for="q5txt">6) Emotional Tone (Motivation)</label>
+        <p class="muted small">"And when that happens, I will feel..."</p>
+        <textarea id="q5txt" placeholder="So much better..."></textarea>
+      </section>
 
-  function bindSlider(slider, pill){
-    if(!slider || !pill) return;
-    const sync = () => pill.textContent = slider.value;
-    slider.addEventListener("input", sync);
-    sync();
-  }
-  bindSlider(impact, impactVal);
+      <!-- Q6 -->
+      <section class="card" id="q6">
+        <label class="block" for="automatic"
+          >7) Post‑Hypnotic Suggestion (Installation)</label
+        >
+        <p class="muted small">
+          “So from now on, whenever ____, you automatically ____, and it feels
+          ____.”
+        </p>
+        <textarea
+          id="automatic"
+          placeholder="So from now on, whenever I need to talk to a group, I automatically feel confident, and it feels awesome!"
+        ></textarea>
+      </section>
 
-  // Clear handler
-  $("clear").addEventListener("click", () => {
-    ["q1txt","impactNote","q3txt","q4txt","q5txt","automatic"].forEach(id => {
-      const el = $(id); if(el) el.value = "";
-    });
-    if(impact){ impact.value = impact.getAttribute("value"); impact.dispatchEvent(new Event("input")); }
-  });
-})();
-</script>
-</body>
+      <!-- Transition to Hypnosis (NEW) -->
+      <section class="card" id="transition">
+        <label class="block" for="transitionSuggestion"
+          >Transition to Hypnosis (Framing & Unconscious Consent)</label
+        >
+        <p class="muted small">
+          Say (verbatim if you like):<br />
+          <em
+            >“Close your eyes for a moment and let me read to you what I think
+            will be a good focus for this session. As you listen, notice how it
+            feels and tell me if this sounds right to you.”</em
+          >
+        </p>
+        <p class="muted small">
+          Read the proposed suggestion aloud (you can paste or refine it here
+          first):
+        </p>
+        <textarea
+          id="transitionSuggestion"
+          placeholder="Paste/refine the suggestion you'll read aloud..."
+        ></textarea>
+        <p class="muted small">
+          Confirm fit:
+          <em
+            >“Does that sound right to you — or would a small change make it
+            even better?”</em
+          ><br />
+          Unconscious consent:
+          <em
+            >“While your eyes are still closed… go inside and ask your
+            unconscious mind if it’s ok for you to completely resolve this
+            now.”</em
+          ><br />
+          (Note any signals/response: nod, breath change, ideomotor yes)
+        </p>
+        <input
+          type="text"
+          id="consentNote"
+          placeholder="Signals observed / refinements agreed..."
+        />
+      </section>
+
+      <div class="footer">
+        © 2025 General Worksheet — Clean version: impact inserted as #2; added
+        #1a and Transition section.
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const impact = $("impact");
+        const impactVal = $("impactVal");
+
+        function bindSlider(slider, pill) {
+          if (!slider || !pill) return;
+          const sync = () => (pill.textContent = slider.value);
+          slider.addEventListener("input", sync);
+          sync();
+        }
+        bindSlider(impact, impactVal);
+
+        // Clear handler (updated to include new fields)
+        $("clear").addEventListener("click", () => {
+          [
+            "q1txt",
+            "q1atxt",
+            "impactNote",
+            "q3txt",
+            "q4txt",
+            "q5txt",
+            "automatic",
+            "transitionSuggestion",
+            "consentNote",
+          ].forEach((id) => {
+            const el = $(id);
+            if (el) el.value = "";
+          });
+          if (impact) {
+            impact.value = impact.getAttribute("value");
+            impact.dispatchEvent(new Event("input"));
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
