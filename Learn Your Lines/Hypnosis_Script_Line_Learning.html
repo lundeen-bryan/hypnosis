@@ -1,388 +1,889 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hypnosis Script — Line‑Learning Edition (Cleberg)</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --accent: #2563eb;
-      --card: #ffffff;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-      --radius: 14px;
-      --fz: 18px;
-    }
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--fg);
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: var(--fz);
-      line-height: 1.55;
-    }
-    .floating-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
-    }
-    .toolbar {
-      display: flex;
-      gap: .5rem;
-      align-items: center;
-      padding: .6rem .9rem;
-      flex-wrap: wrap;
-    }
-    .toolbar .group {
-      display: inline-flex;
-      gap: .4rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    button {
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: var(--fg);
-      padding: .45rem .7rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: .95rem;
-      box-shadow: var(--shadow);
-    }
-    button:hover { background: #f3f4f6; }
-    button:active { transform: translateY(1px); }
-    .timer {
-      font-variant-numeric: tabular-nums;
-      font-weight: 700;
-      letter-spacing: .02em;
-      padding: .3rem .55rem;
-      border-radius: 10px;
-      border: 1px dashed var(--border);
-      background: #fdfdfd;
-      min-width: 5.2ch;
-      text-align: center;
-    }
-    .wrap {
-      max-width: 900px;
-      padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
-      margin: 0 auto;
-    }
-    h1, h2, h3 { line-height: 1.25; margin: 1rem 0 .5rem; }
-    h1.page-title {
-      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-      margin-top: 1rem;
-      text-align: center;
-      font-weight: 800;
-    }
-    .cards { margin-top: .75rem; }
-    details.card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .2rem .2rem .7rem;
-      margin: .8rem 0;
-      box-shadow: var(--shadow);
-    }
-    details.card[open] { box-shadow: 0 8px 24px rgba(0,0,0,.05); }
-    details.card > summary {
-      list-style: none;
-      cursor: pointer;
-      font-weight: 700;
-      padding: .5rem .65rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      user-select: none;
-    }
-    details.card > summary::-webkit-details-marker { display: none; }
-    .chev { display: inline-block; transition: transform .15s ease; }
-    details[open] .chev { transform: rotate(90deg); }
-    .section-body { padding: .1rem .95rem .2rem 2.05rem; }
-    .line {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: .8rem;
-      padding: .35rem .4rem;
-      border-left: 3px solid transparent;
-      border-radius: 10px;
-      align-items: start;
-    }
-    .line:hover { background: #f9fafb; border-left-color: var(--accent); }
-    .idx { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 3.5ch; }
-    .controls { display: inline-flex; gap: .3rem; margin-left: .5rem; }
-    .footer {
-      margin-top: 1.5rem;
-      padding-top: .75rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .95rem;
-      text-align: center;
-    }
-    @media (prefers-color-scheme: dark) {
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hypnosis Script — Line‑Learning Edition (Cleberg)</title>
+    <style>
       :root {
-        --bg: #0b1020;
-        --fg: #e5e7eb;
-        --muted: #9ca3af;
-        --border: #1f2937;
-        --card: #0f162e;
+        --bg: #ffffff;
+        --fg: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #2563eb;
+        --card: #ffffff;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --radius: 14px;
+        --fz: 18px;
       }
-      button { background: #0f162e; }
-      button:hover { background: #121a35; }
-      .timer { background: #0f162e; }
-      .floating-header { background: rgba(8,12,26,.8); }
-      .line:hover { background: #0f162e; }
-    }
-  </style>
-</head>
-<body>
-  <header class="floating-header">
-    <div class="toolbar">
-      <div class="group">
-        <span class="timer" id="timer">00:00</span>
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        font-size: var(--fz);
+        line-height: 1.55;
+      }
+      .floating-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+      }
+      .toolbar {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.6rem 0.9rem;
+        flex-wrap: wrap;
+      }
+      .toolbar .group {
+        display: inline-flex;
+        gap: 0.4rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: #f9fafb;
+        color: var(--fg);
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        box-shadow: var(--shadow);
+      }
+      button:hover {
+        background: #f3f4f6;
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+      .timer {
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        padding: 0.3rem 0.55rem;
+        border-radius: 10px;
+        border: 1px dashed var(--border);
+        background: #fdfdfd;
+        min-width: 5.2ch;
+        text-align: center;
+      }
+      .wrap {
+        max-width: 900px;
+        padding: 1.2rem clamp(1rem, 3vw, 1.5rem);
+        margin: 0 auto;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        margin: 1rem 0 0.5rem;
+      }
+      h1.page-title {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 800;
+      }
+      .cards {
+        margin-top: 0.75rem;
+      }
+      details.card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.2rem 0.2rem 0.7rem;
+        margin: 0.8rem 0;
+        box-shadow: var(--shadow);
+      }
+      details.card[open] {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      }
+      details.card > summary {
+        list-style: none;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 0.5rem 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        user-select: none;
+      }
+      details.card > summary::-webkit-details-marker {
+        display: none;
+      }
+      .chev {
+        display: inline-block;
+        transition: transform 0.15s ease;
+      }
+      details[open] .chev {
+        transform: rotate(90deg);
+      }
+      .section-body {
+        padding: 0.1rem 0.95rem 0.2rem 2.05rem;
+      }
+      .line {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.8rem;
+        padding: 0.35rem 0.4rem;
+        border-left: 3px solid transparent;
+        border-radius: 10px;
+        align-items: start;
+      }
+      .line:hover {
+        background: #f9fafb;
+        border-left-color: var(--accent);
+      }
+      .idx {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        min-width: 3.5ch;
+      }
+      .controls {
+        display: inline-flex;
+        gap: 0.3rem;
+        margin-left: 0.5rem;
+      }
+      .footer {
+        margin-top: 1.5rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1020;
+          --fg: #e5e7eb;
+          --muted: #9ca3af;
+          --border: #1f2937;
+          --card: #0f162e;
+        }
+        button {
+          background: #0f162e;
+        }
+        button:hover {
+          background: #121a35;
+        }
+        .timer {
+          background: #0f162e;
+        }
+        .floating-header {
+          background: rgba(8, 12, 26, 0.8);
+        }
+        .line:hover {
+          background: #0f162e;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="floating-header">
+      <div class="toolbar">
+        <div class="group">
+          <span class="timer" id="timer">00:00</span>
+          <button id="start">Start</button>
+          <button id="reset">Reset</button>
+        </div>
+        <div class="group">
+          <button id="expandAll">Expand All</button>
+          <button id="collapseAll">Collapse All</button>
+        </div>
+        <div class="group">
+          <button id="inc">A+</button>
+          <button id="dec">A-</button>
+        </div>
+        <div class="group">
+          <button id="print">Print</button>
+        </div>
       </div>
-      <div class="group">
-        <button id="expandAll">Expand All</button>
-        <button id="collapseAll">Collapse All</button>
-      </div>
-      <div class="group">
-        <button id="inc">A+</button>
-        <button id="dec">A-</button>
-      </div>
-      <div class="group">
-        <button id="print">Print</button>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap">
-    <h1 class="page-title">Hypnosis Script — Line‑Learning Edition (Cleberg)</h1>
-    <p style="color:var(--muted);text-align:center;margin:.2rem 0 1rem">Each row is a “micro‑folder.” Practice 3× Read → 3× Recall → 3× Perform.</p>
+    <main class="wrap">
+      <h1 class="page-title">
+        Hypnosis Script — Line‑Learning Edition (Cleberg)
+      </h1>
+      <p style="color: var(--muted); text-align: center; margin: 0.2rem 0 1rem">
+        Each row is a “micro‑folder.” Practice 3× Read → 3× Recall → 3× Perform.
+      </p>
 
-    <section class="cards" id="cards">
+      <section class="cards" id="cards">
+        <!-- I. Pre-frame -->
+        <details class="card" open>
+          <summary>
+            <span class="chev">▶</span><span>I. Pre-frame</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">I.1</div>
+              <div>
+                Some people are cat people, and some people are dog people. But
+                I think the main difference between them is how they relax.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">I.2</div>
+              <div>
+                When a cat relaxes, it's almost like it's about to
+                <br /><strong>go into trance. As you sit there now,</strong
+                ><br />you might picture that kind of relaxation
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">I.3</div>
+              <div>
+                <p>
+                  as a helpful reminder of the kind of <br />relaxation you
+                  might want to acheive.
+                </p>
+                <em>long pause - waiting for subject to do something</em>
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">I.4</div>
+              <div>Is that okay?</div>
+            </div>
+          </div>
+        </details>
 
-      <!-- I. Pre-frame -->
-      <details class="card" open>
-        <summary><span class="chev">▶</span><span>I. Pre-frame</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">I.1</div><div>Some people are cat people, and some people are dog people. But I think the main difference between them is how they <strong>relax</strong>. When a cat relaxes, it's almost like it's about to <strong>go into trance</strong>.</div></div>
-          <div class="line"><div class="idx">I.2</div><div>As you sit there now, you might picture that kind of relaxation <br>as a helpful reminder of the kind of relaxation <br>you might want to acheive.</div></div>
-          <div class="line"><div class="idx">I.3</div><div><em>long pause - waiting for subject to do something</em></div></div>
-          <div class="line"><div class="idx">I.4</div><div>Is that okay?</div></div>
-        </div>
-      </details>
+        <!-- II. The Cat Induction -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>II. The Cat Induction</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">II.1</div>
+              <div>
+                I'd like you to pick a small spot somewhere in front of you that
+                is a little higher than your eye level and focus your attention
+                on that spot as you listen to my voice.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.2</div>
+              <div>
+                As you're staring at that spot... sitting there in that chair...
+                listenting to the sound of my voice...
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.3</div>
+              <div>
+                In your mind's eye, you might begin to imagine a cat laying down
+                getting ready to relax.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.4</div>
+              <div>
+                You can begin to notice how easy it is to picture that cat...
+                And this cat is beginning to feel soooooo relaxed.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.5</div>
+              <div>
+                I don't know whether it's eyes might close now, or it might
+                close later, but each blink seems to be slower and slower as if
+                time itself has begun to slow down.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.6</div>
+              <div>
+                And the more you try not to think about the eyes of this cat
+                blinking, the more you might feel an urge to let your own eyes
+                blink.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.7</div>
+              <div>
+                And I don't know if you can imagine those calm and relaxing
+                breaths the cat might be making as it relaxes deeper and
+                deeper...But I wonder if you realize just how relaxed it's
+                starting to make you feel...
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.8</div>
+              <div>
+                You might find yourself begining to wonder whether this
+                imaginary cat is helping you become more and more relaxed with
+                each breath.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.9</div>
+              <div>
+                You can continue right on relaxing with each breath as you
+                imagine the eyes of that cat closing. Because it's not necessary
+                for you to close your eyes too, but if you do, you can
+                experience a deep feeling of peace and relaxation.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">II.10</div>
+              <div>
+                The speed at which you close your eyes indicates the speed at
+                which you wish to go into trance.
+              </div>
+            </div>
+          </div>
+        </details>
 
-      <!-- II. The Cat Induction -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>II. The Cat Induction</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">II.1</div><div>I'd like you to pick a small spot somewhere in front of you that is a little higher than your eye level and focus your attention on that spot as you listen to my voice.</div></div>
-          <div class="line"><div class="idx">II.2</div><div>As you're staring at that spot... sitting there in that chair... listenting to the sound of my voice...</div></div>
-          <div class="line"><div class="idx">II.3</div><div>In your mind's eye, you might begin to imagine a cat laying down getting ready to relax.</div></div>
-          <div class="line"><div class="idx">II.4</div><div>You can begin to notice how easy it is to picture that cat... And this cat is beginning to feel soooooo relaxed.</div></div>
-          <div class="line"><div class="idx">II.5</div><div>I don't know whether it's eyes might close now, or it might close later, but each blink seems to be slower and slower as if time itself has begun to slow down.</div></div>
-          <div class="line"><div class="idx">II.6</div><div>And the more you try not to think about the eyes of this cat blinking, the more you might feel an urge to let your own eyes blink.</div></div>
-          <div class="line"><div class="idx">II.7</div><div>And I don't know if you can imagine those calm and relaxing breaths the cat might be making as it relaxes deeper and deeper...But I wonder if you realize just how relaxed it's starting to make you feel...</div></div>
-          <div class="line"><div class="idx">II.8</div><div>You might find yourself begining to wonder whether this imaginary cat is helping you become more and more relaxed with each breath.</div></div>
-          <div class="line"><div class="idx">II.9</div><div>You can continue right on relaxing with each breath as you imagine the eyes of that cat closing. Because it's not necessary for you to close your eyes too, but if you do, you can experience a deep feeling of peace and relaxation.</div></div>
-          <div class="line"><div class="idx">II.10</div><div>The speed at which you close your eyes indicates the speed at which you wish to go into trance.</div></div>
-        </div>
-      </details>
+        <!-- III. Eye Catalepsy Convincer -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>III. Eye Catalepsy Convincer</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">III.1</div>
+              <div>
+                And as those eyelids settle down, you might find that they
+                remain comfortably closed… and every time you repeat that
+                movement, they close even more easily… until they simply prefer
+                to stay closed… allowing you to go deeper and deeper inside.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">III.2</div>
+              <div>
+                And in a moment, but not yet, I’m going to ask you to gently
+                test your eyelids to see if they might want to open, but you’re
+                going to find that they juuussst don’t want to open... because
+                the harder you try the more firmly they stay closed. You can try
+                to test them now. That’s right. Then allow your eyelids to
+                relax. You can stop testing.
+              </div>
+            </div>
+          </div>
+        </details>
 
-      <!-- III. Eye Catalepsy Convincer -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>III. Eye Catalepsy Convincer</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">III.1</div><div>And as those eyelids settle down, you might find that they remain comfortably closed… and every time you repeat that movement, they close even more easily… until they simply prefer to stay closed… allowing you to go deeper and deeper inside.</div></div>
-          <div class="line"><div class="idx">III.2</div><div>And in a moment, but not yet, I’m going to ask you to gently test your eyelids to see if they might want to open, but you’re going to find that they juuussst don’t want to open... because the harder you try the more firmly they stay closed. You can try to test them now. That’s right. Then allow your eyelids to relax. You can stop testing.</div></div>
-        </div>
-      </details>
+        <!-- IV. External Sounds Suggestion -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>IV. External Sounds Suggestion</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">IV.1</div>
+              <div>
+                And isn’t it interesting how, the very moment our eyes remain
+                closed, your attention is automatically drawn inward… as though
+                the world outside simply fades, and what matters most is the
+                comfort within.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">IV.2</div>
+              <div>
+                And any sounds you may hear, or any interruptions or
+                distractions that might occur, can simply be used by your mind
+                as gentle reminders to bring your attention back inward… just as
+                it is now… so that all you really need to notice is the sound of
+                my voice guiding you deeper.
+              </div>
+            </div>
+          </div>
+        </details>
 
-      <!-- IV. External Sounds Suggestion -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>IV. External Sounds Suggestion</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">IV.1</div><div>And isn’t it interesting how, the very moment our eyes remain closed, your attention is automatically drawn inward… as though the world outside simply fades, and what matters most is the comfort within.</div></div>
-          <div class="line"><div class="idx">IV.2</div><div>And any sounds you may hear, or any interruptions or distractions that might occur, can simply be used by your mind as gentle reminders to bring your attention back inward… just as it is now… so that all you really need to notice is the sound of my voice guiding you deeper.</div></div>
-        </div>
-      </details>
+        <!-- V. Spiegel Escalator Deepener -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span
+            ><span>V. Spiegel Escalator Deepener</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">V.1</div>
+              <div>
+                And as those eyelids rest so comfortably now... you can begin to
+                drift even deeper, guided by your imagination...
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.2</div>
+              <div>
+                In a moment, you can begin a gentle descent into a deeper
+                comfort. We'll go down through three levels - A, B, and C.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.3</div>
+              <div>
+                Each time you descend to the next level, you can drift twice as
+                deep and feel twice as comfortable.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.4</div>
+              <div>
+                In a moment, but not yet, I'll count from 1 to 3. On 3, you can
+                imagine stepping onto a gentle escalator and begin an easy
+                descent to Level A.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.5</div>
+              <div>
+                1...2...3... stepping onto the escalator now... letting it move
+                by itself... carrying you down easily and comfortably... and
+                when you arrive at Level A, you can take a deep breath and say
+                the letter “A” out loud.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.6</div>
+              <div>
+                Good... and in a moment, but not yet... you can move from Level
+                A down to Level B. As you descend, your comfort can easily
+                double, twice as deep, twice as calm as you are right now.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.7</div>
+              <div>
+                I’ll count from 1 to 3, and on 3, you can drift down to Level B,
+                twice as calm and twice as relaxed as before. 1… 2… 3… drifting
+                down now… deeper and deeper… the escalator carrying you easily
+                and comfortably, all the way to Level B. When you arrive, take a
+                deep breath and say the letter ‘B’ out loud.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.8</div>
+              <div>
+                Excellent. You're doing very well. There's just one more level
+                left, Level C, which is twice as deep as you are right now. By
+                the time you reach it, you can be more calm and relaxed than
+                you've ever been before. In a moment, I’ll count from 1 to 3. On
+                3, you can drift down to Level C, even more calm and even more
+                relaxed as before. Don’t try to help it along, just let it
+                happen.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.9</div>
+              <div>
+                And as you prepare to move from Level B down to Level C, you may
+                find that by the time you reach the last level... your vocal
+                cords will be soooooo relaxed that it may be difficult to say
+                the letter ‘C’ <br />— but try to say it anyway.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.10</div>
+              <div>
+                1… 2… 3… drifting down now… deeper and deeper… the escalator
+                carrying you easily and comfortably, all the way to Level C.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">V.11</div>
+              <div>
+                When you arrive, take a deep breath and try to say the letter
+                ‘C’ out loud, noticing how good it feels to rest there for a
+                moment, completely calm and deeply relaxed.
+              </div>
+            </div>
+          </div>
+        </details>
 
-      <!-- V. Spiegel Escalator Deepener -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>V. Spiegel Escalator Deepener</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">V.1</div><div>And as those eyelids rest so comfortably now... you can begin to drift even deeper, guided by your imagination...</div></div>
-          <div class="line"><div class="idx">V.2</div><div>In a moment, you can begin a gentle descent into a deeper comfort. We'll go down through three levels - A, B, and C.</div></div>
-          <div class="line"><div class="idx">V.3</div><div>Each time you descend to the next level, you can drift twice as deep and feel twice as comfortable.</div></div>
-          <div class="line"><div class="idx">V.4</div><div>In a moment, but not yet, I'll count from 1 to 3. On 3, you can imagine stepping onto a gentle escalator and begin an easy descent to Level A.</div></div>
-          <div class="line"><div class="idx">V.5</div><div>1...2...3... stepping onto the escalator now... letting it move by itself... carrying you down easily and comfortably... and when you arrive at Level A, you can take a deep breath and say the letter “A” out loud.</div></div>
-          <div class="line"><div class="idx">V.6</div><div>Good... and in a moment, but not yet... you can move from Level A down to Level B. As you descend, your comfort can easily double, twice as deep, twice as calm as you are right now.</div></div>
-          <div class="line"><div class="idx">V.7</div><div>I’ll count from 1 to 3, and on 3, you can drift down to Level B, twice as calm and twice as relaxed as before. 1… 2… 3… drifting down now… deeper and deeper… the escalator carrying you easily and comfortably, all the way to Level B. When you arrive, take a deep breath and say the letter ‘B’ out loud.</div></div>
-          <div class="line"><div class="idx">V.8</div><div>Excellent. You're doing very well. There's just one more level left, Level C, which is twice as deep as you are right now. By the time you reach it, you can be more calm and relaxed than you've ever been before. In a moment, I’ll count from 1 to 3. On 3, you can drift down to Level C, even more calm and even more relaxed as before. Don’t try to help it along, just let it happen.</div></div>
-          <div class="line"><div class="idx">V.9</div><div>And as you prepare to move from Level B down to Level C, you may find that by the time you reach the last level... your vocal cords will be soooooo relaxed that it may be difficult to say the letter ‘C’ <br>— but try to say it anyway.</div></div>
-          <div class="line"><div class="idx">V.10</div><div>1… 2… 3… drifting down now… deeper and deeper… the escalator carrying you easily and comfortably, all the way to Level C.</div></div>
-          <div class="line"><div class="idx">V.11</div><div>When you arrive, take a deep breath and try to say the letter ‘C’ out loud, noticing how good it feels to rest there for a moment, completely calm and deeply relaxed.</div></div>
-        </div>
-      </details>
+        <!-- VI. Number Forget Convincer -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VI. Number Forget Convincer</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">VI.1</div>
+              <div>Under hypnosis, you can speak to me if I ask you to.</div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.2</div>
+              <div>
+                You forgot the number 6. It’s gone from your mind—just
+                disappeared. You know there’s a number between 5 and 7, but it
+                isn’t there now. The harder you try to remember it, the more it
+                fades away.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.3</div>
+              <div><em>(snap fingers)</em> That number is gone.</div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.4</div>
+              <div>Now, count out loud from 1 to 10.</div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.5</div>
+              <div>
+                <em>(pause while they count and skip the missing number)</em>
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.6</div>
+              <div>
+                That’s right. That number is completely gone from your mind.
+                Even when you awaken, it stays gone—until I snap my fingers
+                twice.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.7</div>
+              <div>
+                When I snap twice, that number returns instantly, and you count
+                normally again.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.8</div>
+              <div>
+                <em>(snap twice)</em> Good. Everything back to normal now.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VI.9</div>
+              <div>Count again—1 to 10—perfectly clear.</div>
+            </div>
+          </div>
+        </details>
 
-      <!-- VI. Number Forget Convincer -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VI. Number Forget Convincer</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">VI.1</div><div>Under hypnosis, you can speak to me if I ask you to.</div></div>
-          <div class="line"><div class="idx">VI.2</div><div>You forgot the number 6. It’s gone from your mind—just disappeared. You know there’s a number between 5 and 7, but it isn’t there now. The harder you try to remember it, the more it fades away.</div></div>
-          <div class="line"><div class="idx">VI.3</div><div><em>(snap fingers)</em> That number is gone.</div></div>
-          <div class="line"><div class="idx">VI.4</div><div>Now, count out loud from 1 to 10.</div></div>
-          <div class="line"><div class="idx">VI.5</div><div><em>(pause while they count and skip the missing number)</em></div></div>
-          <div class="line"><div class="idx">VI.6</div><div>That’s right. That number is completely gone from your mind. Even when you awaken, it stays gone—until I snap my fingers twice.</div></div>
-          <div class="line"><div class="idx">VI.7</div><div>When I snap twice, that number returns instantly, and you count normally again.</div></div>
-          <div class="line"><div class="idx">VI.8</div><div><em>(snap twice)</em> Good. Everything back to normal now.</div></div>
-          <div class="line"><div class="idx">VI.9</div><div>Count again—1 to 10—perfectly clear.</div></div>
-        </div>
-      </details>
+        <!-- VII. Bridge to Suggestions -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VII. Bridge to Suggestions</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">VII.1</div>
+              <div>
+                And now that you’re settled so comfortably… your mind can begin
+                to take in ideas that are helpful and useful for you. You don’t
+                even have to do anything—just notice that the thoughts and words
+                that are good for you can gently settle in, while everything
+                else simply drifts away.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VII.2</div>
+              <div>
+                In a moment, I’ll begin offering you some helpful
+                suggestions—simple ideas that your mind can absorb easily, in
+                whatever way feels right to you.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VII.3</div>
+              <div>
+                So as you continue breathing comfortably, these ideas can become
+                a natural part of you…
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VII.4</div>
+              <div>
+                All of these ideas can continue to grow stronger with every
+                breath, every time you practice, every time you think about
+                hypnosis.
+              </div>
+            </div>
+          </div>
+        </details>
 
-      <!-- VII. Bridge to Suggestions -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VII. Bridge to Suggestions</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">VII.1</div><div>And now that you’re settled so comfortably… your mind can begin to take in ideas that are helpful and useful for you. You don’t even have to do anything—just notice that the thoughts and words that are good for you can gently settle in, while everything else simply drifts away.</div></div>
-          <div class="line"><div class="idx">VII.2</div><div>In a moment, I’ll begin offering you some helpful suggestions—simple ideas that your mind can absorb easily, in whatever way feels right to you.</div></div>
-          <div class="line"><div class="idx">VII.3</div><div>So as you continue breathing comfortably, these ideas can become a natural part of you…</div></div>
-          <div class="line"><div class="idx">VII.4</div><div>All of these ideas can continue to grow stronger with every breath, every time you practice, every time you think about hypnosis.</div></div>
-        </div>
-      </details>
+        <!-- VIII. Ego-Strengthening -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>VIII. Ego-Strengthening</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">VIII.0</div>
+              <div>
+                These post-hypnotic suggestion templates can be used to
+                reinforce positive ego-strengthening qualities. Simply fill in
+                the blanks with any word or quality that fits your intention —
+                for example,
+                <em>confidence, calmness, resilience, clarity,</em> or
+                <em>compassion</em>.
+              </div>
+            </div>
+            <h3>Short Forms</h3>
+            <div class="line">
+              <div class="idx">VIII.S1</div>
+              <div>
+                When you wake up, you’ll notice a quiet sense of ___ beginning
+                to grow.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S2</div>
+              <div>
+                When you open your eyes, ___ will feel more natural and
+                familiar.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S3</div>
+              <div>
+                As you return to full awareness, the feeling of ___ will come
+                easily.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S4</div>
+              <div>
+                When you wake up, you’ll find ___ guiding your thoughts and
+                actions.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S5</div>
+              <div>
+                As you go about your day, a sense of ___ will be with you.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S6</div>
+              <div>
+                When you awaken, ___ will seem to flow effortlessly through you.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S7</div>
+              <div>
+                As you return to waking life, your ___ will strengthen quietly
+                inside.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.S8</div>
+              <div>
+                When you open your eyes, ___ will feel like a natural part of
+                who you are.
+              </div>
+            </div>
 
-      <!-- VIII. Ego-Strengthening -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>VIII. Ego-Strengthening</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">VIII.0</div><div>These post-hypnotic suggestion templates can be used to reinforce positive ego-strengthening qualities. Simply fill in the blanks with any word or quality that fits your intention — for example, <em>confidence, calmness, resilience, clarity,</em> or <em>compassion</em>.</div></div>
-          <h3>Short Forms</h3>
-          <div class="line"><div class="idx">VIII.S1</div><div>When you wake up, you’ll notice a quiet sense of ___ beginning to grow.</div></div>
-          <div class="line"><div class="idx">VIII.S2</div><div>When you open your eyes, ___ will feel more natural and familiar.</div></div>
-          <div class="line"><div class="idx">VIII.S3</div><div>As you return to full awareness, the feeling of ___ will come easily.</div></div>
-          <div class="line"><div class="idx">VIII.S4</div><div>When you wake up, you’ll find ___ guiding your thoughts and actions.</div></div>
-          <div class="line"><div class="idx">VIII.S5</div><div>As you go about your day, a sense of ___ will be with you.</div></div>
-          <div class="line"><div class="idx">VIII.S6</div><div>When you awaken, ___ will seem to flow effortlessly through you.</div></div>
-          <div class="line"><div class="idx">VIII.S7</div><div>As you return to waking life, your ___ will strengthen quietly inside.</div></div>
-          <div class="line"><div class="idx">VIII.S8</div><div>When you open your eyes, ___ will feel like a natural part of who you are.</div></div>
+            <h3>Long Forms</h3>
+            <div class="line">
+              <div class="idx">VIII.L1</div>
+              <div>
+                When you wake up and move through your day, you may be
+                pleasantly surprised to find that ___ feels stronger, steadier,
+                and easier to access than before.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L2</div>
+              <div>
+                As you awaken, your unconscious mind will continue to let that
+                sense of ___ expand naturally, guiding you with calm confidence.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L3</div>
+              <div>
+                When you return to full awareness, you’ll notice ___ showing
+                itself in subtle ways — in your posture, your tone, your
+                choices.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L4</div>
+              <div>
+                As you go about your day, moments of ___ may arise unexpectedly,
+                reminding you of how naturally this quality belongs to you.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L5</div>
+              <div>
+                When you open your eyes, that deep inner ___ will quietly
+                support you in all that you do.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L6</div>
+              <div>
+                As you return to ordinary consciousness, your unconscious will
+                help you express ___ more freely and fully.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L7</div>
+              <div>
+                When you awaken, you might realize that ___ has already become
+                part of how you think, feel, and respond to the world.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">VIII.L8</div>
+              <div>
+                As you wake and move forward, the strength of your ___ will
+                continue to deepen with every experience.
+              </div>
+            </div>
+          </div>
+        </details>
 
-          <h3>Long Forms</h3>
-          <div class="line"><div class="idx">VIII.L1</div><div>When you wake up and move through your day, you may be pleasantly surprised to find that ___ feels stronger, steadier, and easier to access than before.</div></div>
-          <div class="line"><div class="idx">VIII.L2</div><div>As you awaken, your unconscious mind will continue to let that sense of ___ expand naturally, guiding you with calm confidence.</div></div>
-          <div class="line"><div class="idx">VIII.L3</div><div>When you return to full awareness, you’ll notice ___ showing itself in subtle ways — in your posture, your tone, your choices.</div></div>
-          <div class="line"><div class="idx">VIII.L4</div><div>As you go about your day, moments of ___ may arise unexpectedly, reminding you of how naturally this quality belongs to you.</div></div>
-          <div class="line"><div class="idx">VIII.L5</div><div>When you open your eyes, that deep inner ___ will quietly support you in all that you do.</div></div>
-          <div class="line"><div class="idx">VIII.L6</div><div>As you return to ordinary consciousness, your unconscious will help you express ___ more freely and fully.</div></div>
-          <div class="line"><div class="idx">VIII.L7</div><div>When you awaken, you might realize that ___ has already become part of how you think, feel, and respond to the world.</div></div>
-          <div class="line"><div class="idx">VIII.L8</div><div>As you wake and move forward, the strength of your ___ will continue to deepen with every experience.</div></div>
-        </div>
-      </details>
+        <!-- IX. Positive Awakening -->
+        <details class="card">
+          <summary>
+            <span class="chev">▶</span><span>IX. Positive Awakening</span>
+          </summary>
+          <div class="section-body">
+            <div class="line">
+              <div class="idx">IX.1</div>
+              <div>
+                …And very soon now, you’ll be ready to awaken fully from this
+                experience. When you do, you’ll find yourself feeling alert,
+                refreshed, and wonderfully positive about life. It’s as if the
+                calm and ease you’ve experienced here today stays with you,
+                while you wake up feeling brighter, lighter, and happier than
+                before.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.2</div>
+              <div>
+                In a moment, I’ll count from one to five. With each number, you
+                return more fully to the present, carrying with you that good
+                feeling, that confidence, that positive energy.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.3</div>
+              <div>One… slowly returning now.</div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.4</div>
+              <div>Two… feeling refreshed.</div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.5</div>
+              <div>Three… energy flowing back into your body.</div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.6</div>
+              <div>
+                Four… eyes beginning to feel lighter and feeling happy about
+                this session.
+              </div>
+            </div>
+            <div class="line">
+              <div class="idx">IX.7</div>
+              <div>Five… eyes open, wide awake, and alert (snap).</div>
+            </div>
+          </div>
+        </details>
+      </section>
 
-      <!-- IX. Positive Awakening -->
-      <details class="card">
-        <summary><span class="chev">▶</span><span>IX. Positive Awakening</span></summary>
-        <div class="section-body">
-          <div class="line"><div class="idx">IX.1</div><div>…And very soon now, you’ll be ready to awaken fully from this experience. When you do, you’ll find yourself feeling alert, refreshed, and wonderfully positive about life. It’s as if the calm and ease you’ve experienced here today stays with you, while you wake up feeling brighter, lighter, and happier than before.</div></div>
-          <div class="line"><div class="idx">IX.2</div><div>In a moment, I’ll count from one to five. With each number, you return more fully to the present, carrying with you that good feeling, that confidence, that positive energy.</div></div>
-          <div class="line"><div class="idx">IX.3</div><div>One… slowly returning now.</div></div>
-          <div class="line"><div class="idx">IX.4</div><div>Two… feeling refreshed.</div></div>
-          <div class="line"><div class="idx">IX.5</div><div>Three… energy flowing back into your body.</div></div>
-          <div class="line"><div class="idx">IX.6</div><div>Four… eyes beginning to feel lighter and feeling happy about this session.</div></div>
-          <div class="line"><div class="idx">IX.7</div><div>Five… eyes open, wide awake, and alert (snap).</div></div>
-        </div>
-      </details>
+      <footer class="footer">
+        Line‑Learning Edition © 2025 — based on “Hypnosis Script with Timer” by
+        Bryan Lundeen
+      </footer>
+    </main>
 
-    </section>
+    <script>
+      // Timer logic (count-up mm:ss)
+      let timerEl = document.getElementById("timer");
+      let startBtn = document.getElementById("start");
+      let resetBtn = document.getElementById("reset");
+      let incBtn = document.getElementById("inc");
+      let decBtn = document.getElementById("dec");
+      let printBtn = document.getElementById("print");
+      let expandAllBtn = document.getElementById("expandAll");
+      let collapseAllBtn = document.getElementById("collapseAll");
 
-    <footer class="footer">
-      Line‑Learning Edition © 2025 — based on “Hypnosis Script with Timer” by Bryan Lundeen
-    </footer>
-  </main>
+      let running = false;
+      let startEpoch = 0;
+      let elapsed = 0;
+      let rafId = null;
 
-  <script>
-    // Timer logic (count-up mm:ss)
-    let timerEl = document.getElementById("timer");
-    let startBtn = document.getElementById("start");
-    let resetBtn = document.getElementById("reset");
-    let incBtn = document.getElementById("inc");
-    let decBtn = document.getElementById("dec");
-    let printBtn = document.getElementById("print");
-    let expandAllBtn = document.getElementById("expandAll");
-    let collapseAllBtn = document.getElementById("collapseAll");
-
-    let running = false;
-    let startEpoch = 0;
-    let elapsed = 0;
-    let rafId = null;
-
-    function fmt(ms) {
-      const s = Math.floor(ms / 1000);
-      const m = Math.floor(s / 60);
-      const r = s % 60;
-      const mm = String(m).padStart(2, "0");
-      const ss = String(r).padStart(2, "0");
-      return `${mm}:${ss}`;
-    }
-    function tick() {
-      if (!running) return;
-      const now = performance.now();
-      const ms = elapsed + (now - startEpoch);
-      timerEl.textContent = fmt(ms);
-      rafId = requestAnimationFrame(tick);
-    }
-    startBtn.addEventListener("click", () => {
-      if (!running) {
-        running = true;
-        startEpoch = performance.now();
+      function fmt(ms) {
+        const s = Math.floor(ms / 1000);
+        const m = Math.floor(s / 60);
+        const r = s % 60;
+        const mm = String(m).padStart(2, "0");
+        const ss = String(r).padStart(2, "0");
+        return `${mm}:${ss}`;
+      }
+      function tick() {
+        if (!running) return;
+        const now = performance.now();
+        const ms = elapsed + (now - startEpoch);
+        timerEl.textContent = fmt(ms);
         rafId = requestAnimationFrame(tick);
-        startBtn.textContent = "Pause";
-      } else {
-        // pause
-        running = false;
-        elapsed += performance.now() - startEpoch;
-        cancelAnimationFrame(rafId);
-        startBtn.textContent = "Resume";
       }
-    });
-    resetBtn.addEventListener("click", () => {
-      running = false;
-      elapsed = 0;
-      timerEl.textContent = "00:00";
-      cancelAnimationFrame(rafId);
-      startBtn.textContent = "Start";
-    });
+      startBtn.addEventListener("click", () => {
+        if (!running) {
+          running = true;
+          startEpoch = performance.now();
+          rafId = requestAnimationFrame(tick);
+          startBtn.textContent = "Pause";
+        } else {
+          // pause
+          running = false;
+          elapsed += performance.now() - startEpoch;
+          cancelAnimationFrame(rafId);
+          startBtn.textContent = "Resume";
+        }
+      });
+      resetBtn.addEventListener("click", () => {
+        running = false;
+        elapsed = 0;
+        timerEl.textContent = "00:00";
+        cancelAnimationFrame(rafId);
+        startBtn.textContent = "Start";
+      });
 
-    // Font size controls
-    function getFz() {
-      return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fz"));
-    }
-    incBtn.addEventListener("click", () => {
-      document.documentElement.style.setProperty("--fz", getFz() + 1 + "px");
-    });
-    decBtn.addEventListener("click", () => {
-      document.documentElement.style.setProperty("--fz", Math.max(14, getFz() - 1) + "px");
-    });
+      // Font size controls
+      function getFz() {
+        return parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--fz")
+        );
+      }
+      incBtn.addEventListener("click", () => {
+        document.documentElement.style.setProperty("--fz", getFz() + 1 + "px");
+      });
+      decBtn.addEventListener("click", () => {
+        document.documentElement.style.setProperty(
+          "--fz",
+          Math.max(14, getFz() - 1) + "px"
+        );
+      });
 
-    // Print
-    printBtn.addEventListener("click", () => window.print());
+      // Print
+      printBtn.addEventListener("click", () => window.print());
 
-    // Expand/Collapse all
-    const cardsRoot = document.getElementById("cards");
-    function allDetails() {
-      return Array.prototype.slice.call(cardsRoot.querySelectorAll("details.card"));
-    }
-    expandAllBtn.addEventListener("click", () => allDetails().forEach(d => d.open = true));
-    collapseAllBtn.addEventListener("click", () => allDetails().forEach(d => d.open = false));
-  </script>
-</body>
+      // Expand/Collapse all
+      const cardsRoot = document.getElementById("cards");
+      function allDetails() {
+        return Array.prototype.slice.call(
+          cardsRoot.querySelectorAll("details.card")
+        );
+      }
+      expandAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = true))
+      );
+      collapseAllBtn.addEventListener("click", () =>
+        allDetails().forEach((d) => (d.open = false))
+      );
+    </script>
+  </body>
 </html>
