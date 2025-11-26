@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Feelings Menu Set — Overload → Feeling Selection</title>
-    <style>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Feelings Menu Set — Overload → Feeling Selection</title>
+<style>
       :root {
         --bg: #fafafa;
         --card: #ffffff;
@@ -117,27 +118,24 @@
         }
       }
     </style>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <h1>Feelings Menu Set — Overload → Feeling Selection</h1>
-        <div class="toolbar">
-          <button class="print" onclick="window.print()">
-            <span aria-hidden="true">🖨</span> Print
+</head>
+<body>
+<header>
+<div class="container">
+<h1>Feelings Menu Set — Overload → Feeling Selection</h1>
+<div class="toolbar">
+<button class="print" onclick="window.print()">
+<span aria-hidden="true">🖨</span> Print
           </button>
-          <span class="muted"
-            >Tip: Use <span class="kbd">Ctrl/⌘ + P</span> or the Print
-            button.</span
-          >
-        </div>
-      </div>
-    </header>
-
-    <main class="container">
-      <section class="card context">
-        <h2>Context and Aim</h2>
-        <p>
+<span class="muted">Tip: Use <span class="kbd">Ctrl/⌘ + P</span> or the Print
+            button.</span>
+</div>
+</div>
+</header>
+<main class="container">
+<section class="card context">
+<h2>Context and Aim</h2>
+<p>
           This form helps a subject discover and directly experience an
           emotional state, value, or process selected by their unconscious mind.
           The dense list of nominalizations is meant to engage intuition rather
@@ -145,42 +143,33 @@
           — the interactive relationship between the facilitator and the
           subject’s unconscious mind.
         </p>
-      </section>
-
-      <section class="card">
-        <h2>1) Opening Frame (say conversationally)</h2>
-        <p class="pre">
-          <em
-            >“Do you want to see something cool about your mind? I’m going to
+</section>
+<section class="card">
+<h2>1) Opening Frame (say conversationally)</h2>
+<p class="pre">
+<em>“Do you want to see something cool about your mind? I’m going to
             place a list of words in the chat. It might look a bit overwhelming
             to your conscious mind — and that’s okay — because your unconscious
             can immediately recognize the feeling you most need more of right
             now. So you’ll glance at the list for just a moment, then close your
             eyes, and allow your unconscious to select a word for you from the
-            list.”</em
-          >
-        </p>
-        <p class="muted">
+            list.”</em>
+</p>
+<p class="muted">
           Keep tone light and curious. When they agree, proceed immediately to
           share the list.
         </p>
-      </section>
-
-      <section class="card">
-        <h2>2) Copy to Chat: Full Feelings List</h2>
-        <p class="muted">
+</section><section class="card"><h2>Understanding Nominalizations</h2><p>A <em>nominalization</em> is when a <strong>verb</strong> (a process) or <strong>adjective</strong> (a state) is linguistically turned into a <strong>noun</strong>, creating the illusion of a “thing.” But it’s not an actual thing — it’s a mental or emotional <strong>state, process, or experience</strong> that’s been given a name. And because it’s not a fixed thing but a process, it can be <strong>understood, duplicated, modified, or re-directed</strong> — giving us greater flexibility in how we think and feel.</p><blockquote>“There is no such <em>thing</em> as love... no such <em>thing</em> as attraction... no such <em>thing</em> as chemistry. These feeling states are the <em>results</em> of internal mental processes that have a structure and sequence. As such, with skillful description, these states can be evoked at will.”<br/>— <em>Ross Jeffries</em></blockquote></section>
+<section class="card">
+<h2>2) Copy to Chat: Full Feelings List</h2>
+<p class="muted">
           Click the button to copy the entire list to your clipboard, then paste
           into your chat window.
         </p>
-        <div class="hr"></div>
-        <button id="copyBtn">Copy Full List</button>
-        <p
-          id="copyStatus"
-          class="muted"
-          aria-live="polite"
-          style="margin-top: 8px"
-        ></p>
-        <div id="feelingsList" class="pre" style="margin-top: 12px">
+<div class="hr"></div>
+<button id="copyBtn">Copy Full List</button>
+<p aria-live="polite" class="muted" id="copyStatus" style="margin-top: 8px"></p>
+<div class="pre" id="feelingsList" style="margin-top: 12px">
           integrity, authenticity, responsibility, humility, kindness,
           benevolence, tolerance, unity, compassion, generosity, confidence,
           patience, persistence, resilience, adaptability, creativity,
@@ -191,65 +180,53 @@
           guidance, allowance, connection, inspiration, realization, acceptance,
           abundance, elegance, radiance, remembrance, transcendence, wholeness
         </div>
-      </section>
-
-      <section class="card">
-        <h2>3) Prompt to Close Eyes and Orient Inward</h2>
-        <p class="pre">
-          <em
-            >“When you've scanned every word in the list, just let your eyes
+</section>
+<section class="card">
+<h2>3) Prompt to Close Eyes and Orient Inward</h2>
+<p class="pre">
+<em>“When you've scanned every word in the list, just let your eyes
             close. That’s right. And what feeling would you like to experience
-            more of? ”</em
-          >
-        </p>
-        <p class="muted">
+            more of? ”</em>
+</p>
+<p class="muted">
           Pause 10–20 seconds. Watch for subtle indicators: breath easing,
           shoulders lowering, softer facial tone, a tiny nod.
         </p>
-      </section>
-
-      <section class="card">
-        <h2>4) Elicit and Stabilize the Feeling (R)</h2>
-        <p class="muted">
-          <em>R = the feeling they’ve chosen or that emerges.</em>
-        </p>
-        <ol>
-          <li>
-            <strong
-              >And as you begin to sense R, how would you know you were feeling
-              it?</strong
-            >
-          </li>
-          <li>
-            <strong
-              >When you start to become aware of R, what do you notice that lets
-              you know you are feeling it?</strong
-            >
-          </li>
-          <li>
-            <strong
-              >Notice where in your body R begins to make itself known when it’s
-              like that.</strong
-            >
-          </li>
-        </ol>
-        <p class="muted">
+</section>
+<section class="card">
+<h2>4) Elicit and Stabilize the Feeling (R)</h2>
+<p class="muted">
+<em>R = the feeling they’ve chosen or that emerges.</em>
+</p>
+<ol>
+<li>
+<strong>And as you begin to sense R, how would you know you were feeling
+              it?</strong>
+</li>
+<li>
+<strong>When you start to become aware of R, what do you notice that lets
+              you know you are feeling it?</strong>
+</li>
+<li>
+<strong>Notice where in your body R begins to make itself known when it’s
+              like that.</strong>
+</li>
+</ol>
+<p class="muted">
           Coaching notes: reflect their words back; mark any sign as evidence of
           R emerging; if unsure, normalize: “Sometimes it starts as a hint or a
           direction — that’s already enough.”
         </p>
-      </section>
-
-      <section class="card">
-        <h2>5) Transition</h2>
-        <p>
+</section>
+<section class="card">
+<h2>5) Transition</h2>
+<p>
           This guide intentionally ends after stabilization of R. Proceed with
           your preferred induction or deepener in a separate document.
         </p>
-      </section>
-    </main>
-
-    <script>
+</section>
+</main>
+<script>
       (function () {
         const btn = document.getElementById("copyBtn");
         const listEl = document.getElementById("feelingsList");
@@ -267,5 +244,5 @@
         });
       })();
     </script>
-  </body>
+</body>
 </html>

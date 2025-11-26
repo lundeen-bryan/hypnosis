@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feelings Menu</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; line-height: 1.5; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(250,250,250,0.95); backdrop-filter: saturate(180%) blur(6px);
+      border-bottom: 1px solid var(--border);
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 16px; }
+    h1 { font-size: 1.6rem; margin: 0 0 6px; }
+    .note { color: var(--muted); font-size: 0.95rem; margin: 0 0 10px; }
+    .toolbar { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+    button.print {
+      border: 1px solid var(--border); background: var(--card); padding: 8px 12px; border-radius: 10px; cursor: pointer;
+      font-weight: 600;
+    }
+    button.print:hover { border-color: var(--accent); }
+    main .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin: 16px auto;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    h2 { font-size: 1.25rem; margin: 0 0 8px; }
+    h3 { font-size: 1.1rem; margin: 16px 0 10px; }
+    .question { font-weight: 700; margin: 4px 0 0; }
+    ul { list-style: none; padding-left: 0; margin: 0; columns: 1; column-gap: 24px; }
+    @media (min-width: 640px) {
+      ul { columns: 2; }
+    }
+    @media (min-width: 920px) {
+      ul { columns: 3; }
+    }
+    li { break-inside: avoid; display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+    label { cursor: pointer; }
+    .section { margin-top: 8px; }
+    .prompt-list { padding-left: 1rem; }
+    .muted { color: var(--muted); }
+    .hr { height: 1px; background: var(--border); margin: 12px 0; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#f3f4f6;border:1px solid var(--border); padding:2px 6px;border-radius:6px; }
+    @media print {
+      header { position: static; background: transparent; border: 0; }
+      button.print { display: none; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Feelings Menu</h1>
+      <p class="note">Facilitator note: Use this menu conversationally to invite the subject’s preferred feeling state.</p>
+      <div class="toolbar">
+        <button class="print" onclick="window.print()"><span aria-hidden="true">🖨</span> Print</button>
+        <span class="muted">Tip: check multiple items, then ask the prompts below.</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2 class="question">What feeling would you like to feel more of?</h2>
+      <div class="hr"></div>
+
+      <div class="section">
+        <h3>Values</h3>
+        <ul>
+          <li><input id="integrity" type="checkbox"><label for="integrity">integrity</label></li>
+          <li><input id="authenticity" type="checkbox"><label for="authenticity">authenticity</label></li>
+          <li><input id="responsibility" type="checkbox"><label for="responsibility">responsibility</label></li>
+          <li><input id="humility" type="checkbox"><label for="humility">humility</label></li>
+          <li><input id="kindness" type="checkbox"><label for="kindness">kindness</label></li>
+          <li><input id="benevolence" type="checkbox"><label for="benevolence">benevolence</label></li>
+          <li><input id="tolerance" type="checkbox"><label for="tolerance">tolerance</label></li>
+          <li><input id="unity" type="checkbox"><label for="unity">unity</label></li>
+          <li><input id="compassion" type="checkbox"><label for="compassion">compassion</label></li>
+          <li><input id="generosity" type="checkbox"><label for="generosity">generosity</label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Strengths</h3>
+        <ul>
+          <li><input id="confidence" type="checkbox"><label for="confidence">confidence</label></li>
+          <li><input id="patience" type="checkbox"><label for="patience">patience</label></li>
+          <li><input id="persistence" type="checkbox"><label for="persistence">persistence</label></li>
+          <li><input id="resilience" type="checkbox"><label for="resilience">resilience</label></li>
+          <li><input id="adaptability" type="checkbox"><label for="adaptability">adaptability</label></li>
+          <li><input id="creativity" type="checkbox"><label for="creativity">creativity</label></li>
+          <li><input id="flexibility" type="checkbox"><label for="flexibility">flexibility</label></li>
+          <li><input id="endurance" type="checkbox"><label for="endurance">endurance</label></li>
+          <li><input id="independence" type="checkbox"><label for="independence">independence</label></li>
+          <li><input id="balance" type="checkbox"><label for="balance">balance</label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>States</h3>
+        <ul>
+          <li><input id="calmness" type="checkbox"><label for="calmness">calmness</label></li>
+          <li><input id="stillness" type="checkbox"><label for="stillness">stillness</label></li>
+          <li><input id="awareness" type="checkbox"><label for="awareness">awareness</label></li>
+          <li><input id="openness" type="checkbox"><label for="openness">openness</label></li>
+          <li><input id="clarity" type="checkbox"><label for="clarity">clarity</label></li>
+          <li><input id="serenity" type="checkbox"><label for="serenity">serenity</label></li>
+          <li><input id="tranquility" type="checkbox"><label for="tranquility">tranquility</label></li>
+          <li><input id="stability" type="checkbox"><label for="stability">stability</label></li>
+          <li><input id="mindfulness" type="checkbox"><label for="mindfulness">mindfulness</label></li>
+          <li><input id="presence" type="checkbox"><label for="presence">presence</label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Processes</h3>
+        <ul>
+          <li><input id="transformation" type="checkbox"><label for="transformation">transformation</label></li>
+          <li><input id="exploration" type="checkbox"><label for="exploration">exploration</label></li>
+          <li><input id="reflection" type="checkbox"><label for="reflection">reflection</label></li>
+          <li><input id="communication" type="checkbox"><label for="communication">communication</label></li>
+          <li><input id="creation" type="checkbox"><label for="creation">creation</label></li>
+          <li><input id="motivation" type="checkbox"><label for="motivation">motivation</label></li>
+          <li><input id="appreciation" type="checkbox"><label for="appreciation">appreciation</label></li>
+          <li><input id="concentration" type="checkbox"><label for="concentration">concentration</label></li>
+          <li><input id="guidance" type="checkbox"><label for="guidance">guidance</label></li>
+          <li><input id="allowance" type="checkbox"><label for="allowance">allowance</label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Experiences</h3>
+        <ul>
+          <li><input id="connection" type="checkbox"><label for="connection">connection</label></li>
+          <li><input id="inspiration" type="checkbox"><label for="inspiration">inspiration</label></li>
+          <li><input id="realization" type="checkbox"><label for="realization">realization</label></li>
+          <li><input id="acceptance" type="checkbox"><label for="acceptance">acceptance</label></li>
+          <li><input id="abundance" type="checkbox"><label for="abundance">abundance</label></li>
+          <li><input id="elegance" type="checkbox"><label for="elegance">elegance</label></li>
+          <li><input id="radiance" type="checkbox"><label for="radiance">radiance</label></li>
+          <li><input id="remembrance" type="checkbox"><label for="remembrance">remembrance</label></li>
+          <li><input id="transcendence" type="checkbox"><label for="transcendence">transcendence</label></li>
+          <li><input id="wholeness" type="checkbox"><label for="wholeness">wholeness</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>After a Selection (R)</h2>
+      <p class="muted"><em>R = the feeling you chose above. Use these prompts to gently evoke and stabilize R before continuing with your induction.</em></p>
+      <ol class="prompt-list">
+        <li><strong>And as you begin to sense R, how would you know you were feeling it?</strong></li>
+        <li><strong>When you start to become aware of R, what do you notice that lets you know you are feeling it?</strong></li>
+        <li><strong>Notice where in your body R begins to make itself known when it’s like that.</strong></li>
+      </ol>
+      <p class="muted">Facilitation tips: slow pace, soft tone, allow pauses. Accept any answer as evidence of R emerging; reflect their words back.</p>
+    </div>
+
+    <div class="card">
+      <h2>Quick Keys</h2>
+      <p class="muted">Use <span class="kbd">Ctrl/⌘ + P</span> to print. Checkboxes are for conversation flow only; they do not save.</p>
+    </div>
+  </main>
+</body>
+</html>
