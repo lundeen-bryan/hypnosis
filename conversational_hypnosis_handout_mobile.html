@@ -1,178 +1,399 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Conversational Hypnosis – Pocket Handout</title>
-<style>
-
-  :root {
-    --bg: #f7f9fc;
-    --card: #ffffff;
-    --text: #15202b;
-    --muted: #5b6b7b;
-    --accent: #0b6cfb;
-    --accent-2: #0e8a00;
-    --border: #d8e2ee;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-  body { line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  header { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.94)); backdrop-filter: blur(10px); padding: .85rem 1rem; border-bottom: 1px solid var(--border); }
-  h1 { font-size: 1.1rem; margin: 0; letter-spacing: .2px; }
-  .container { padding: 1rem; max-width: 900px; margin: 0 auto; }
-  .tip { font-size: .9rem; color: var(--muted); margin: .25rem 0 0 .1rem; }
-  .grid { display: grid; gap: .75rem; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: .85rem; box-shadow: 0 1px 0 rgba(17,24,39,.04); }
-  .card h2 { font-size: 1rem; margin: 0 0 .5rem; color: var(--accent); }
-  .card h3 { font-size: .95rem; margin: .5rem 0 .35rem; color: var(--accent-2); }
-  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
-  .pill { display: inline-block; padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--border); background: #f0f5fb; color: var(--muted); margin: .15rem .25rem .15rem 0; font-size: .82rem; }
-  summary { cursor: pointer; list-style: none; }
-  summary::marker { display:none; }
-  details { border: 1px solid var(--border); border-radius: 12px; padding: .65rem .75rem; background: #f9fbfe; }
-  details + details { margin-top: .55rem; }
-  details[open] { background: #f3f7fd; }
-  .kbd { padding: .05rem .35rem; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px; background: #f0f5fb; font-size: .85rem; color: var(--muted); }
-  .sticky-footer { position: sticky; bottom: 0; padding: .6rem 1rem; background: linear-gradient(0deg, rgba(255,255,255,.98), rgba(255,255,255,.94)); border-top: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; justify-content: space-between; }
-  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .55rem .8rem; border-radius: 10px; border: 1px solid var(--border); background: #ffffff; color: var(--text); text-decoration: none; }
-  .btn:active { transform: translateY(1px); }
-  .small { font-size: .85rem; color: var(--muted); }
-  .example { padding-left: .6rem; border-left: 2px solid #d8e2ee; margin: .35rem 0; color: #0f3057; }
-  .formula { background: #f3f7fd; border: 1px dashed var(--border); padding: .65rem .75rem; border-radius: 10px; margin: .5rem 0 .2rem; }
-  .nowrap { white-space: nowrap; }
-
-</style>
-</head>
-<body>
-  <header>
-    <h1>Conversational Hypnosis • Pocket Handout</h1>
-    <div class="tip">Framing + Magic Word + <span class="nowrap">SPE</span>/Suggestion</div>
-  </header>
-
-  <div class="container grid">
-
-    <div class="card">
-      <h2>Formula</h2>
-      <div class="formula mono">
-        Framing Statement + Magic Word + <strong>SPE</strong> (State/Process/Experience) <em>OR</em> Suggestion
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Conversational Hypnosis – Pocket Handout</title>
+    <style>
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --text: #15202b;
+        --muted: #5b6b7b;
+        --accent: #0b6cfb;
+        --accent-2: #0e8a00;
+        --border: #d8e2ee;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      body {
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(255, 255, 255, 0.94)
+        );
+        backdrop-filter: blur(10px);
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      h1 {
+        font-size: 1.1rem;
+        margin: 0;
+        letter-spacing: 0.2px;
+      }
+      .container {
+        padding: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .tip {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin: 0.25rem 0 0 0.1rem;
+      }
+      .grid {
+        display: grid;
+        gap: 0.75rem;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 0.85rem;
+        box-shadow: 0 1px 0 rgba(17, 24, 39, 0.04);
+      }
+      .card h2 {
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+        color: var(--accent);
+      }
+      .card h3 {
+        font-size: 0.95rem;
+        margin: 0.5rem 0 0.35rem;
+        color: var(--accent-2);
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+          "Liberation Mono", monospace;
+        font-size: 0.95rem;
+      }
+      .pill {
+        display: inline-block;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #f0f5fb;
+        color: var(--muted);
+        margin: 0.15rem 0.25rem 0.15rem 0;
+        font-size: 0.82rem;
+      }
+      summary {
+        cursor: pointer;
+        list-style: none;
+      }
+      summary::marker {
+        display: none;
+      }
+      details {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.65rem 0.75rem;
+        background: #f9fbfe;
+      }
+      details + details {
+        margin-top: 0.55rem;
+      }
+      details[open] {
+        background: #f3f7fd;
+      }
+      .kbd {
+        padding: 0.05rem 0.35rem;
+        border: 1px solid var(--border);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        background: #f0f5fb;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .sticky-footer {
+        position: sticky;
+        bottom: 0;
+        padding: 0.6rem 1rem;
+        background: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(255, 255, 255, 0.94)
+        );
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.8rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #ffffff;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .small {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .example {
+        padding-left: 0.6rem;
+        border-left: 2px solid #d8e2ee;
+        margin: 0.35rem 0;
+        color: #0f3057;
+      }
+      .formula {
+        background: #f3f7fd;
+        border: 1px dashed var(--border);
+        padding: 0.65rem 0.75rem;
+        border-radius: 10px;
+        margin: 0.5rem 0 0.2rem;
+      }
+      .nowrap {
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Conversational Hypnosis • Pocket Handout</h1>
+      <div class="tip">
+        Framing + Magic Word + <span class="nowrap">SPE</span>/Suggestion
       </div>
-      <div class="small">Use <span class="pill">framing</span> to open the door, a <span class="pill">magic word</span> to soften/prime, then land a <span class="pill">state</span> or <span class="pill">suggestion</span>.</div>
-    </div>
+    </header>
 
-    <div class="card">
-      <h2>Page 1 · Framing Statements</h2>
-      <p class="small">A framing statement sets the stage for an indirect suggestion by orienting attention and reducing resistance.</p>
-
-      <details open>
-        <summary class="mono"><strong>When you…</strong></summary>
-        <div class="example">“When you sit comfortably, you may notice your body beginning to relax.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>What would it be like if…</strong></summary>
-        <div class="example">“What would it be like if you felt a wave of calm spreading through you?”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>A person can…</strong></summary>
-        <div class="example">“A person can easily drift into relaxation when they hear a soothing voice.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>If you were to…</strong></summary>
-        <div class="example">“If you were to imagine floating, how would that feel in your body?”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>As you…</strong></summary>
-        <div class="example">“As you listen, your mind may wander to pleasant places.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>It’s not necessary to…</strong></summary>
-        <div class="example">“It’s not necessary to go deeply into trance right away… you can take your time.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>You really shouldn’t…</strong></summary>
-        <div class="example">“You really shouldn’t relax too quickly… and yet people often do.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>You might find…</strong></summary>
-        <div class="example">“You might find that your eyes feel heavier with every blink.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>To the point where…</strong></summary>
-        <div class="example">“Your comfort can deepen to the point where relaxation becomes automatic.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>Invite you to notice…</strong></summary>
-        <div class="example">“I invite you to notice the sense of calm in your breathing.”</div>
-      </details>
-
-      <details>
-        <summary class="mono"><strong>How surprised would you be to…</strong></summary>
-        <div class="example">“How surprised would you be to notice your hand beginning to lift by itself?”</div>
-      </details>
-    </div>
-
-    <div class="card">
-      <h2>Page 2 · Magic Words</h2>
-      <p class="small">Place after a framing statement to soften or amplify what follows.</p>
-      <div class="mono">
-        <div class="pill">easily</div>
-        <div class="pill">naturally</div>
-        <div class="pill">automatically</div>
-        <div class="pill">aware</div>
-        <div class="pill">realize</div>
-        <div class="pill">experience</div>
-        <div class="pill">notice</div>
-        <div class="pill">expand</div>
-        <div class="pill">beyond</div>
-        <div class="pill">unlimited</div>
-        <div class="pill">before</div>
-        <div class="pill">after</div>
-        <div class="pill">begin</div>
-        <div class="pill">during</div>
-        <div class="pill">now</div>
-        <div class="pill">imagine</div>
-        <div class="pill">create</div>
-        <div class="pill">don’t</div>
-        <div class="pill">but</div>
-        <div class="pill">and</div>
-        <div class="pill">because</div>
+    <div class="container grid">
+      <div class="card">
+        <h2>Formula</h2>
+        <div class="formula mono">
+          Framing Statement + Magic Word +
+          <strong>SPE</strong> (State/Process/Experience) <em>AS an</em> ebedded command/suggestion
+        </div>
+        <div class="small">
+          Use <span class="pill">framing</span> to open the door, a
+          <span class="pill">magic word</span> to soften/prime, then land a
+          <span class="pill">nominalization</span> as an embedded
+          <span class="pill">command/suggestion</span>.
+        </div>
       </div>
-      <h3>Quick combos</h3>
-      <div class="example mono">“As you <strong>naturally</strong> …”</div>
-      <div class="example mono">“When you <strong>easily</strong> …”</div>
-      <div class="example mono">“If you were to <strong>imagine</strong> …”</div>
-      <div class="example mono">“You might <strong>notice</strong> …”</div>
-      <div class="example mono">“It’s not necessary to … <strong>because</strong> …”</div>
-      <div class="example mono">“You feel this, <strong>and</strong> …”</div>
-      <div class="example mono">“You may sense that, <strong>but</strong> …”</div>
+
+      <div class="card">
+        <h2>Page 1 · Framing Statements</h2>
+        <p class="small">
+          A framing statement sets the stage for an indirect suggestion by
+          orienting attention and reducing resistance.
+        </p>
+
+        <details open>
+          <summary class="mono"><strong>When you…</strong></summary>
+          <div class="example">
+            “When you sit comfortably, you may notice your body beginning to
+            relax.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"
+            ><strong>What would it be like if…</strong></summary
+          >
+          <div class="example">
+            “What would it be like if you felt a wave of calm spreading through
+            you?”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>A person can…</strong></summary>
+          <div class="example">
+            “A person can easily drift into relaxation when they hear a soothing
+            voice.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>If you were to…</strong></summary>
+          <div class="example">
+            “If you were to imagine floating, how would that feel in your body?”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>As you…</strong></summary>
+          <div class="example">
+            “As you listen, your mind may wander to pleasant places.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"
+            ><strong>It’s not necessary to…</strong></summary
+          >
+          <div class="example">
+            “It’s not necessary to go deeply into trance right away… you can
+            take your time.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>You really shouldn’t…</strong></summary>
+          <div class="example">
+            “You really shouldn’t relax too quickly… and yet people often do.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>You might find…</strong></summary>
+          <div class="example">
+            “You might find that your eyes feel heavier with every blink.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>To the point where…</strong></summary>
+          <div class="example">
+            “Your comfort can deepen to the point where relaxation becomes
+            automatic.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"><strong>Invite you to notice…</strong></summary>
+          <div class="example">
+            “I invite you to notice the sense of calm in your breathing.”
+          </div>
+        </details>
+
+        <details>
+          <summary class="mono"
+            ><strong>How surprised would you be to…</strong></summary
+          >
+          <div class="example">
+            “How surprised would you be to notice your hand beginning to lift by
+            itself?”
+          </div>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>Page 2 · Magic Words</h2>
+        <p class="small">
+          Place after a framing statement to soften or amplify what follows.
+        </p>
+        <div class="mono">
+          <div class="pill">easily</div>
+          <div class="pill">naturally</div>
+          <div class="pill">automatically</div>
+          <div class="pill">aware</div>
+          <div class="pill">realize</div>
+          <div class="pill">experience</div>
+          <div class="pill">notice</div>
+          <div class="pill">expand</div>
+          <div class="pill">beyond</div>
+          <div class="pill">unlimited</div>
+          <div class="pill">before</div>
+          <div class="pill">after</div>
+          <div class="pill">begin</div>
+          <div class="pill">during</div>
+          <div class="pill">now</div>
+          <div class="pill">imagine</div>
+          <div class="pill">create</div>
+          <div class="pill">don’t</div>
+          <div class="pill">but</div>
+          <div class="pill">and</div>
+          <div class="pill">because</div>
+          <div class="pill">think</div>
+          <div class="pill">feel</div>
+          <div class="pill">allow</div>
+          <div class="pill">permit</div>
+        </div>
+        <h3>Quick combos</h3>
+        <div class="example mono">“As you <strong>naturally</strong> …”</div>
+        <div class="example mono">“When you <strong>easily</strong> …”</div>
+        <div class="example mono">
+          “If you were to <strong>imagine</strong> …”
+        </div>
+        <div class="example mono">“You might <strong>notice</strong> …”</div>
+        <div class="example mono">
+          “It’s not necessary to … <strong>because</strong> …”
+        </div>
+        <div class="example mono">“You feel this, <strong>and</strong> …”</div>
+        <div class="example mono">
+          “You may sense that, <strong>but</strong> …”
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Page 3 · Full Examples (Formula in Action)</h2>
+        <div class="example">
+          “When you <strong>naturally</strong> become aware of your breathing
+          slowing, you can relax more deeply <strong>now</strong>.”
+        </div>
+        <div class="example">
+          “What would it be like if you <strong>easily</strong> allowed your
+          mind to drift <strong>beyond</strong> ordinary awareness and
+          discovered new calm inside?”
+        </div>
+        <div class="example">
+          “As you <strong>automatically</strong> notice your eyes blinking
+          slower, you might find them closing all by themselves.”
+        </div>
+        <div class="example">
+          “It’s not necessary to consciously try, <strong>because</strong> your
+          unconscious <strong>naturally</strong> creates the right level of
+          relaxation.”
+        </div>
+        <div class="example">
+          “You might <strong>notice</strong> that as you
+          <strong>experience</strong> comfort spreading through your body,
+          change becomes <strong>unlimited</strong> in its possibilities.”
+        </div>
+        <div class="example">
+          “I invite you to <strong>notice</strong> how
+          <strong>easily</strong> your thoughts expand
+          <strong>beyond</strong> effort, and you <strong>begin</strong> to feel
+          lighter.”
+        </div>
+        <div class="example">
+          “How surprised would you be to <strong>realize</strong> that your hand
+          <strong>automatically</strong> starts to lift, as if by itself?”
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>Page 3 · Full Examples (Formula in Action)</h2>
-      <div class="example">“When you <strong>naturally</strong> become aware of your breathing slowing, you can relax more deeply <strong>now</strong>.”</div>
-      <div class="example">“What would it be like if you <strong>easily</strong> allowed your mind to drift <strong>beyond</strong> ordinary awareness and discovered new calm inside?”</div>
-      <div class="example">“As you <strong>automatically</strong> notice your eyes blinking slower, you might find them closing all by themselves.”</div>
-      <div class="example">“It’s not necessary to consciously try, <strong>because</strong> your unconscious <strong>naturally</strong> creates the right level of relaxation.”</div>
-      <div class="example">“You might <strong>notice</strong> that as you <strong>experience</strong> comfort spreading through your body, change becomes <strong>unlimited</strong> in its possibilities.”</div>
-      <div class="example">“I invite you to <strong>notice</strong> how <strong>easily</strong> your thoughts expand <strong>beyond</strong> effort, and you <strong>begin</strong> to feel lighter.”</div>
-      <div class="example">“How surprised would you be to <strong>realize</strong> that your hand <strong>automatically</strong> starts to lift, as if by itself?”</div>
+    <div class="sticky-footer">
+      <span class="small"
+        >Tip: Add this page to your home screen for 1-tap access.</span
+      >
+      <a
+        class="btn"
+        href="#"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Back to top"
+        >↑ Top</a
+      >
     </div>
-
-  </div>
-
-  <div class="sticky-footer">
-    <span class="small">Tip: Add this page to your home screen for 1-tap access.</span>
-    <a class="btn" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑ Top</a>
-  </div>
-</body>
+  </body>
 </html>
