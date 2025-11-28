@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>No More Advice Activity — Clean Language (Cuddy Cudworth)</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2937;
+      --muted: #4b5563;
+      --accent: #0f766e;
+      --rule: #e5e7eb;
+      --card: #fafafa;
+      --code: #f5f5f5;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem 1.25rem;
+    }
+    header h1 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin: 0 0 .25rem 0;
+      letter-spacing: .2px;
+    }
+    header .subtitle {
+      color: var(--muted);
+      margin: .25rem 0 1rem 0;
+    }
+    .meta {
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .toolbar {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0 1.5rem 0;
+    }
+    button, .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: .6rem .9rem;
+      border-radius: .5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    button.secondary, .btn.secondary {
+      background: #374151;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: .75rem;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+    section h2 {
+      font-size: 1.1rem;
+      margin: 0 0 .5rem 0;
+    }
+    .rule {
+      height: 1px;
+      background: var(--rule);
+      border: 0;
+      margin: 1rem 0;
+    }
+    ul, ol {
+      padding-left: 1.25rem;
+    }
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: .85rem .95rem;
+      border-radius: .5rem;
+    }
+    .quote {
+      border-left: 4px solid #d1d5db;
+      background: #f9fafb;
+      padding: .85rem .95rem;
+      border-radius: .5rem;
+      font-style: italic;
+      color: #374151;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .85rem;
+    }
+    @media (min-width: 720px) {
+      .grid.two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media print {
+      .toolbar { display: none !important; }
+      section { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>No More Advice Activity</h1>
+      <div class="subtitle">(a.k.a. “If I Were You” Exercise)</div>
+      <div class="meta">From Cuddy Cudworth’s Udemy course: <em>Become An Expert in Clean Language Techniques and Coaching</em></div>
+      <div class="toolbar">
+        <button onclick="window.print()">Print</button>
+        <a class="btn secondary" href="#" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to Top</a>
+      </div>
+      <div class="quote">“It’s not the answer that enlightens, but the question.” — Eugène Ionesco</div>
+    </header>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>This exercise helps participants experience the difference between <strong>giving advice</strong> and <strong>facilitating self‑generated insight</strong>. It demonstrates how Clean Language encourages others to find their own solutions and how advice can inadvertently impose the adviser’s perspective.</p>
+    </section>
+
+    <section>
+      <h2>Setup</h2>
+      <ul>
+        <li>Pair up with a partner.</li>
+        <li>Each person chooses <strong>two small, real‑life problems</strong> suitable for exploration.</li>
+        <li>Alternate roles as <em>speaker</em> and <em>listener</em>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Part 1 — The Advice Round</h2>
+      <ol>
+        <li>Ask: “What’s a problem you’d like to solve?”</li>
+        <li>Listen briefly.</li>
+        <li>Respond with advice or solutions, for example:
+          <ul>
+            <li>“If I were you, I’d …”</li>
+            <li>“You should try …”</li>
+            <li>“Have you thought about … ?”</li>
+            <li>“What you need to do is …”</li>
+          </ul>
+        </li>
+        <li>Reflect afterward:
+          <ul>
+            <li>How did it feel to give advice?</li>
+            <li>Did your partner feel heard or interrupted?</li>
+            <li>Did your advice reflect your perspective rather than theirs?</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Part 2 — The Clean Question Round</h2>
+      <p>Ask your partner for a <strong>different small problem</strong>. This time: no advice, no suggestions. Stay with their words and experience. Use only the questions recommended by Cuddy for this exercise:</p>
+      <ul>
+        <li><strong>“What would you like to have happen?”</strong></li>
+        <li><strong>“What needs to happen for you to move forward?”</strong></li>
+        <li><strong>“Is there anything else that needs to happen for you to get a different result?”</strong></li>
+      </ul>
+      <div class="callout muted">Allow silence. Keep your tone gentle and curious. Let their answers emerge without steering.</div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>Part 3 — Reflection (Partner)</h2>
+        <ul>
+          <li>Which approach helped you feel more understood?</li>
+          <li>Which led to deeper insight or motivation?</li>
+          <li>What did you notice in how you spoke or felt in each round?</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Part 3 — Reflection (Self)</h2>
+        <ul>
+          <li>How difficult was it to resist giving advice?</li>
+          <li>Did you notice an urge to fix?</li>
+          <li>How did your partner’s thinking shift when you stayed with questions?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why This Matters</h2>
+      <ul>
+        <li><strong>Advice</strong> imposes your perspective and can limit growth.</li>
+        <li><strong>Clean questions</strong> help others access their own inner resources.</li>
+        <li>Practicing this develops skill in listening, coaching, and facilitating change.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Optional Deepening Practice</h2>
+      <ul>
+        <li>Record both rounds and notice differences in tone and pacing.</li>
+        <li>Observe moments when you were tempted to add advice.</li>
+        <li>Practice asking only these three questions and allowing silence for reflection.</li>
+      </ul>
+    </section>
+
+    <footer class="muted" style="margin-top:2rem">
+      <hr class="rule" />
+      <div>Handout prepared for practice use. Source course: Cuddy Cudworth, Udemy — <em>Become An Expert in Clean Language Techniques and Coaching</em>.</div>
+    </footer>
+  </div>
+</body>
+</html>
