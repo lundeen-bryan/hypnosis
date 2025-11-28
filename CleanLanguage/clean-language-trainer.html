@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean Language Trainer</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121821; --muted:#9fb3c8; --text:#e6eef6; --accent:#7cc4ff; --good:#78d38a; --bad:#ff8a8a; --warn:#ffd27c;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f9fc; --panel:#ffffff; --muted:#506778; --text:#0b0f14; --accent:#0b74d1; --good:#0a8851; --bad:#c72b2b; --warn:#9a6b00; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:var(--bg); color:var(--text);}
+  header{position:sticky; top:0; z-index:50; backdrop-filter: blur(6px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom:1px solid color-mix(in srgb, var(--muted) 25%, transparent);}
+  .container{max-width:920px; margin:0 auto; padding:12px 16px;}
+  .row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  h1{font-size:1.25rem; margin:8px 0}
+  .pill{border:1px solid color-mix(in srgb, var(--muted) 35%, transparent); border-radius:999px; padding:8px 12px; cursor:pointer; background:var(--panel); color:var(--text);}
+  .pill.active{outline:2px solid var(--accent);}
+  .main{padding:16px}
+  .card{background:var(--panel); border:1px solid color-mix(in srgb, var(--muted) 25%, transparent); border-radius:16px; padding:14px; box-shadow: 0 6px 20px color-mix(in srgb, var(--bg) 85%, black);}
+  details{background:var(--panel); border:1px solid color-mix(in srgb, var(--muted) 25%, transparent); border-radius:12px; padding:10px 12px; margin-bottom:10px}
+  summary{cursor:pointer; font-weight:600}
+  .q{padding:10px 12px; margin:8px 0; border-radius:10px; border:1px dashed color-mix(in srgb, var(--muted) 35%, transparent);}
+  .muted{color:var(--muted); font-size:.9rem}
+  .toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 14px}
+  button{cursor:pointer; border:1px solid color-mix(in srgb, var(--muted) 35%, transparent); background:var(--panel); color:var(--text); padding:10px 14px; border-radius:12px; font-weight:600}
+  button.primary{background:var(--accent); color:white; border-color:var(--accent)}
+  button.ghost{background:transparent}
+  button.good{border-color:var(--good)}
+  button.bad{border-color:var(--bad)}
+  .grid{display:grid; gap:12px}
+  .two{grid-template-columns: 1fr; }
+  @media (min-width:700px){ .two{grid-template-columns: 1fr 1fr;} }
+  .fcard{display:flex; min-height:200px; align-items:center; justify-content:center; text-align:center; padding:20px; border-radius:16px; border:1px dashed color-mix(in srgb, var(--muted) 35%, transparent); font-size:1.25rem}
+  .fcue{font-size:.9rem; color:var(--muted); margin-top:8px}
+  .tag{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:color-mix(in srgb, var(--accent) 12%, transparent); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent); color:var(--text); margin-right:6px}
+  .input{width:100%; padding:12px 14px; border-radius:12px; border:1px solid color-mix(in srgb, var(--muted) 35%, transparent); background:var(--panel); color:var(--text);}
+  .small{font-size:.85rem}
+  .center{text-align:center}
+  .kbd{padding:2px 6px; border-radius:6px; border:1px solid color-mix(in srgb, var(--muted) 40%, transparent); background:color-mix(in srgb, var(--panel) 70%, black); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  .progress{height:8px; background:color-mix(in srgb, var(--muted) 20%, transparent); border-radius:999px; overflow:hidden}
+  .progress > div{height:100%; background:var(--good); width:0%}
+  .footer{opacity:.8; font-size:.85rem; margin-top:10px}
+  .ex{margin-top:6px; padding:8px 10px; border-radius:10px; background:color-mix(in srgb, var(--accent) 7%, transparent); font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="row">
+      <h1>Clean Language Trainer</h1>
+      <div class="pill active" data-tab="learn">Learn</div>
+      <div class="pill" data-tab="flash">Flashcards</div>
+      <div class="pill" data-tab="type">Type-&-Check</div>
+      <div style="margin-left:auto" class="muted small">Tip: tap a card to flip • progress saved</div>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <!-- Learn Tab -->
+  <section id="tab-learn" class="tab card">
+    <div class="toolbar">
+      <input id="search" class="input" placeholder="Search questions… (e.g., 'where', 'metaphor', 'color')" />
+      <button id="expandAll">Expand all</button>
+      <button id="collapseAll">Collapse all</button>
+      <button id="toggleExamples" class="ghost">Hide examples</button>
+    </div>
+    <div id="learnList"></div>
+  </section>
+
+  <!-- Flashcards Tab -->
+  <section id="tab-flash" class="tab card" style="display:none">
+    <div class="toolbar">
+      <button class="primary" id="startFlash">Start / Shuffle</button>
+      <button id="onlyUnknown">Only unmastered</button>
+      <span class="muted">Tap card to show example & tip. Mark <span class="kbd">K</span> correct / <span class="kbd">J</span> again.</span>
+    </div>
+    <div class="grid two">
+      <div>
+        <div id="flashCard" class="fcart">
+          <div class="fcard" id="fcText">Press “Start / Shuffle”.</div>
+          <div class="fcue center muted" id="fcCue"></div>
+        </div>
+      </div>
+      <div>
+        <div class="progress"><div id="fcProg"></div></div>
+        <div class="toolbar">
+          <button class="good" id="fcGood">I got it</button>
+          <button class="bad" id="fcAgain">Again</button>
+          <button id="fcSkip">Skip</button>
+        </div>
+        <div class="small muted" id="fcStatus">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Type-&-Check Tab -->
+  <section id="tab-type" class="tab card" style="display:none">
+    <div class="toolbar">
+      <button class="primary" id="startType">Start / Shuffle</button>
+      <button id="typeUnknown">Only unmastered</button>
+      <span class="muted">Enter the exact question (placeholders like [X] can be typed as x).</span>
+    </div>
+    <div class="grid two">
+      <div>
+        <div class="fcue">Prompt</div>
+        <div class="fcard" id="typePrompt">Press “Start / Shuffle”.</div>
+        <div class="fcue muted" id="typeExample"></div>
+      </div>
+      <div>
+        <div class="fcue">Your phrasing</div>
+        <input id="typeInput" class="input" placeholder="Type the Clean Language question…" disabled />
+        <div class="toolbar">
+          <button id="typeCheck">Check</button>
+          <button id="typeReveal">Reveal</button>
+          <button id="typeNext">Next</button>
+        </div>
+        <div id="typeResult" class="small"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer muted">
+    Built for daily, bite-size practice. Your progress (mastered / needs work) is saved in your browser.
+  </div>
+</main>
+
+<script>
+const DATA = [
+  {cat:"Starting with Experience", q:"What would you like to have happen?"},
+  {cat:"Starting with Experience", q:"What is happening now?"},
+  {cat:"Starting with Experience", q:"What kind of [X] is that?"},
+  {cat:"Starting with Experience", q:"What do you know about [X]?"},
+  {cat:"Starting with Experience", q:"How do you know [X]?"},
+
+  {cat:"Exploring Context", q:"Where is [X]?"},
+  {cat:"Exploring Context", q:"Where does [X] come from?"},
+  {cat:"Exploring Context", q:"What happens just before [X]?"},
+  {cat:"Exploring Context", q:"What happens next?"},
+  {cat:"Exploring Context", q:"What happens after [X]?"},
+
+  {cat:"Exploring Details", q:"What kind of [X]?"},
+  {cat:"Exploring Details", q:"Is there anything else about [X]?"},
+  {cat:"Exploring Details", q:"And where is [X]?"},
+  {cat:"Exploring Details", q:"And what size is [X]?"},
+  {cat:"Exploring Details", q:"And what shape is [X]?"},
+
+  {cat:"Exploring Relationships", q:"What is between [X] and [Y]?"},
+  {cat:"Exploring Relationships", q:"How does [X] relate to [Y]?"},
+  {cat:"Exploring Relationships", q:"And what happens to [X] when [Y]?"},
+  {cat:"Exploring Relationships", q:"What would [X] like to have happen to [Y]?"},
+  {cat:"Exploring Relationships", q:"What stops [X] from [Y]?"},
+
+  {cat:"Exploring Qualities", q:"What kind of feeling is that?"},
+  {cat:"Exploring Qualities", q:"And what does [X] feel like?"},
+  {cat:"Exploring Qualities", q:"And is there a color for [X]?"},
+  {cat:"Exploring Qualities", q:"And is there a sound with [X]?"},
+  {cat:"Exploring Qualities", q:"And is there a texture to [X]?"},
+
+  {cat:"Exploring Time", q:"When did [X] first happen?"},
+  {cat:"Exploring Time", q:"And what happens just before [X]?"},
+  {cat:"Exploring Time", q:"And what happens just after [X]?"},
+  {cat:"Exploring Time", q:"Where would [X] like to be in the future?"},
+  {cat:"Exploring Time", q:"And how long has [X] been happening?"},
+
+  {cat:"Exploring Metaphors", q:"What kind of [metaphor] is [X]?"},
+  {cat:"Exploring Metaphors", q:"And is there a shape for that [metaphor]?"},
+  {cat:"Exploring Metaphors", q:"If [X] were an object, what would it be?"},
+  {cat:"Exploring Metaphors", q:"And where is that object?"},
+  {cat:"Exploring Metaphors", q:"And what happens to [X] if you move it?"},
+
+  {cat:"Exploring Possibility", q:"What would [X] like to have happen?"},
+  {cat:"Exploring Possibility", q:"What needs to happen for [X]?"},
+  {cat:"Exploring Possibility", q:"And when [X] happens, then what?"},
+  {cat:"Exploring Possibility", q:"What would [X] like to do?"},
+  {cat:"Exploring Possibility", q:"And what stops [X] from happening?"},
+
+  {cat:"Exploring the System", q:"What’s the relationship between [X] and [Y]?"},
+  {cat:"Exploring the System", q:"What happens to [Y] when [X]?"},
+  {cat:"Exploring the System", q:"What would [X] like [Y] to do?"},
+  {cat:"Exploring the System", q:"How does [X] affect the whole system?"},
+  {cat:"Exploring the System", q:"What’s the system like when [X] is involved?"},
+
+  {cat:"Exploring Change", q:"What would you like instead?"},
+  {cat:"Exploring Change", q:"And what needs to happen for that?"},
+  {cat:"Exploring Change", q:"What has worked before in a similar situation?"},
+  {cat:"Exploring Change", q:"What would you like to keep from this?"},
+  {cat:"Exploring Change", q:"What else is possible now?"}
+];
+
+// Examples for each exact question. Keep them concrete and short.
+const EXAMPLES = {
+  "What would you like to have happen?":"Client: “I’m overwhelmed.” → You: “What would you like to have happen?” (e.g., “feel steady while I work”).",
+  "What is happening now?":"Client: “There’s pressure.” → “What is happening now?” (e.g., “my chest tightens”).",
+  "What kind of [X] is that?":"Client: “stress.” → “What kind of stress is that?” (e.g., “like a heavy backpack”).",
+  "What do you know about [X]?":"Client: “a knot in my stomach.” → “What do you know about that knot?”",
+  "How do you know [X]?":"Client: “I’m stuck.” → “How do you know you’re stuck?” (e.g., “I stop breathing fully”).",
+
+  "Where is [X]?":"Client: “tension.” → “Where is that tension?” (e.g., “left shoulder”).",
+  "Where does [X] come from?":"Client: “this worry.” → “Where does that worry come from?”",
+  "What happens just before [X]?":"Client: “I freeze.” → “What happens just before you freeze?”",
+  "What happens next?":"Client describes sequence → “What happens next?”",
+  "What happens after [X]?":"Client: “a wave of fear.” → “What happens after that wave of fear?”",
+
+  "What kind of [X]?":"Client: “noise in my head.” → “What kind of noise?” (e.g., “buzzing”).",
+  "Is there anything else about [X]?":"Client: “tightness.” → “Is there anything else about that tightness?”",
+  "And where is [X]?":"Keep attention inside → “And where is that… exactly?”",
+  "And what size is [X]?":"Client: “a ball in my throat.” → “And what size is that ball?”",
+  "And what shape is [X]?":"Client: “pressure.” → “And what shape is that pressure?”",
+
+  "What is between [X] and [Y]?":"“What is between stress and sleep?”",
+  "How does [X] relate to [Y]?":"“How does tension relate to focus?”",
+  "And what happens to [X] when [Y]?":"“And what happens to worry when you breathe slowly?”",
+  "What would [X] like to have happen to [Y]?":"“What would your calm like to have happen to that fear?”",
+  "What stops [X] from [Y]?":"“What stops confidence from showing up?”",
+
+  "What kind of feeling is that?":"Client: “I feel odd.” → “What kind of feeling is that?”",
+  "And what does [X] feel like?":"“And what does that nervousness feel like?”",
+  "And is there a color for [X]?":"“And is there a color for that tension?”",
+  "And is there a sound with [X]?":"“And is there a sound with that?”",
+  "And is there a texture to [X]?":"“And is there a texture to that heaviness?”",
+
+  "When did [X] first happen?":"“When did that dread first happen?”",
+  "And what happens just before [X]?":"“And what happens just before that spiral starts?”",
+  "And what happens just after [X]?":"“And what happens just after you notice the tightness?”",
+  "Where would [X] like to be in the future?":"“Where would that energy like to be in the future?”",
+  "And how long has [X] been happening?":"“And how long has this pattern been happening?”",
+
+  "What kind of [metaphor] is [X]?":"Client: “It’s like a fog.” → “What kind of fog is that?”",
+  "And is there a shape for that [metaphor]?":"“And is there a shape for that fog?”",
+  "If [X] were an object, what would it be?":"“If that worry were an object, what would it be?”",
+  "And where is that object?":"“And where is that object?”",
+  "And what happens to [X] if you move it?":"“And what happens to the fog if you move it?”",
+
+  "What would [X] like to have happen?":"“What would your focus like to have happen?”",
+  "What needs to happen for [X]?":"“What needs to happen for calm?”",
+  "And when [X] happens, then what?":"“And when calm happens, then what?”",
+  "What would [X] like to do?":"“What would your motivation like to do?”",
+  "And what stops [X] from happening?":"“And what stops progress from happening?”",
+
+  "What’s the relationship between [X] and [Y]?":"“What’s the relationship between pressure and performance?”",
+  "What happens to [Y] when [X]?":"“What happens to sleep when worry grows?”",
+  "What would [X] like [Y] to do?":"“What would confidence like focus to do?”",
+  "How does [X] affect the whole system?":"“How does tension affect the whole system?”",
+  "What’s the system like when [X] is involved?":"“What’s the system like when calm is involved?”",
+
+  "What would you like instead?":"Client: “I’m anxious.” → “What would you like instead?”",
+  "And what needs to happen for that?":"“And what needs to happen for that?”",
+  "What has worked before in a similar situation?":"“What has worked before in a similar situation?”",
+  "What would you like to keep from this?":"“What would you like to keep from this?” (e.g., “alertness”).",
+  "What else is possible now?":"“What else is possible now?”"
+};
+
+// --- State & helpers ---
+const byCat = DATA.reduce((acc, item)=>{
+  (acc[item.cat] ||= []).push(item.q);
+  return acc;
+}, {});
+
+const KEY = "cleanLangProgress.v1";
+let progress = JSON.parse(localStorage.getItem(KEY) || "{}"); // { "questionText": {seen:n, ok:n} }
+let showExamples = true;
+
+function saveProgress(){ localStorage.setItem(KEY, JSON.stringify(progress)); }
+function statOf(q){ return progress[q] || {seen:0, ok:0}; }
+function mastered(q){ const s = statOf(q); return s.ok >= 3 && s.ok >= Math.ceil(s.seen * 0.6); }
+
+function normalize(str){
+  return (str||"")
+    .toLowerCase()
+    .replace(/\[.*?\]/g, "x")     // treat all placeholders as 'x'
+    .replace(/[“”"'\u2019]/g,'"')
+    .replace(/[^\w\s?]/g,"")      // strip punctuation except '?'
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+// --- Learn Tab ---
+const learnList = document.getElementById("learnList");
+function renderLearn(filter=""){
+  learnList.innerHTML = "";
+  const f = normalize(filter);
+  Object.entries(byCat).forEach(([cat, qs])=>{
+    const el = document.createElement("details");
+    el.open = true;
+    const sum = document.createElement("summary");
+    sum.innerHTML = `<span class="tag">${qs.length}</span> ${cat}`;
+    el.appendChild(sum);
+    qs.forEach(q=>{
+      if(f && !normalize(cat+" "+q).includes(f)) return;
+      const s = statOf(q);
+      const div = document.createElement("div");
+      div.className = "q";
+      const ex = EXAMPLES[q] ? `<div class="ex" style="${showExamples?'':'display:none'}"><strong>Example</strong> — ${EXAMPLES[q]}</div>` : "";
+      div.innerHTML = `
+        <div>${q}</div>
+        ${ex}
+        <div class="muted small">Seen: ${s.seen||0} • Correct: ${s.ok||0} ${ mastered(q) ? '• ✅ mastered' : ''}</div>
+      `;
+      el.appendChild(div);
+    });
+    learnList.appendChild(el);
+  });
+}
+renderLearn();
+
+document.getElementById("search").addEventListener("input", (e)=>renderLearn(e.target.value));
+document.getElementById("expandAll").onclick = ()=> document.querySelectorAll("#learnList details").forEach(d=>d.open=true);
+document.getElementById("collapseAll").onclick = ()=> document.querySelectorAll("#learnList details").forEach(d=>d.open=false);
+
+const toggleBtn = document.getElementById("toggleExamples");
+toggleBtn.onclick = ()=>{ showExamples=!showExamples; toggleBtn.textContent = showExamples? "Hide examples":"Show examples"; renderLearn(document.getElementById("search").value); };
+
+// --- Tabs ---
+const pills = document.querySelectorAll(".pill");
+function switchTab(name){
+  pills.forEach(p=>p.classList.toggle("active", p.dataset.tab===name));
+  document.querySelectorAll(".tab").forEach(t=> t.style.display = "none");
+  document.getElementById("tab-"+name).style.display = "";
+}
+pills.forEach(p=> p.addEventListener("click", ()=>switchTab(p.dataset.tab)));
+
+// --- Flashcards ---
+let deck = [];
+let deckOnlyUnknown = false;
+const fcText = document.getElementById("fcText");
+const fcCue = document.getElementById("fcCue");
+const fcProg = document.getElementById("fcProg");
+const fcStatus = document.getElementById("fcStatus");
+let current = null;
+let showTip = false;
+
+function buildDeck(onlyUnknown){
+  const list = DATA.map(d=>d.q).filter(q => onlyUnknown ? !mastered(q) : true);
+  // Simple shuffle
+  for(let i=list.length-1; i>0; i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+}
+
+function nextCard(skip=false){
+  if(deck.length===0){ fcText.textContent = "All done! Try Only unmastered or Start again."; fcCue.textContent=""; current=null; updateProg(); return; }
+  current = deck.shift();
+  showTip = false;
+  fcText.textContent = current;
+  fcCue.textContent = "";
+  if(!skip){ const s = statOf(current); s.seen=(s.seen||0)+1; progress[current]=s; saveProgress(); }
+  updateProg();
+}
+
+function updateProg(){
+  const total = DATA.length;
+  const m = DATA.map(d=>d.q).filter(mastered).length;
+  const seen = Object.values(progress).reduce((a,b)=>a+(b.seen||0),0);
+  fcProg.style.width = `${Math.round(m*100/total)}%`;
+  fcStatus.textContent = `Mastered ${m}/${total} • Total reps ${seen}`;
+}
+
+document.getElementById("startFlash").onclick = ()=>{ deck = buildDeck(deckOnlyUnknown); nextCard(true); };
+document.getElementById("onlyUnknown").onclick = (e)=>{ deckOnlyUnknown = !deckOnlyUnknown; e.target.classList.toggle("primary", deckOnlyUnknown); };
+document.getElementById("fcSkip").onclick = ()=> nextCard(true);
+document.getElementById("fcGood").onclick = ()=>{ if(!current) return; const s = statOf(current); s.ok=(s.ok||0)+1; progress[current]=s; saveProgress(); nextCard(); };
+document.getElementById("fcAgain").onclick = ()=>{ if(!current) return; deck.push(current); nextCard(true); };
+document.getElementById("flashCard").addEventListener("click", ()=>{
+  if(!current) return;
+  showTip = !showTip;
+  const ex = EXAMPLES[current] ? "Example — " + EXAMPLES[current] : "Say it aloud once. Imagine a client’s word in place of [X]/[Y].";
+  fcCue.textContent = showTip ? ex : "";
+});
+
+document.addEventListener("keydown", (e)=>{
+  if(document.getElementById("tab-flash").style.display !== "none"){
+    if(e.key.toLowerCase()==="k") document.getElementById("fcGood").click();
+    if(e.key.toLowerCase()==="j") document.getElementById("fcAgain").click();
+    if(e.key===" ") document.getElementById("flashCard").click();
+  }
+});
+
+// --- Type-&-Check ---
+let tDeck = [];
+let tOnlyUnknown = false;
+let tCurrent = null;
+
+const typePrompt = document.getElementById("typePrompt");
+const typeInput = document.getElementById("typeInput");
+const typeResult = document.getElementById("typeResult");
+const typeExample = document.getElementById("typeExample");
+
+document.getElementById("startType").onclick = ()=>{
+  tDeck = buildDeck(tOnlyUnknown);
+  nextType();
+};
+document.getElementById("typeUnknown").onclick = (e)=>{ tOnlyUnknown=!tOnlyUnknown; e.target.classList.toggle("primary", tOnlyUnknown); };
+document.getElementById("typeNext").onclick = ()=> nextType();
+document.getElementById("typeReveal").onclick = ()=>{
+  if(!tCurrent) return;
+  typeResult.innerHTML = `<div class="muted">Correct phrasing:</div><div class="q">${tCurrent}</div>`;
+};
+
+function nextType(){
+  if(tDeck.length===0){ typePrompt.textContent="All done! Start again or switch to Only unmastered."; typeInput.disabled=true; typeInput.value=""; typeResult.textContent=""; typeExample.textContent=""; return; }
+  tCurrent = tDeck.shift();
+  typePrompt.textContent = "Rephrase this exactly: " + tCurrent.replace(/\[X\]/g,"x").replace(/\[Y\]/g,"y");
+  typeInput.disabled=false; typeInput.value=""; typeResult.textContent="";
+  typeExample.textContent = EXAMPLES[tCurrent] ? ("Example — " + EXAMPLES[tCurrent]) : "";
+  typeInput.focus();
+  const s = statOf(tCurrent); s.seen=(s.seen||0)+1; progress[tCurrent]=s; saveProgress();
+}
+
+document.getElementById("typeCheck").onclick = ()=>{
+  if(!tCurrent) return;
+  const user = normalize(typeInput.value);
+  const gold = normalize(tCurrent);
+  const ok = user === gold;
+  if(ok){
+    const s = statOf(tCurrent); s.ok=(s.ok||0)+1; progress[tCurrent]=s; saveProgress();
+    typeResult.innerHTML = `<span style="color:var(--good)">Great. ✔</span>`;
+  }else{
+    typeResult.innerHTML = `<span style="color:var(--bad)">Not quite.</span> <span class="muted">Expected:</span> <span class="q small">${tCurrent}</span>`;
+    // recycle
+    tDeck.push(tCurrent);
+  }
+};
+
+// --- Default tab: Flashcards for quick start on phones ---
+switchTab("flash");
+</script>
+</body>
+</html>
