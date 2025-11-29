@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clean Language • Find Two Opposing Emotions (Quick Guide)</title>
+    <style>
+      :root {
+        --bg: #0f172a; /* slate-900 */
+        --panel: #111827; /* gray-900 */
+        --card: #0b1226; /* deep panel */
+        --text: #e5e7eb; /* gray-200 */
+        --muted: #93a3b8; /* slate-400 */
+        --accent: #60a5fa; /* blue-400 */
+        --border: #1f2a44; /* slate border */
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f8fafc;
+          --panel: #ffffff;
+          --card: #ffffff;
+          --text: #111827;
+          --muted: #6b7280;
+          --accent: #2563eb;
+          --border: #e5e7eb;
+          --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, "Noto Sans", Arial;
+      }
+      .container {
+        max-width: 980px;
+        margin: 28px auto;
+        padding: 0 18px;
+      }
+      header.hero {
+        background: linear-gradient(
+          180deg,
+          var(--panel),
+          rgba(255, 255, 255, 0)
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 22px;
+      }
+      .title {
+        margin: 0;
+        font-weight: 800;
+        font-size: clamp(1.4rem, 2vw+1rem, 2rem);
+      }
+      .subtitle {
+        margin: 6px 0 0 0;
+        color: var(--muted);
+      }
+      .actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: transparent;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 18px;
+      }
+      @media (min-width: 720px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: var(--shadow);
+      }
+      h2,
+      h3 {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-weight: 800;
+      }
+      .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .badge {
+        flex: 0 0 auto;
+        display: inline-grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 800;
+      }
+      .q {
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(99, 102, 241, 0.06);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin: 8px 0 0 0;
+      }
+      .foot {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin: 22px 2px 6px;
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+          "Liberation Mono", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="hero">
+        <h1 class="title">Clean Language — Find Two Opposing Emotions</h1>
+        <p class="subtitle">
+          A pocket process to surface the <em>problem state</em> and the
+          <em>resource state</em>, ready for Mirroring Hands or integration.
+        </p>
+        <div class="actions">
+          <button class="btn" onclick="window.print()">Print</button>
+          <button class="btn primary" onclick="scrollTo(0,0)">Top</button>
+        </div>
+      </header>
+
+      <section class="grid">
+        <!-- 1 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">1</span>
+            <div>
+              <h3>Start with Outcome</h3>
+              <div class="q">“What would you like to have happen?”</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">2</span>
+            <div>
+              <h3>Explore the Problem Feeling</h3>
+              <div class="q">“What kind of feeling is that feeling?”</div>
+              <div class="q">“And where is that feeling?”</div>
+              <div class="q">“And what happens next?”</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">3</span>
+            <div>
+              <h3>Name It Gently</h3>
+              <div class="q">
+                “And if that feeling had a name, what might it be called?”
+                <span class="mono">→ problem state</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">4</span>
+            <div>
+              <h3>Invite the Contrast</h3>
+              <div class="q">
+                “And when that [problem feeling] isn’t there, what happens
+                instead?”
+              </div>
+              <div class="q">
+                “What would you like to feel instead?”
+                <span class="mono">→ resource state</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">5</span>
+            <div>
+              <h3>Deepen the Resource</h3>
+              <div class="q">
+                “And what kind of [resource feeling] is that [resource
+                feeling]?”
+              </div>
+              <div class="q">“And where is that [resource feeling]?”</div>
+              <div class="q">
+                “And how will you know it’s the right [resource feeling] for
+                you?”
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="card">
+          <div class="step">
+            <span class="badge">6</span>
+            <div>
+              <h3>Confirm Both States</h3>
+              <div class="q">
+                “So there’s [problem state]… and there’s [resource state]. Is
+                that right?”
+              </div>
+              <div class="q">
+                Next: move to your preferred integration (e.g., Mirroring Hands
+                / ideomotor).
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Rapid Integration (Mirroring Hands cue)</h2>
+        <div class="q">
+          “Perhaps one hand can represent [problem state]… and the other
+          [resource state]… and you can just notice how they begin to respond…
+          and when they know to come together, your unconscious can discover a
+          new balance that’s right for you.”
+        </div>
+      </section>
+
+      <p class="foot">
+        Tip: Keep tone slow and permissive. Stay inside their exact words. When
+        imagery or body-sense becomes vivid, you’re already at the threshold of
+        trance.
+      </p>
+    </div>
+  </body>
+</html>
