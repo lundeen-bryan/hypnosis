@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O’Hanlon — Class of Problems → Class of Solutions (Decision Tree)</title>
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --accent:#2563eb;
+      --line:#e5e7eb;
+      --ring:#93c5fd;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.5;
+      text-align:left;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(1.2) blur(6px);
+      background:color-mix(in oklab, var(--bg) 80%, white);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:1100px;margin:auto;padding:16px}
+    h1{font-size:clamp(1.4rem,2.2vw,2rem);margin:0 0 4px 0}
+    .sub{color:var(--muted);font-size:.98rem}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    button{
+      appearance:none;border:1px solid var(--line);background:var(--card);
+      padding:10px 12px;border-radius:14px;cursor:pointer;font-weight:600;
+      transition:.2s; box-shadow:0 1px 0 rgba(15,23,42,.04);
+      text-align:left;
+    }
+    button:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin:16px 0}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 16px;
+      box-shadow:0 1px 0 rgba(15,23,42,.02);
+      text-align:left;
+    }
+
+    /* Summary spacing/align fix */
+    details.card summary{
+      display:block !important;
+      position:relative;
+      padding-left:40px;
+      font-weight:700;
+      font-size:1.05rem;
+      cursor:pointer;
+      text-align:left !important;
+    }
+    details.card summary::-webkit-details-marker{display:none}
+    .idx{
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:28px;height:28px;border-radius:999px;
+      background:var(--accent); color:white; font-weight:800; font-size:.9rem;
+    }
+
+    .hint{color:var(--muted); font-size:.96rem; margin-top:6px}
+    .pill{display:inline-block; padding:4px 8px; border-radius:999px; background:#eef2ff; border:1px solid #e0e7ff; color:#3730a3; font-weight:700; font-size:.8rem}
+    .pair{display:grid;grid-template-columns:1fr;gap:8px;margin-top:6px}
+    @media(min-width:640px){.pair{grid-template-columns:1fr 1fr}}
+    .ul{margin:.6rem 0 .2rem 1.1rem}
+    .line{padding:.24rem 0;border-bottom:1px dashed var(--line)}
+    .line:last-child{border-bottom:0}
+    mark{background:#fef3c7;border-radius:4px;padding:0 2px}
+    .callout{
+      border-left:6px solid var(--accent);
+      background:#eff6ff;
+      border-radius:10px;
+      padding:10px 12px;
+      margin-top:10px;
+      color:#1e293b;
+    }
+    .footer{color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:12px; margin-top:24px}
+    .search{flex:1; min-width:240px; display:flex; gap:8px}
+    .search input{
+      width:100%; padding:10px 12px; border-radius:14px; border:1px solid var(--line); background:white;
+      font-size:1rem;
+    }
+    .example{background:#f8fafc;border:1px dashed var(--line); padding:8px 10px; border-radius:12px; font-style:italic}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>O’Hanlon — <span class="pill">Class of Problems → Class of Solutions</span></h1>
+    <div class="sub">A practical, Ericksonian-flavored decision tree. Preserve what works. Invite flexibility.</div>
+    <div class="toolbar">
+      <button id="expand">Expand All</button>
+      <button id="collapse">Collapse All</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Quick Start card (restored) -->
+  <section class="card">
+    <strong>Quick start</strong>
+    <div class="pair">
+      <div>
+        <div class="line"><b>1. Name the complaint:</b> concrete, observable words.</div>
+        <div class="line"><b>2. Classify the problem:</b> <i>excess</i>, <i>deficit</i>, <i>instability</i>, <i>attempted-solution</i>, <i>frame mismatch</i>, or <i>secondary gain</i>.</div>
+        <div class="line"><b>3. Choose solution class:</b> keep the function, change the form; amplify exceptions; stabilize; do different; change frame; protect gain.</div>
+      </div>
+      <div>
+        <div class="line"><b>4. Invite small differences:</b> earlier noticing, pausing, or letting it pass.</div>
+        <div class="line"><b>5. Future test:</b> imagine the next cue and notice how the new response can happen naturally, easily.</div>
+        <div class="line"><b>6. Utilization:</b> weave any spontaneous responses as evidence the system already knows how.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <details class="card">
+      <summary><span class="idx">1</span> Is this an <u>excess</u> or an <u>absence</u> complaint?</summary>
+      <div class="hint">Excess = “too much of X” (urge, worry, pain, behavior). Absence = “not enough Y” (confidence, sleep, focus).</div>
+      <div class="pair">
+        <div>
+          <div class="callout"><b>Excess → Class: Reduce/Redirect (Keep the function, change the form)</b></div>
+          <ul class="ul">
+            <li>Preserve the intention (e.g., stress relief) while inviting easier expressions.</li>
+            <li>Language: <span class="example">“And stress can settle sooner now… without the old form.”</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="callout"><b>Absence → Class: Elicit/Increase (Install opportunities & exceptions)</b></div>
+          <ul class="ul">
+            <li>Find exceptions, scale them, rehearse in trance, seed cues and prompts.</li>
+            <li>Language: <span class="example">“And you can notice where this already happens… and let it happen more.”</span></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="idx">2</span> Does <u>performance</u> <u>vary</u>? (Sometimes better, sometimes worse)</summary>
+      <div class="hint">If yes, you already have exceptions. Turn them into a protocol.</div>
+      <ul class="ul">
+        <li><b>Class: Stabilize/Regulate</b> — capture what’s different in the “better times” (context, sequence, internal cues).</li>
+        <li>Scale “better” to make it repeatable; anchor or ritualize the sequence.</li>
+        <li>Language: <span class="example">“And the way it goes better sometimes… can become the usual way.”</span></li>
+      </ul>
+    </details>
+
+    <details class="card">
+      <summary><span class="idx">3</span> Are the client’s <u>attempted solutions</u> maintaining the problem?</summary>
+      <div class="hint">Common traps: fighting urges, over-monitoring, avoiding life, reassuring loops.</div>
+      <ul class="ul">
+        <li><b>Class: Do Something Different</b> — stop what keeps it going; invite a gentler, shorter, or opposite move.</li>
+        <li>Paradox options (when appropriate): symptom prescription, “try to do it slightly,” time-limit the pattern.</li>
+        <li>Language: <span class="example">“You might do just enough to notice… you don’t need to.”</span></li>
+      </ul>
+    </details>
+
+    <details class="card">
+      <summary><span class="idx">4</span> Is there a <u>frame mismatch</u>? (Goal/measure/context off)</summary>
+      <div class="hint">E.g., expecting zero stress; measuring by urges rather than choices; wrong timescale.</div>
+      <ul class="ul">
+        <li><b>Class: Change the Frame</b> — redefine success (earlier noticing, softer urges, quicker settling).</li>
+        <li>Use scaling, exceptions, and time horizons that fit how change really happens.</li>
+        <li>Language: <span class="example">“Success can be noticing sooner and letting it pass more easily.”</span></li>
+      </ul>
+    </details>
+
+    <details class="card">
+      <summary><span class="idx">5</span> Is there <u>secondary gain</u> or a job the symptom does?</summary>
+      <div class="hint">If the behavior protects/benefits something, don’t fight it — protect the gain differently.</div>
+      <ul class="ul">
+        <li><b>Class: Protect the Function</b> — keep the benefit (soothing, focus, break) and offer alternative forms.</li>
+        <li>Language: <span class="example">“Keep the relief; let the old method be optional.”</span></li>
+      </ul>
+    </details>
+  </div>
+
+  <!-- Reference table (previously added) -->
+  <section class="card">
+    <h2>Reference — O’Hanlon’s Six Classes of Problems and Solutions</h2>
+    <p class="muted">Use this table to quickly match a client’s presenting issue to the appropriate class of problem and its corresponding therapeutic move.</p>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+        <thead>
+          <tr style="background:#eff6ff; text-align:left;">
+            <th style="padding:8px; border-bottom:1px solid var(--line);">Class of Problem</th>
+            <th style="padding:8px; border-bottom:1px solid var(--line);">Meaning</th>
+            <th style="padding:8px; border-bottom:1px solid var(--line);">Matching Solution Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>1. Excess</b></td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);">Too much of something — behavior, emotion, pain, worry, craving.</td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>Reduce / Redirect</b> — keep its function, change the form.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>2. Absence / Deficit</b></td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);">Not enough of a desired quality — confidence, calm, motivation.</td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>Elicit / Increase</b> — find exceptions, amplify them.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>3. Instability / Variation</b></td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);">Works sometimes but not always.</td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>Stabilize / Regulate</b> — identify and ritualize conditions of success.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>4. Attempted-Solution Problem</b></td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);">The client’s way of fixing it maintains the issue.</td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>Do Something Different</b> — stop or reverse the maintaining attempt.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>5. Frame Mismatch</b></td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);">Goal or scale is misdefined — unrealistic or misframed.</td>
+            <td style="padding:8px; border-bottom:1px solid var(--line);"><b>Change the Frame</b> — redefine success in achievable, process-based terms.</td>
+          </tr>
+          <tr>
+            <td style="padding:8px;"><b>6. Secondary Gain</b></td>
+            <td style="padding:8px;">Symptom serves another purpose — protection, comfort, attention.</td>
+            <td style="padding:8px;"><b>Protect the Function</b> — keep the benefit, change the form.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Session skeleton (restored) -->
+  <section class="card">
+    <strong>Session skeleton (5 steps)</strong>
+    <ol class="ul">
+      <li><b>Align</b> — validate the job the symptom does; agree to protect it.</li>
+      <li><b>Classify</b> — excess / absence / instability / attempted-solution / frame / gain.</li>
+      <li><b>Invite</b> — low-load suggestions matching the solution class.</li>
+      <li><b>Rehearse</b> — future pace one tiny difference; anchor exceptions.</li>
+      <li><b>Verify</b> — client marks their next-cue plan in 8–10 words.</li>
+    </ol>
+  </section>
+
+  <section class="footer muted">
+    Practice-oriented synthesis inspired by Bill O’Hanlon’s solution-oriented hypnosis/therapy. For training use; adapt to your client and scope.
+  </section>
+
+</main>
+
+<script>
+  const expandBtn = document.getElementById('expand');
+  const collapseBtn = document.getElementById('collapse');
+  const detailsSections = Array.from(document.querySelectorAll('details.card'));
+
+  expandBtn.addEventListener('click', () => detailsSections.forEach(s => s.open = true));
+  collapseBtn.addEventListener('click', () => detailsSections.forEach(s => s.open = false));
+</script>
+</body>
+</html>
