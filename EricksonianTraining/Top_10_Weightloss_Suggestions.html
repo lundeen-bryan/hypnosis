@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Weight Loss & Healthy Eating — Suggestions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #0f172a; /* slate-900 */
+        --muted: #475569; /* slate-600 */
+        --border: #e2e8f0; /* slate-200 */
+        --accent: #2563eb; /* blue-600 */
+        --accent-weak: #eef2ff; /* indigo-50 */
+        --ring: #93c5fd; /* blue-300 */
+        --maxw: 1160px; /* wider for full-width sentences */
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, "Helvetica Neue", Arial, "Noto Sans";
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(6px);
+        background: color-mix(in oklab, var(--bg) 85%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.1rem);
+        margin: 8px 0 6px;
+        letter-spacing: 0.2px;
+      }
+      p.lede {
+        color: var(--muted);
+        margin: 0 0 10px;
+      }
+      main {
+        padding: 20px 0 64px;
+      }
+      .intro {
+        background: var(--accent-weak);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin: 0 0 22px;
+      }
+      .intro p {
+        margin: 0 0 10px;
+      }
+      section.block {
+        border-top: 1px solid var(--border);
+        padding-top: 18px;
+        margin-top: 22px;
+      }
+      h2 {
+        font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+        margin: 0 0 10px;
+        letter-spacing: 0.2px;
+      }
+      .tools {
+        display: flex;
+        gap: 10px;
+        margin: 6px 0 12px;
+      }
+      button {
+        appearance: none;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: white;
+        padding: 8px 14px;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #f8fafc;
+      }
+      button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+      ol {
+        padding-left: 22px;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      li {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        margin-top: 28px;
+        padding: 16px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.95rem;
+      }
+      /* Print-friendly */
+      @media print {
+        header,
+        .tools,
+        footer {
+          display: none;
+        }
+        body {
+          line-height: 1.5;
+        }
+        li {
+          border: none;
+          padding: 0 0 8px 0;
+        }
+        section.block {
+          border-top: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>Weight Loss & Healthy Eating — Suggestion Sets</h1>
+        <p class="lede">
+          Single-column layout for full-width readability. Copy or print as
+          needed.
+        </p>
+        <div class="tools">
+          <button onclick="window.print()">Print</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- Transition / Preamble -->
+      <section class="intro" aria-labelledby="intro-title">
+        <h2 id="intro-title" style="margin-top: 0;">Transition</h2>
+        <p>My friend John likes to listen to affirmations sometimes.</p>
+        <p>
+          And it’s interesting, because those affirmations could be helpful to
+          anyone who hears them.
+        </p>
+        <p>As he sits there, just relaxing and letting thoughts drift,</p>
+        <p>the inner mind can listen in the background,</p>
+        <p>
+          letting the ideas find their own place — in whatever way is right and
+          useful for the person hearing them.
+        </p>
+        <p>
+          And perhaps these simple statements could be useful for anyone to
+          hear, allowing thoughts to settle in naturally and easily, all on
+          their own… like this…
+        </p>
+      </section>
+
+      <!-- BLOCK 1: Top 10 -->
+      <section class="block" aria-labelledby="ambig-title">
+        <h2 id="ambig-title">Most Ambiguous Suggestions for Weight Loss</h2>
+        <div class="tools">
+          <button onclick="copyList('ambig')">Copy list</button>
+        </div>
+        <ol id="ambig">
+          <li>
+            Over time, it’s possible to gain a growing appreciation for how
+            naturally good nourishment feels.
+          </li>
+          <li>
+            It’s interesting how people can begin to see themselves reaching for
+            what supports them, often without deciding to.
+          </li>
+          <li>
+            There can be a gentle choosing of what sustains energy rather than
+            what only fills a moment.
+          </li>
+          <li>
+            And perhaps there’s a quiet realization that each small decision
+            contributes to something meaningful.
+          </li>
+          <li>
+            There’s a natural motivation that comes from the calm confidence of
+            steady choices.
+          </li>
+          <li>
+            A sense of identity can gradually shift toward enjoying self-care in
+            simple, natural ways.
+          </li>
+          <li>
+            And it may be that character is expressed through those small,
+            consistent choices that support well-being.
+          </li>
+          <li>
+            It sometimes happens that a person finds it easier and easier to
+            choose foods that leave the body feeling light and comfortable.
+          </li>
+          <li>
+            Many people come to know that the body responds kindly when treated
+            with respect.
+          </li>
+          <li>
+            For some, it becomes important to feel clear and at ease inside
+            their own body.
+          </li>
+        </ol>
+      </section>
+
+      <!-- BLOCK 2: Most Ambiguous -->
+      <section class="block" aria-labelledby="top10-title">
+        <h2 id="top10-title">
+          Top 10 Suggestions for Weight Loss and Healthy Eating
+        </h2>
+        <div class="tools">
+          <button onclick="copyList('top10')">Copy list</button>
+        </div>
+        <ol id="top10">
+          <li>
+            There can be moments of quiet satisfaction after eating just enough,
+            as if the body knows when that is.
+          </li>
+          <li>
+            It sometimes happens that a person finds it easier and easier to
+            choose foods that leave the body feeling light and comfortable.
+          </li>
+          <li>
+            Sometimes the body already has the ability to stop when it’s had
+            enough, all on its own.
+          </li>
+          <li>
+            Over time, it’s possible to gain a growing appreciation for how
+            naturally good nourishment feels.
+          </li>
+          <li>
+            From time to time, a person might simply act on a small impulse to
+            pause before eating something sweet.
+          </li>
+          <li>
+            It can be interesting to understand that comfort comes more from
+            balance than from sweetness.
+          </li>
+          <li>
+            Many people come to know that the body responds kindly when treated
+            with respect.
+          </li>
+          <li>
+            There can be a gentle choosing of what sustains energy rather than
+            what only fills a moment.
+          </li>
+          <li>
+            There’s a natural motivation that comes from the calm confidence of
+            steady choices.
+          </li>
+          <li>
+            A sense of identity can gradually shift toward enjoying self-care in
+            simple, natural ways.
+          </li>
+        </ol>
+      </section>
+
+      <section class="countout" aria-labelledby="countout-title">
+        <h2 id="countout-title" style="margin-top: 0;">Count-Out Sequence</h2>
+        <p>
+          In a moment, I’ll count from one to five. With each number, awareness
+          can return easily and comfortably, bringing a fresh, clear feeling —
+          calm and ready.
+        </p>
+        <p><strong>1</strong> … beginning to notice the room again.</p>
+        <p>
+          <strong>2</strong> … more awareness in the body, light and balanced.
+        </p>
+        <p>
+          <strong>3</strong> … breathing a little deeper, energy returning
+          naturally.
+        </p>
+        <p>
+          <strong>4</strong> … mind and body working together with quiet
+          confidence.
+        </p>
+        <p>
+          Alert, refreshed, and feeling good about healthy, natural choices.
+        </p>
+        <p>
+          <strong>5</strong> … eyes open when ready, feeling clear and steady.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Built for permissive, Ericksonian-style delivery. Single-column for
+      clarity and easy reading.
+    </footer>
+
+    <script>
+      function copyList(listId) {
+        const list = document.getElementById(listId);
+        if (!list) return;
+        const items = Array.from(list.querySelectorAll("li")).map(
+          (li, i) => `${i + 1}. ${li.textContent.trim()}`
+        );
+        const text = items.join("\n");
+        navigator.clipboard.writeText(text).then(() => {
+          // brief visual feedback without disrupting layout
+          const btn = document.activeElement;
+          if (btn && btn.tagName === "BUTTON") {
+            const label = btn.textContent;
+            btn.textContent = "Copied";
+            btn.disabled = true;
+            setTimeout(() => {
+              btn.textContent = label;
+              btn.disabled = false;
+            }, 1200);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
