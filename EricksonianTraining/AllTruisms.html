@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truism Reference — Single-Column Layout</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a;            /* slate-900 */
+      --muted: #475569;         /* slate-600 */
+      --border: #e2e8f0;        /* slate-200 */
+      --accent: #2563eb;        /* blue-600 */
+      --toolbar: #f8fafc;       /* slate-50 */
+      --base-font-size: 18px;   /* adjusted via +/- */
+      --max-width: 85ch;
+      --radius: 14px;
+      --shadow: 0 6px 24px rgba(2,6,23,.07), 0 2px 8px rgba(2,6,23,.06);
+      --li-pad-y: .4rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1020;
+        --fg: #e5e7eb;          /* slate-200 */
+        --muted: #9ca3af;       /* gray-400 */
+        --border: #1f2937;      /* gray-800 */
+        --accent: #60a5fa;      /* blue-400 */
+        --toolbar: #0f172a;     /* slate-900 */
+        --shadow: 0 6px 24px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+      }
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      font-size: var(--base-font-size);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      margin: 0 auto;
+      padding: 1rem clamp(.75rem, 2.5vw, 1.5rem) 2rem;
+      max-width: min(100%, 1200px);
+    }
+
+    /* Toolbar */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--toolbar);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .5rem;
+      box-shadow: var(--shadow);
+      margin: 0 auto 1rem auto;
+      max-width: var(--max-width);
+    }
+
+    .toolbar .spacer { flex: 1; }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--fg);
+      border-radius: 10px;
+      padding: .55rem .8rem;
+      font: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: transform .05s ease, background .2s ease, border-color .2s ease;
+      box-shadow: 0 1px 0 rgba(2,6,23,.04);
+      user-select: none;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn:active { transform: translateY(1px) scale(.995); }
+
+    .btn.outline { background: transparent; }
+
+    .kbd {
+      font-variant-numeric: tabular-nums;
+      font-size: .8em;
+      padding: .1em .35em;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+    }
+
+    /* Card */
+    .card {
+      margin: 0 auto;
+      max-width: var(--max-width);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+
+    header.page {
+      padding: 1.25rem 1.25rem .5rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header.page h1 {
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    header.page p.lead {
+      margin: .4rem 0 0 0;
+      color: var(--muted);
+      font-size: clamp(.95rem, 1.2vw, 1rem);
+    }
+
+    main#content {
+      padding: .5rem 1.25rem 1.25rem 1.25rem;
+    }
+
+    section.block { margin: 1.1rem 0; }
+    section.block h2 {
+      font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+      margin: .75rem 0 .35rem 0;
+      color: var(--fg);
+      border-left: 3px solid var(--accent);
+      padding-left: .6rem;
+    }
+    section.block p.desc {
+      margin: .15rem 0 .6rem 0;
+      color: var(--muted);
+      font-size: .95em;
+    }
+
+    /* Single-column list: each item spans the full section width */
+    ul.truisms {
+      margin: 0;
+      padding-left: 1.25rem; /* keep bullets; readable indent */
+      list-style: disc;
+    }
+    ul.truisms li {
+      padding: var(--li-pad-y) 0;
+      border-top: 1px dashed var(--border);
+    }
+    ul.truisms li:first-child {
+      border-top: none;
+    }
+
+    footer.note {
+      padding: .9rem 1.25rem 1.2rem 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .95em;
+    }
+
+    /* Print */
+    @media print {
+      .toolbar { display: none !important; }
+      .wrap { padding: 0; }
+      .card { border: none; box-shadow: none; }
+      header.page { border: 0; padding-bottom: .2rem; }
+      main#content { padding-top: .2rem; }
+      a[href]:after { content: ""; }
+      ul.truisms li { border-top: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Toolbar -->
+    <nav class="toolbar" role="toolbar" aria-label="Actions">
+      <button class="btn outline" id="printBtn" title="Print (Ctrl/Cmd + P)" aria-label="Print">
+        🖨️ <span>Print</span>
+      </button>
+
+      <button class="btn outline" id="copyBtn" title="Copy all truisms as text" aria-label="Copy">
+        📋 <span>Copy</span>
+      </button>
+
+      <div class="spacer" aria-hidden="true"></div>
+
+      <button class="btn" id="decreaseBtn" title="Decrease font size (Ctrl/Cmd + -)" aria-label="Decrease font size">
+        ➖ <span>A</span>
+        <span class="kbd">−</span>
+      </button>
+      <button class="btn" id="increaseBtn" title="Increase font size (Ctrl/Cmd + +)" aria-label="Increase font size">
+        ➕ <span>A</span>
+        <span class="kbd">+</span>
+      </button>
+      <button class="btn" id="resetBtn" title="Reset font size (Ctrl/Cmd + 0)" aria-label="Reset font size">
+        ♻️ <span>Reset</span>
+        <span class="kbd">0</span>
+      </button>
+    </nav>
+
+    <!-- Document -->
+    <article class="card" id="doc">
+      <header class="page">
+        <h1>Truism Reference (Neutral, Broadly Acceptable Statements)</h1>
+        <p class="lead">Single-column layout for easier scanning within each category.</p>
+      </header>
+
+      <main id="content">
+        <!-- 1 -->
+        <section class="block" id="universal">
+          <h2>1. Universal Human Experience</h2>
+          <p class="desc">Rely on near-universal agreement.</p>
+          <ul class="truisms">
+            <li>People have learned many things without trying to learn them.</li>
+            <li>Everyone has had moments of change they didn’t plan.</li>
+            <li>People notice some things more than others.</li>
+            <li>Everyone has memories they don’t think about very often.</li>
+            <li>People sometimes forget things they know well.</li>
+            <li>Everyone has experienced curiosity at some point.</li>
+            <li>People sometimes surprise themselves.</li>
+            <li>Everyone has had times when things felt easier than expected.</li>
+            <li>People have inner experiences they don’t talk about.</li>
+            <li>Everyone has solved problems in ways they didn’t consciously plan.</li>
+          </ul>
+        </section>
+
+        <!-- 2 -->
+        <section class="block" id="attention">
+          <h2>2. Attention &amp; Awareness</h2>
+          <p class="desc">Orienting statements without directing experience.</p>
+          <ul class="truisms">
+            <li>Attention naturally shifts from one thing to another.</li>
+            <li>People notice some sensations and ignore others.</li>
+            <li>Awareness can move inward or outward.</li>
+            <li>People can listen and think at the same time.</li>
+            <li>Attention changes throughout the day.</li>
+            <li>People don’t notice everything at once.</li>
+            <li>Awareness can narrow or broaden.</li>
+            <li>People sometimes drift in thought.</li>
+            <li>Attention follows interest.</li>
+            <li>People notice changes more easily than constants.</li>
+          </ul>
+        </section>
+
+        <!-- 3 -->
+        <section class="block" id="learning">
+          <h2>3. Learning &amp; Experience</h2>
+          <p class="desc">High agreement, low resistance.</p>
+          <ul class="truisms">
+            <li>People learn from experience.</li>
+            <li>Learning happens at different speeds.</li>
+            <li>Some learning happens without effort.</li>
+            <li>People learn better through doing than reading.</li>
+            <li>Experience often teaches things words cannot.</li>
+            <li>Learning continues throughout life.</li>
+            <li>People learn patterns without realizing it.</li>
+            <li>Repetition changes understanding.</li>
+            <li>People learn from mistakes.</li>
+            <li>Learning often happens after the fact.</li>
+          </ul>
+        </section>
+
+        <!-- 4 -->
+        <section class="block" id="memory">
+          <h2>4. Memory &amp; Recall</h2>
+          <p class="desc">Useful when memory reliability is a topic.</p>
+          <ul class="truisms">
+            <li>People remember some things easily and others not at all.</li>
+            <li>Memory works differently at different times.</li>
+            <li>People forget names they know well.</li>
+            <li>Memory improves with relevance.</li>
+            <li>People remember emotionally meaningful events.</li>
+            <li>Memory is influenced by context.</li>
+            <li>People recall things later that seemed forgotten.</li>
+            <li>Memory isn’t always predictable.</li>
+            <li>People remember better when relaxed.</li>
+            <li>Memory changes over time.</li>
+          </ul>
+        </section>
+
+        <!-- 5 -->
+        <section class="block" id="internal">
+          <h2>5. Internal Processes</h2>
+          <p class="desc">Descriptive statements about inner experience.</p>
+          <ul class="truisms">
+            <li>People have thoughts that come and go.</li>
+            <li>Feelings change naturally.</li>
+            <li>Inner dialogue happens automatically.</li>
+            <li>People imagine things without trying.</li>
+            <li>Internal experiences don’t require conscious effort.</li>
+            <li>Thoughts appear without invitation.</li>
+            <li>Feelings shift throughout the day.</li>
+            <li>People respond internally before reacting externally.</li>
+            <li>Inner experiences can be subtle or obvious.</li>
+            <li>People have internal reactions they don’t control.</li>
+          </ul>
+        </section>
+
+        <!-- 6 -->
+        <section class="block" id="time-change">
+          <h2>6. Time &amp; Change</h2>
+          <p class="desc">Broadly accepted and safe.</p>
+          <ul class="truisms">
+            <li>Things change over time.</li>
+            <li>Change can be gradual or sudden.</li>
+            <li>People adapt to change.</li>
+            <li>Time affects perception.</li>
+            <li>Waiting changes experience.</li>
+            <li>People adjust without realizing it.</li>
+            <li>Time passes whether noticed or not.</li>
+            <li>Experiences feel different in hindsight.</li>
+            <li>Familiar things feel different over time.</li>
+            <li>Change often happens incrementally.</li>
+          </ul>
+        </section>
+
+        <!-- 7 -->
+        <section class="block" id="problem-solving">
+          <h2>7. Problem-Solving &amp; Resources</h2>
+          <p class="desc">Aligned with solution-oriented perspectives.</p>
+          <ul class="truisms">
+            <li>People already have some useful skills.</li>
+            <li>People have solved problems before.</li>
+            <li>Not all solutions are conscious.</li>
+            <li>People discover solutions unexpectedly.</li>
+            <li>Some problems resolve on their own.</li>
+            <li>People often know more than they think.</li>
+            <li>Solutions can come indirectly.</li>
+            <li>People use resources automatically.</li>
+            <li>Past successes influence present ability.</li>
+            <li>People adjust strategies when needed.</li>
+          </ul>
+        </section>
+
+        <!-- 8 -->
+        <section class="block" id="sensory">
+          <h2>8. Sensory &amp; Physical Experience</h2>
+          <p class="desc">Observable, grounded statements.</p>
+          <ul class="truisms">
+            <li>People breathe without thinking about it.</li>
+            <li>The body adjusts automatically.</li>
+            <li>Sensations fluctuate.</li>
+            <li>The body responds to rest.</li>
+            <li>Physical comfort changes with position.</li>
+            <li>Sensations can fade when unnoticed.</li>
+            <li>The body signals needs.</li>
+            <li>Physical responses vary day to day.</li>
+            <li>The body knows how to recover.</li>
+            <li>Physical awareness shifts naturally.</li>
+          </ul>
+        </section>
+
+        <!-- 9 -->
+        <section class="block" id="emotion">
+          <h2>9. Emotion &amp; Regulation</h2>
+          <p class="desc">Neutral and descriptive.</p>
+          <ul class="truisms">
+            <li>Emotions rise and fall.</li>
+            <li>Feelings don’t stay the same.</li>
+            <li>People experience mixed emotions.</li>
+            <li>Emotions can change without effort.</li>
+            <li>Feelings are influenced by context.</li>
+            <li>Emotional responses vary.</li>
+            <li>People regulate feelings unconsciously.</li>
+            <li>Emotions often shift with focus.</li>
+            <li>Feelings pass.</li>
+            <li>Emotional intensity fluctuates.</li>
+          </ul>
+        </section>
+
+        <!-- 10 -->
+        <section class="block" id="decision">
+          <h2>10. Decision-Making &amp; Choice</h2>
+          <p class="desc">Preserve autonomy and optionality.</p>
+          <ul class="truisms">
+            <li>People make choices all the time.</li>
+            <li>Some choices are automatic.</li>
+            <li>Decisions don’t always require thought.</li>
+            <li>People change their minds.</li>
+            <li>Choices depend on circumstances.</li>
+            <li>People act differently in different situations.</li>
+            <li>Decisions are influenced by experience.</li>
+            <li>People reconsider options.</li>
+            <li>Some decisions feel easy.</li>
+            <li>People choose without knowing why.</li>
+          </ul>
+        </section>
+
+        <!-- 11 -->
+        <section class="block" id="communication">
+          <h2>11. Communication &amp; Understanding</h2>
+          <p class="desc">Useful during conversational work.</p>
+          <ul class="truisms">
+            <li>People interpret words differently.</li>
+            <li>Meaning depends on context.</li>
+            <li>People hear more than words.</li>
+            <li>Communication isn’t always conscious.</li>
+            <li>Understanding can change over time.</li>
+            <li>People read between the lines.</li>
+            <li>Messages are filtered through experience.</li>
+            <li>Communication involves interpretation.</li>
+            <li>Silence communicates something.</li>
+            <li>People understand at different levels.</li>
+          </ul>
+        </section>
+
+        <!-- 12 -->
+        <section class="block" id="uncertainty">
+          <h2>12. Uncertainty-Tolerant Truisms</h2>
+          <p class="desc">Avoid overclaiming; keep optionality.</p>
+          <ul class="truisms">
+            <li>People don’t always know what will happen next.</li>
+            <li>Uncertainty is part of experience.</li>
+            <li>Not everything needs to be resolved immediately.</li>
+            <li>People can be unsure and still function.</li>
+            <li>Ambiguity is common.</li>
+            <li>Understanding unfolds over time.</li>
+            <li>People discover meaning later.</li>
+            <li>Outcomes aren’t always predictable.</li>
+            <li>Experience clarifies things.</li>
+            <li>Knowing isn’t always necessary.</li>
+          </ul>
+        </section>
+
+        <!-- 13 -->
+        <section class="block" id="meta">
+          <h2>13. Meta-Truisms (About Truisms)</h2>
+          <p class="desc">Framing statements about agreement.</p>
+          <ul class="truisms">
+            <li>Some statements are obviously true.</li>
+            <li>People agree more easily with familiar ideas.</li>
+            <li>Obvious statements feel safe.</li>
+            <li>Agreement builds naturally.</li>
+            <li>Familiarity reduces resistance.</li>
+            <li>People accept what fits experience.</li>
+            <li>Obviousness lowers effort.</li>
+            <li>Shared experience creates rapport.</li>
+            <li>Common ground is easy to find.</li>
+            <li>Agreement precedes openness.</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="note">
+        Tip: Use the toolbar to print or copy. The layout is single-column so each item spans the section width.
+      </footer>
+    </article>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const content = document.getElementById('content');
+      const printBtn = document.getElementById('printBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const increaseBtn = document.getElementById('increaseBtn');
+      const decreaseBtn = document.getElementById('decreaseBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
+      function getBaseSize() {
+        const css = getComputedStyle(root).getPropertyValue('--base-font-size').trim();
+        const n = parseFloat(css.replace('px', '')) || 18;
+        return n;
+      }
+      function setBaseSize(px) {
+        root.style.setProperty('--base-font-size', px + 'px');
+        try { localStorage.setItem('truismBaseSize', String(px)); } catch {}
+      }
+      function loadBaseSize() {
+        try {
+          const s = localStorage.getItem('truismBaseSize');
+          if (s) setBaseSize(clamp(parseFloat(s), 14, 24));
+        } catch {}
+      }
+
+      function changeFont(delta) {
+        const cur = getBaseSize();
+        setBaseSize(clamp(cur + delta, 14, 24));
+      }
+
+      printBtn.addEventListener('click', () => window.print());
+
+      copyBtn.addEventListener('click', async () => {
+        const text = content.innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          notify('Copied all truisms to clipboard.');
+        } catch {
+          fallbackCopy(text);
+        }
+      });
+
+      increaseBtn.addEventListener('click', () => changeFont(1));
+      decreaseBtn.addEventListener('click', () => changeFont(-1));
+      resetBtn.addEventListener('click', () => setBaseSize(18));
+
+      document.addEventListener('keydown', (e) => {
+        const isMod = e.ctrlKey || e.metaKey;
+        if (!isMod) return;
+        if (e.key === '=' || e.key === '+') { e.preventDefault(); changeFont(1); }
+        if (e.key === '-') { e.preventDefault(); changeFont(-1); }
+        if (e.key === '0') { e.preventDefault(); setBaseSize(18); }
+      });
+
+      function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          notify('Copied all truisms to clipboard.');
+        } catch {
+          notify('Copy failed. Select text and press Ctrl/Cmd + C.', true);
+        }
+        document.body.removeChild(ta);
+      }
+
+      function notify(msg, warn=false) {
+        const n = document.createElement('div');
+        n.textContent = msg;
+        n.style.position = 'fixed';
+        n.style.insetInline = '0';
+        n.style.bottom = '1rem';
+        n.style.margin = '0 auto';
+        n.style.width = 'fit-content';
+        n.style.maxWidth = '90vw';
+        n.style.padding = '.6rem .9rem';
+        n.style.borderRadius = '10px';
+        n.style.border = '1px solid var(--border)';
+        n.style.background = warn ? 'rgba(220, 38, 38, .1)' : 'rgba(37, 99, 235, 235, .12)';
+        n.style.color = 'var(--fg)';
+        n.style.boxShadow = 'var(--shadow)';
+        n.style.zIndex = '9999';
+        document.body.appendChild(n);
+        setTimeout(() => {
+          n.style.transition = 'opacity .4s ease, transform .4s ease';
+          n.style.opacity = '0';
+          n.style.transform = 'translateY(6px)';
+          setTimeout(() => n.remove(), 500);
+        }, 1200);
+      }
+
+      loadBaseSize();
+    })();
+  </script>
+</body>
+</html>

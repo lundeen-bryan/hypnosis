@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep Trance Phenomena — Reference</title>
+<style>
+  :root{
+    --bg: #ffffff;
+    --bg-soft:#f6f7fb;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --accent:#0ea5e9;
+    --accent-ink:#0b4660;
+    --shadow: 0 6px 20px rgba(0,0,0,.06);
+    --radius: 16px;
+    --toolbar-h: 56px;
+    --base-font: 16px;
+  }
+  html{font-size: var(--base-font);}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font: 400 1rem/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  }
+
+  /* Erickson Handout Toolbar */
+  .toolbar{
+    position: sticky; top:0; z-index: 50;
+    display:flex; align-items:center; justify-content:space-between;
+    height: var(--toolbar-h);
+    padding: 0 12px;
+    background: linear-gradient(180deg, #ffffff, #f8fafc 60%);
+    border-bottom:1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    backdrop-filter: saturate(1.2) blur(2px);
+  }
+  .toolbar .title{
+    display:flex; gap:.6rem; align-items:baseline; flex-wrap:wrap;
+  }
+  .toolbar h1{
+    font-size:1.05rem; margin:0; font-weight:700; color:#0f172a;
+    letter-spacing:.2px;
+  }
+  .toolbar .subtitle{
+    font-size:.85rem; color:var(--muted);
+  }
+  .toolbar .btns{display:flex; gap:.4rem; align-items:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.5rem .7rem; border:1px solid var(--border);
+    border-radius:12px; background:#fff; color:#0f172a;
+    cursor:pointer; box-shadow: var(--shadow);
+    transition: transform .04s ease, background .2s ease, border-color .2s ease;
+    user-select:none;
+  }
+  .btn:hover{background:var(--bg-soft);}
+  .btn:active{transform: translateY(1px);}
+  .btn.primary{border-color:#bae6fd; background:#e0f2fe; color:var(--accent-ink);}
+  .btn .mono{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;}
+  .btn[disabled]{opacity:.5; cursor:not-allowed; box-shadow:none;}
+
+  .container{
+    max-width: 950px; margin: 24px auto 80px; padding: 0 16px;
+  }
+
+  .intro{
+    background: var(--bg-soft);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    color: var(--muted);
+    font-size:.97rem;
+  }
+
+  /* Sections */
+  .section{
+    margin-top: 22px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+  .section h2{
+    margin: 0 0 10px 0;
+    font-size: 1.15rem;
+    line-height:1.3;
+    color:#0b4660;
+  }
+  .section .hint{
+    margin: 6px 0 10px 0;
+    color: var(--muted);
+    font-size:.9rem;
+  }
+  ul.clean{
+    margin:0; padding-left: 1.1rem;
+    columns: 1;
+  }
+  ul.clean li{margin: .18rem 0;}
+  @media (min-width: 960px){
+    ul.clean.two-col{columns: 2; column-gap: 48px;}
+  }
+
+  .foot{
+    margin-top: 28px; padding: 16px 18px; border:1px dashed var(--border);
+    border-radius: var(--radius); color: var(--muted); font-size:.92rem;
+  }
+
+  /* Small badges */
+  .badge{
+    display:inline-block; font-size:.72rem; padding:.15rem .45rem;
+    border:1px solid var(--border); border-radius:999px; color:var(--muted);
+    background:#fff; margin-left:.5rem;
+  }
+
+  /* Print styles */
+  @media print{
+    .toolbar{display:none;}
+    .container{max-width:none; margin:0; padding:0;}
+    .section{break-inside: avoid;}
+  }
+</style>
+</head>
+<body>
+  <!-- Erickson Handout Toolbar -->
+  <header class="toolbar" role="region" aria-label="Erickson Handout Toolbar">
+    <div class="title">
+      <h1>Deep Trance Phenomena — Reference</h1>
+      <span class="subtitle">Descriptive catalog (not a protocol)</span>
+    </div>
+    <nav class="btns" aria-label="Handout controls">
+      <button class="btn" id="smaller" title="Decrease font size" aria-label="Decrease font size"><span class="mono">−</span></button>
+      <button class="btn" id="bigger" title="Increase font size" aria-label="Increase font size"><span class="mono">+</span></button>
+      <button class="btn" id="reset" title="Reset font size" aria-label="Reset font size">Reset</button>
+      <button class="btn" id="copy" title="Copy contents" aria-label="Copy contents">Copy</button>
+      <button class="btn primary" id="print" title="Print / Save to PDF" aria-label="Print or save to PDF">Print</button>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <section class="intro" aria-label="Notes">
+      <p><strong>Scope:</strong> Observable and subjective phenomena that may occur in deep hypnosis. Occurrence varies by individual, context, and learning history. Depth increases availability; it does not guarantee any item.</p>
+    </section>
+
+    <section class="section" id="motor">
+      <h2>Motor &amp; Muscular Phenomena</h2>
+      <div class="hint">Examples of movement, tone, or posture changes.</div>
+      <ul class="clean two-col">
+        <li>Catalepsy (rigidity or immobility)</li>
+        <li>Lethargy (relaxation/heaviness)</li>
+        <li>Automatic movements</li>
+        <li>Hand levitation</li>
+        <li>Postural fixation</li>
+        <li>Spontaneous micro-movements</li>
+        <li>Motor dissociation (movement without conscious intent)</li>
+        <li>Ideomotor signaling (e.g., finger yes/no)</li>
+      </ul>
+    </section>
+
+    <section class="section" id="sensory">
+      <h2>Sensory &amp; Perceptual Phenomena</h2>
+      <div class="hint">Alterations in sensation or perception.</div>
+      <ul class="clean two-col">
+        <li>Analgesia (reduced pain)</li>
+        <li>Anesthesia (absent sensation)</li>
+        <li>Hyperesthesia (heightened sensation)</li>
+        <li>Selective sensory blocking</li>
+        <li>Altered body image (size/weight/position)</li>
+        <li>Kinesthetic distortion</li>
+        <li>Visual distortion</li>
+        <li>Auditory distortion</li>
+        <li>Tactile illusion</li>
+      </ul>
+    </section>
+
+    <section class="section" id="cognitive">
+      <h2>Cognitive &amp; Experiential Phenomena</h2>
+      <div class="hint">Shifts in attention, appraisal, or thought flow.</div>
+      <ul class="clean two-col">
+        <li>Time distortion (compression/expansion)</li>
+        <li>Absorption</li>
+        <li>Reduced critical evaluation</li>
+        <li>Heightened focus / narrowed attention</li>
+        <li>Spontaneous insight</li>
+        <li>Non-linear or associative thinking</li>
+        <li>Symbolic thinking / metaphoric experience</li>
+        <li>Reduced executive monitoring</li>
+        <li>Automatic cognition</li>
+      </ul>
+    </section>
+
+    <section class="section" id="memory">
+      <h2>Memory Phenomena <span class="badge">includes Regression</span></h2>
+      <div class="hint">Changes in access, organization, or perspective.</div>
+      <ul class="clean two-col">
+        <li>Hypermnesia (enhanced recall)</li>
+        <li>Hypomnesia (reduced recall)</li>
+        <li>Amnesia (temporary/selective)</li>
+        <li><strong>Age regression</strong></li>
+        <li>Age progression / future projection</li>
+        <li>State-dependent recall</li>
+        <li>Memory re-contextualization</li>
+        <li>Dissociation from autobiographical memory</li>
+      </ul>
+    </section>
+
+    <section class="section" id="dissociation">
+      <h2>Dissociative Phenomena</h2>
+      <div class="hint">Separation or partitioning of processes or identity.</div>
+      <ul class="clean two-col">
+        <li>Ego dissociation</li>
+        <li>Observer perspective</li>
+        <li>Depersonalization</li>
+        <li>Derealization</li>
+        <li>Split awareness</li>
+        <li>Parts-based experience</li>
+        <li>Automatic self-regulation</li>
+        <li>Compartmentalization</li>
+      </ul>
+    </section>
+
+    <section class="section" id="autonomic">
+      <h2>Autonomic &amp; Physiological Phenomena</h2>
+      <div class="hint">Shifts mediated by autonomic or reflex pathways.</div>
+      <ul class="clean two-col">
+        <li>Respiratory pattern changes</li>
+        <li>Heart rate variability changes</li>
+        <li>Thermal shifts (warmth/coolness)</li>
+        <li>Vasodilation / vasoconstriction</li>
+        <li>Reduced startle reflex</li>
+        <li>Altered muscle tone</li>
+        <li>Tearfulness without distress</li>
+        <li>Salivation or swallowing changes</li>
+      </ul>
+    </section>
+
+    <section class="section" id="affect">
+      <h2>Emotional &amp; Affective Phenomena</h2>
+      <div class="hint">Modulation independent of external context.</div>
+      <ul class="clean two-col">
+        <li>Affect modulation</li>
+        <li>Emotional numbing</li>
+        <li>Emotional amplification</li>
+        <li>Context-free emotion</li>
+        <li>Emotional detachment</li>
+        <li>Emotional re-association</li>
+        <li>Automatic affect regulation</li>
+      </ul>
+    </section>
+
+    <section class="section" id="identity">
+      <h2>Identity &amp; Self-Concept Phenomena</h2>
+      <div class="hint">Temporary changes in self-model or role.</div>
+      <ul class="clean two-col">
+        <li>Temporary role adoption</li>
+        <li>Identity softening</li>
+        <li>Reduced self-referential processing</li>
+        <li>Flexible self-concept</li>
+        <li>Future-self identification</li>
+        <li>Symbolic identity expression</li>
+      </ul>
+    </section>
+
+    <section class="section" id="post">
+      <h2>Post-Trance &amp; Carryover Phenomena</h2>
+      <div class="hint">After-effects or delayed expressions.</div>
+      <ul class="clean two-col">
+        <li>Preservation of response</li>
+        <li>Post-hypnotic ideomotor activity</li>
+        <li>Delayed insight</li>
+        <li>Behavioral generalization</li>
+        <li>Residual time distortion</li>
+        <li>Spontaneous problem re-framing</li>
+        <li>Somatic symptom change without direct suggestion</li>
+      </ul>
+    </section>
+
+    <!-- Single column examples section -->
+    <section class="section" id="examples">
+      <h2>Real-Life Analogies &amp; Everyday Examples</h2>
+      <div class="hint">Concrete situations that mirror listed phenomena. These are common experiences and do not imply formal hypnosis.</div>
+      <ul class="clean" style="columns:1; column-gap:0;">
+        <li><strong>Ideomotor / Hand levitation:</strong> Reaching up to scratch an itch before consciously deciding; the arm rises toward the face “on its own.”</li>
+        <li><strong>Catalepsy:</strong> Holding a phone or book for a long time and noticing stiffness or immobility only after attention shifts.</li>
+        <li><strong>Absorption &amp; Time distortion:</strong> Losing track of time while reading, gaming, or watching a movie.</li>
+        <li><strong>Selective sensory blocking:</strong> Not noticing background noise when deeply focused; “tuning out” conversation in a café.</li>
+        <li><strong>Analgesia:</strong> Not feeling a small cut until seeing it; reduced pain during intense exercise or emergencies.</li>
+        <li><strong>Auditory/visual distortion:</strong> Music seeming louder or softer depending on focus; lights feeling bright after a dark theater.</li>
+        <li><strong>Amnesia / Hypomnesia:</strong> Forgetting where keys were placed; walking into a room and forgetting the purpose (doorway effect).</li>
+        <li><strong>Hypermnesia:</strong> A forgotten name or code suddenly surfacing later without effort.</li>
+        <li><strong>Regression-like state access:</strong> A childhood song or smell automatically changing mood, voice, or posture.</li>
+        <li><strong>Observer perspective (dissociation):</strong> Mentally replaying a conversation while seeing oneself from the outside.</li>
+        <li><strong>Highway hypnosis:</strong> Driving on autopilot and realizing you’ve reached your exit with minimal conscious recall.</li>
+        <li><strong>Autonomic shifts:</strong> Heart rate increase or blushing when seeing someone attractive; goosebumps from powerful music.</li>
+        <li><strong>Automatic affect regulation:</strong> Calming after deep breaths without consciously deciding how to calm down.</li>
+        <li><strong>Identity softening / role adoption:</strong> Feeling “like a leader” or “like a parent” when stepping into a familiar role or uniform.</li>
+        <li><strong>Post-event insight:</strong> A solution appearing suddenly during a shower or walk, after stopping deliberate thinking.</li>
+      </ul>
+    </section>
+
+    <section class="foot" aria-label="Clinical clarifications">
+      <p><strong>Clarifications:</strong> (1) “Spontaneous” refers to emergence without direct suggestion; it is still shaped by context and expectancy. (2) Depth increases probability, not certainty. (3) Phenomena are signals or resources, not outcomes by themselves.</p>
+    </section>
+  </main>
+
+<script>
+(function(){
+  const html = document.documentElement;
+  const getSize = () => parseFloat(getComputedStyle(html).fontSize);
+  const setSize = (px) => { html.style.fontSize = px + 'px'; localStorage.setItem('handoutFontPx', px); };
+
+  // Persisted font size
+  const saved = localStorage.getItem('handoutFontPx');
+  if(saved){ html.style.fontSize = saved + 'px'; }
+
+  const smaller = document.getElementById('smaller');
+  const bigger  = document.getElementById('bigger');
+  const reset   = document.getElementById('reset');
+  const copyBtn = document.getElementById('copy');
+  const printBtn= document.getElementById('print');
+  const content = document.getElementById('content');
+
+  smaller.addEventListener('click', ()=> { const s = Math.max(12, getSize() - 1); setSize(s); });
+  bigger .addEventListener('click', ()=> { const s = Math.min(22, getSize() + 1); setSize(s); });
+  reset  .addEventListener('click', ()=> { setSize(16); });
+
+  copyBtn.addEventListener('click', async ()=>{
+    try{
+      const clone = content.cloneNode(true);
+      clone.querySelectorAll('.hint,.badge,.foot').forEach(n=>n.remove());
+      await navigator.clipboard.writeText(clone.innerText.trim());
+      copyBtn.textContent = 'Copied';
+      copyBtn.disabled = true;
+      setTimeout(()=>{ copyBtn.textContent='Copy'; copyBtn.disabled=false; }, 1200);
+    }catch(e){
+      alert('Copy failed. Your browser may have blocked it.');
+    }
+  });
+  printBtn.addEventListener('click', ()=> window.print());
+})();
+</script>
+</body>
+</html>
