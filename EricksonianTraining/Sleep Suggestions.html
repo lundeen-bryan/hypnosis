@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Natural Sleep & Deep Rest — Permissive Suggestions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --accent: #2563eb;
+        --accent-weak: #eef2ff;
+        --ring: #93c5fd;
+        --maxw: 1160px;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, "Helvetica Neue", Arial, "Noto Sans";
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.7;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(6px);
+        background: color-mix(in oklab, var(--bg) 85%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.1rem);
+        margin: 8px 0 6px;
+      }
+      p.lede {
+        color: var(--muted);
+        margin: 0 0 10px;
+      }
+      main {
+        padding: 20px 0 64px;
+      }
+      .intro {
+        background: var(--accent-weak);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 22px;
+      }
+      section.block {
+        border-top: 1px solid var(--border);
+        padding-top: 18px;
+        margin-top: 22px;
+      }
+      h2 {
+        font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+        margin-bottom: 10px;
+      }
+      .tools {
+        display: flex;
+        gap: 10px;
+        margin: 6px 0 12px;
+      }
+      button {
+        appearance: none;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: white;
+        padding: 8px 14px;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #f8fafc;
+      }
+      button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+      ol {
+        padding-left: 22px;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      li {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        margin-top: 28px;
+        padding: 16px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.95rem;
+      }
+      @media print {
+        header,
+        .tools,
+        footer {
+          display: none;
+        }
+        li {
+          border: none;
+          padding: 0 0 8px 0;
+        }
+        section.block {
+          border-top: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>Natural Sleep & Deep Rest — Permissive Suggestions</h1>
+        <p class="lede">
+          Gentle, indirect statements to evoke rest and natural sleep.
+        </p>
+        <div class="tools">
+          <button onclick="window.print()">Print</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro" aria-labelledby="intro-title">
+        <h2 id="intro-title">Transition</h2>
+        <p>
+          It’s interesting how sleep can come easiest when it’s not being
+          pursued.
+        </p>
+        <p>
+          Sometimes the body already knows the way there, even when the mind
+          forgets.
+        </p>
+        <p>And as thoughts drift, something deeper can take over…</p>
+        <p>
+          allowing the night to unfold just as it needs to… comfortably…
+          naturally.
+        </p>
+      </section>
+
+      <section class="block" aria-labelledby="sleep-title">
+        <h2 id="sleep-title">Suggestions for Natural Sleep</h2>
+        <div class="tools">
+          <button onclick="copyList('sleep')">Copy list</button>
+        </div>
+        <ol id="sleep">
+          <li>
+            It can be reassuring to remember that you’ve fallen asleep countless
+            times before.
+          </li>
+          <li>
+            Sometimes, the body already knows how to rest deeply when given the
+            chance.
+          </li>
+          <li>
+            Distractions may come and go, and the mind can still drift where it
+            needs to.
+          </li>
+          <li>
+            Even the part that notices noise can learn to let it fade into the
+            background.
+          </li>
+          <li>
+            There’s often a moment when awareness begins to loosen without
+            trying to.
+          </li>
+          <li>
+            At night, the unconscious can sort and integrate what daytime can’t
+            quite reach.
+          </li>
+          <li>
+            Dreams and intuitions can quietly do their work while you rest.
+          </li>
+          <li>
+            Sleep can be a kind of protection — a pause that restores balance.
+          </li>
+          <li>
+            Many people find that when they stop managing sleep, it arrives on
+            its own.
+          </li>
+          <li>
+            There’s a sense of ease that comes from knowing everything important
+            is done for today.
+          </li>
+          <li>
+            Sometimes it’s enough to simply allow the body to rest and let time
+            pass softly.
+          </li>
+          <li>
+            Each night can become another reminder that rest happens naturally
+            and safely.
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        Built for permissive, Ericksonian-style delivery — indirect, natural,
+        and easy to read.
+      </footer>
+
+      <script>
+        function copyList(listId) {
+          const list = document.getElementById(listId);
+          if (!list) return;
+          const items = Array.from(list.querySelectorAll("li")).map(
+            (li, i) => `${i + 1}. ${li.textContent.trim()}`
+          );
+          navigator.clipboard.writeText(items.join("\n")).then(() => {
+            const btn = document.activeElement;
+            if (btn && btn.tagName === "BUTTON") {
+              const label = btn.textContent;
+              btn.textContent = "Copied";
+              btn.disabled = true;
+              setTimeout(() => {
+                btn.textContent = label;
+                btn.disabled = false;
+              }, 1200);
+            }
+          });
+        }
+      </script>
+    </main>
+  </body>
+</html>
