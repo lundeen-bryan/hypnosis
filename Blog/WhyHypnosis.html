@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      When to Prefer Hypnotherapy vs. Psychotherapy — Internal Summary
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #0f172a; /* slate-900 */
+        --muted: #475569; /* slate-600 */
+        --border: #e2e8f0; /* slate-200 */
+        --accent: #2563eb; /* blue-600 */
+        --accent-weak: #eef2ff; /* indigo-50 */
+        --radius: 14px;
+        --maxw: 980px;
+        --shadow: 0 4px 16px rgba(2, 6, 23, 0.06);
+        --base-font: 16px;
+      }
+      html {
+        font-size: var(--base-font);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        line-height: 1.6;
+      }
+
+      /* Erickson Handout Toolbar */
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 0.6rem 0.9rem;
+        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+      }
+      .tb-wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .tb-title {
+        font-weight: 600;
+        margin-right: auto;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--fg);
+        padding: 0.45rem 0.7rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.92rem;
+        line-height: 1;
+        box-shadow: var(--shadow);
+      }
+      .btn:hover {
+        border-color: #cbd5e1;
+      }
+      .btn-accent {
+        border-color: transparent;
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-ghost {
+        border-color: transparent;
+        background: var(--accent-weak);
+        color: #1e293b;
+      }
+
+      .container {
+        max-width: var(--maxw);
+        margin: 1.1rem auto 4rem;
+        padding: 0 1rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+        margin: 1rem 0 0.6rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+        line-height: 1.25;
+        margin: 1.4rem 0 0.6rem;
+      }
+      h3 {
+        font-size: 1.05rem;
+        margin: 1rem 0 0.4rem;
+      }
+      p {
+        margin: 0.4rem 0 0.8rem;
+      }
+      .lead {
+        font-size: 1.05rem;
+        color: var(--muted);
+      }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem;
+        background: #fff;
+        box-shadow: var(--shadow);
+        margin: 1rem 0;
+      }
+      .list {
+        margin: 0.4rem 0 0.6rem;
+        padding-left: 1.2rem;
+      }
+      .kicker {
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .note {
+        background: var(--accent-weak);
+        border-left: 4px solid var(--accent);
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+        margin: 0.75rem 0;
+      }
+      blockquote {
+        margin: 0;
+        padding: 0.8rem 1rem;
+        border-left: 4px solid var(--border);
+        background: #fafafa;
+        border-radius: 10px;
+      }
+      code.inline {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        padding: 0.05rem 0.35rem;
+        border-radius: 6px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 0.7rem 0.8rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        background: #f8fafc;
+        text-align: left;
+        font-weight: 600;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .small {
+        font-size: 0.92rem;
+      }
+      @media (min-width: 780px) {
+        .grid.two {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media print {
+        .toolbar {
+          display: none !important;
+        }
+        .container {
+          margin: 0 auto;
+        }
+        body {
+          color: #000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Erickson Handout Toolbar -->
+    <div class="toolbar" role="region" aria-label="Erickson Handout Toolbar">
+      <div class="tb-wrap">
+        <div class="tb-title">Erickson Handout Toolbar</div>
+        <button class="btn" id="decFont" title="Decrease text size">−</button>
+        <button class="btn" id="incFont" title="Increase text size">+</button>
+        <button class="btn" id="copyBtn" title="Copy page content">Copy</button>
+        <button class="btn btn-accent" id="printBtn" title="Print this page">
+          Print
+        </button>
+      </div>
+    </div>
+
+    <main class="container" id="contentRoot">
+      <header class="card">
+        <div class="kicker">Internal Reference</div>
+        <h1>When to Prefer Hypnotherapy vs. Psychotherapy</h1>
+        <p class="lead">
+          A concise, therapist-facing summary of indications, limits, and
+          referral heuristics grounded in the distinction between
+          <em>insight-driven</em> change and <em>automatic response</em> change.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>Core Principle</h2>
+        <blockquote>
+          Hypnosis is most effective when the problem is
+          <strong>automatic</strong>, <strong>nonconscious</strong>, or
+          <strong>self-perpetuating</strong>. Talk therapy primarily changes
+          understanding; hypnosis primarily updates automatic responses.
+        </blockquote>
+        <p class="small">
+          Plain distinction: <strong>Therapy</strong> works best when reasoning,
+          narrative, and meaning are the levers of change.
+          <strong>Hypnosis</strong> works best when the symptom runs
+          independently of conscious intention.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>What “Automatic Problems” Means (Clinically)</h2>
+        <div class="grid">
+          <div>
+            <h3>1) Learned nonconscious responses</h3>
+            <ul class="list">
+              <li>
+                Conditioned reactions; habitual physiological patterns;
+                emotional reflexes
+              </li>
+              <li>
+                <span class="small"
+                  >Examples: insomnia, specific phobias, panic surges, nail
+                  biting/skin picking, bruxism, blushing, somatic pain
+                  patterns</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3>2) Insight present, symptom persists</h3>
+            <ul class="list">
+              <li>“I understand it, but it still happens.”</li>
+              <li>
+                <span class="small"
+                  >Examples: anxiety with good insight, post-processing trauma
+                  symptoms, compulsions experienced as irrational, rapid
+                  overreactions</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid">
+          <div>
+            <h3>3) State-dependent learning</h3>
+            <ul class="list">
+              <li>
+                Learning that updates only when accessed in a similar
+                state/context
+              </li>
+              <li>
+                Hypnosis re-accesses the learning context and installs
+                corrective experiences
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>When Hypnosis Is a Better First-Line Tool</h2>
+        <div class="grid two">
+          <div>
+            <h3>Prefer Hypnosis When…</h3>
+            <ul class="list">
+              <li>Symptoms are reflexive or habitual (“It just happens”)</li>
+              <li>
+                The issue is physiological + psychological (procedural loops)
+              </li>
+              <li>Talk therapy has plateaued despite insight</li>
+              <li>Over-analysis increases dysregulation</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Not Primary When…</h3>
+            <ul class="list">
+              <li>Stabilization/safety is the immediate need</li>
+              <li>Active psychosis or similar conditions</li>
+              <li>
+                Work primarily requires values clarification, narrative repair,
+                or meaning-making
+              </li>
+              <li>Foundational regulation skills are absent</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Referral Heuristic</h2>
+        <p class="small">
+          Quick rule:
+          <strong
+            >If the client is trying to change it consciously and the problem
+            isn’t listening, consider hypnosis.</strong
+          >
+        </p>
+        <div style="overflow: auto">
+          <table aria-label="Referral heuristic table">
+            <thead>
+              <tr>
+                <th>Client statement</th>
+                <th>Likely modality</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>“I need to understand why this happened.”</td>
+                <td>Talk therapy</td>
+              </tr>
+              <tr>
+                <td>“I know why — but my body still reacts.”</td>
+                <td>Hypnosis</td>
+              </tr>
+              <tr>
+                <td>“I can’t control it.”</td>
+                <td>Hypnosis</td>
+              </tr>
+              <tr>
+                <td>“I keep talking myself in circles.”</td>
+                <td>Hypnosis</td>
+              </tr>
+              <tr>
+                <td>“It feels automatic.”</td>
+                <td>Hypnosis</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>How Hypnosis Complements Therapy</h2>
+        <ul class="list">
+          <li>Not insight-based therapy; it’s a learning-based intervention</li>
+          <li>Targets habits/procedures rather than beliefs/narratives</li>
+          <li>
+            Implements change in systems therapy already identifies but can’t
+            modify directly
+          </li>
+        </ul>
+        <div class="note small">
+          Positioning for clinicians: “I focus on automatic problems the client
+          already understands intellectually. Hypnosis helps update the
+          nonconscious responses; psychotherapy provides meaning, context, and
+          integration.”
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>One-Sentence Distinction</h2>
+        <p>
+          <strong
+            >Therapy changes understanding. Hypnosis changes automatic
+            responses. Referral makes sense when understanding is no longer the
+            limiting factor.</strong
+          >
+        </p>
+      </section>
+
+      <footer class="small" style="color: var(--muted); margin: 1rem 0 2rem">
+        This page is an internal summary for clinical conversations and referral
+        discussions.
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const content = document.getElementById("contentRoot");
+        const inc = document.getElementById("incFont");
+        const dec = document.getElementById("decFont");
+        const copyBtn = document.getElementById("copyBtn");
+        const printBtn = document.getElementById("printBtn");
+
+        function getBase() {
+          return parseFloat(getComputedStyle(root).fontSize);
+        }
+        function setBase(px) {
+          root.style.fontSize = px + "px";
+        }
+
+        inc.addEventListener("click", () =>
+          setBase(Math.min(getBase() + 1, 22))
+        );
+        dec.addEventListener("click", () =>
+          setBase(Math.max(getBase() - 1, 12))
+        );
+
+        copyBtn.addEventListener("click", async () => {
+          // clone without toolbar text
+          const clone = content.cloneNode(true);
+          // remove interactive controls from copy (e.g., buttons)
+          clone.querySelectorAll("button").forEach((b) => b.remove());
+          try {
+            await navigator.clipboard.writeText(clone.innerText.trim());
+            copyBtn.textContent = "Copied";
+            setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
+          } catch (e) {
+            copyBtn.textContent = "Copy Failed";
+            setTimeout(() => (copyBtn.textContent = "Copy"), 1400);
+          }
+        });
+
+        printBtn.addEventListener("click", () => window.print());
+      })();
+    </script>
+  </body>
+</html>
