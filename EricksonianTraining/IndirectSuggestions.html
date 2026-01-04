@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Direct & Indirect Suggestions — Ericksonian Handout</title>
+    <style>
+      :root {
+        --bg: #fafafa;
+        --card: #ffffff;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --border: #e5e7eb;
+        --radius: 14px;
+        --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        --base-size: 17px;
+        --container: 980px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 var(--base-size) / 1.55 system-ui, -apple-system, Segoe UI,
+          Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      }
+      .page {
+        max-width: var(--container);
+        margin: 48px auto 80px;
+        padding: 0 18px;
+      }
+      header h1 {
+        margin: 0 0 10px;
+        letter-spacing: 0.2px;
+      }
+      header p.sub {
+        margin: 4px 0 16px;
+        color: var(--muted);
+      }
+
+      /* Erickson Handout Toolbar */
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 10px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 1px solid var(--border);
+        background: #fff;
+        padding: 8px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .btn.icon {
+        width: 36px;
+        text-align: center;
+        padding: 8px 0;
+      }
+      .spacer {
+        flex: 1 1 auto;
+      }
+      #status {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      /* Cards */
+      .cards {
+        margin-top: 16px;
+        display: grid;
+        gap: 14px;
+      }
+      details.card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      details.card > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 16px 18px;
+        font-weight: 700;
+        position: relative;
+        user-select: none;
+      }
+      details.card > summary::-webkit-details-marker {
+        display: none;
+      }
+      details.card > summary::after {
+        content: "▸";
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        color: var(--muted);
+        transition: transform 0.18s ease;
+      }
+      details[open] > summary::after {
+        transform: rotate(90deg);
+      }
+      .content {
+        padding: 6px 18px 18px;
+      }
+      .group-label {
+        margin: 6px 0 6px;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .line {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px dashed #eef0f2;
+      }
+      .line:last-child {
+        border-bottom: 0;
+      }
+      .idx {
+        min-width: 2.2ch;
+        color: var(--muted);
+        font-feature-settings: "tnum" 1, "lnum" 1;
+      }
+      .line.example .idx {
+        visibility: hidden;
+      }
+      .line.example .txt {
+        padding-left: 1.4ch;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      @media print {
+        .toolbar {
+          display: none !important;
+        }
+        .page {
+          margin: 0;
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Direct & Indirect Suggestions — Ericksonian Handout</h1>
+        <p class="sub">
+          Responsive handout with toolbar. Content auto-renders from JSON to
+          avoid long-hand markup errors.
+        </p>
+      </header>
+
+      <!-- Erickson Handout Toolbar -->
+      <div class="toolbar" role="toolbar" aria-label="Erickson Handout Toolbar">
+        <button class="btn primary" id="printBtn" title="Print">Print</button>
+        <button class="btn" id="copyBtn" title="Copy all lines">Copy</button>
+        <div class="spacer"></div>
+        <button
+          class="btn icon"
+          id="smallerBtn"
+          aria-label="Decrease font size"
+        >
+          A−
+        </button>
+        <button class="btn icon" id="resetBtn" aria-label="Reset font size">
+          A
+        </button>
+        <button class="btn icon" id="largerBtn" aria-label="Increase font size">
+          A+
+        </button>
+        <span id="status" aria-live="polite"></span>
+      </div>
+
+      <main id="cards" class="cards" aria-label="Handout cards"></main>
+    </div>
+
+    <!-- JSON CONTENT PLACEHOLDER
+       Next chunks will paste JSON into this <script> element.
+       Do NOT change the shape (order, sections, groups, lines).
+  -->
+    <script type="application/json" id="handoutData">
+      {
+        "order": [
+          "Results",
+          "Behavior",
+          "Potential",
+          "Beliefs",
+          "Values",
+          "Identity",
+          "Instructions"
+        ],
+        "sections": {
+          "Results": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You will begin to notice the results you desire.",
+                  "You will see yourself achieving your goals.",
+                  "You are already making progress toward your desired outcomes.",
+                  "Every day, you become more successful in what you do.",
+                  "You can see the positive results happening now."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "It may begin to seem that…",
+                  "There can be moments when…",
+                  "You might start to notice…",
+                  "Some people find themselves discovering that…",
+                  "Perhaps you’ve already been experiencing…",
+                  "It could be that something inside is beginning to shift…",
+                  "You might find that what used to be difficult becomes easier somehow…"
+                ]
+              }
+            ]
+          },
+
+          "Behavior": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You will act with confidence in all situations.",
+                  "You behave calmly and decisively.",
+                  "You handle challenges with ease and poise.",
+                  "You respond automatically in productive ways.",
+                  "Your actions consistently support your success."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "You may begin to respond in new ways…",
+                  "It could be interesting to notice yourself acting differently…",
+                  "Sometimes people realize they’re already doing [behavior] without thinking about it…",
+                  "You might start to catch yourself choosing differently…",
+                  "It can be surprising how naturally you move toward what works…",
+                  "Part of you may already know how to do this more easily…"
+                ]
+              }
+            ]
+          },
+
+          "Potential": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You are realizing your full potential.",
+                  "You have all the resources you need within you.",
+                  "You can access your inner strengths easily.",
+                  "You are capable of more than you ever imagined.",
+                  "Your abilities continue to expand and grow."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "You might find that you can…",
+                  "There’s a part of you that already knows how to…",
+                  "It’s possible that new abilities are emerging…",
+                  "You could begin to discover more of what you’re capable of…",
+                  "People sometimes realize they’ve released what they no longer need…",
+                  "And as that happens, new possibilities tend to open naturally…"
+                ]
+              }
+            ]
+          },
+
+          "Beliefs": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You believe in yourself completely.",
+                  "You know you can succeed.",
+                  "You trust your own decisions and insights.",
+                  "You hold positive beliefs about yourself and your life.",
+                  "Your beliefs empower you to act confidently."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "You might begin to consider the idea that…",
+                  "Some part of you may already accept that…",
+                  "Perhaps you’ve always known, deep down, that…",
+                  "You could notice yourself starting to believe…",
+                  "It’s possible that new understandings are forming…",
+                  "Sometimes people discover they can trust themselves more easily…"
+                ]
+              }
+            ]
+          },
+
+          "Values": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You value honesty, growth, and self-respect.",
+                  "You are guided by what truly matters to you.",
+                  "You choose actions that reflect your core values.",
+                  "You honor your commitments and priorities.",
+                  "You align your choices with what is most important to you."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "You may find yourself feeling drawn toward what’s truly important…",
+                  "It could be that your sense of what matters most is becoming clearer…",
+                  "You might notice that certain motivations begin to align differently…",
+                  "Perhaps you’ve been allowing yourself to value [X] in new ways…",
+                  "And as you do, something inside feels right about that…",
+                  "Sometimes, even without trying, priorities naturally rearrange themselves…"
+                ]
+              }
+            ]
+          },
+
+          "Identity": {
+            "groups": [
+              {
+                "label": "Direct Suggestions",
+                "lines": [
+                  "You are a confident and capable person.",
+                  "You are someone who achieves what you set out to do.",
+                  "You are becoming the best version of yourself.",
+                  "You are a person who lives with purpose and clarity.",
+                  "You are the kind of person who follows through and succeeds."
+                ]
+              },
+              {
+                "label": "Indirect Suggestions",
+                "lines": [
+                  "You might begin to recognize yourself as someone who can…",
+                  "It could be interesting to notice how your sense of self evolves…",
+                  "Perhaps you’re already becoming the kind of person who…",
+                  "You may find yourself identifying more and more with that quality…",
+                  "And maybe, on some level, you’ve always been that person…",
+                  "Your unconscious may already know how to express that part of you more fully…"
+                ]
+              }
+            ]
+          },
+
+          "Instructions": {
+            "groups": [
+              {
+                "label": "How to create indirect suggestions",
+                "lines": [
+                  "Identify the desired direction behind a direct command.",
+                  "Example (Insomnia): Direct: 'You will fall asleep quickly.' → Direction: 'The mind can rest naturally when it’s ready.'",
+                  "Replace imperative verbs with permissive softeners such as may, might, could, can, begin to, or tend to.",
+                  "Example (Pain Management): Direct: 'You will stop feeling pain.' → Indirect: 'You might notice comfort growing in small ways.'",
+                  "Embed the suggestion within a temporal or contextual frame (e.g., 'There may come a time when…', 'As you continue to…').",
+                  "Example (Anxiety): Direct: 'You will feel calm.' → Indirect: 'There may come a moment when calm begins to appear naturally.'",
+                  "Use presuppositions that assume the change is already underway.",
+                  "Example (Insomnia): Direct: 'You will sleep better tonight.' → Indirect: 'You might notice that sleep begins to happen before you realize it.'",
+                  "Favor nominalizations and open verbs to invite unconscious interpretation.",
+                  "Example (Pain Management): Direct: 'Relax your muscles.' → Indirect: 'A sense of ease can begin to spread where it’s needed most.'",
+                  "Utilize observations and existing experience (what’s already happening).",
+                  "Example (Anxiety): Direct: 'Stop worrying.' → Indirect: 'As you notice your breathing, certain thoughts may start to drift by more quietly.'",
+                  "Layer two or more patterns to create a smooth, natural flow.",
+                  "Example (Pain Management): 'As you sit here, you might begin to notice how comfort starts to grow in small, helpful ways… without effort.'",
+                  "Invite possibilities rather than demand outcomes.",
+                  "Example (General): Instead of 'You will feel different,' try 'You might be curious about how change already begins to unfold…'"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    </script>
+
+    <script>
+      // Utility
+      const $ = (id) => document.getElementById(id);
+
+      // Toolbar
+      const printBtn = $("printBtn"),
+        copyBtn = $("copyBtn"),
+        smallerBtn = $("smallerBtn"),
+        largerBtn = $("largerBtn"),
+        resetBtn = $("resetBtn"),
+        statusEl = $("status");
+
+      const getSize = () =>
+        parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--base-size"
+          )
+        ) || 17;
+      const setSize = (px) =>
+        document.documentElement.style.setProperty(
+          "--base-size",
+          Math.max(12, Math.min(24, px)) + "px"
+        );
+
+      printBtn?.addEventListener("click", () => window.print());
+      copyBtn?.addEventListener("click", async () => {
+        const area = document.getElementById("cards");
+        const lines = Array.from(area.querySelectorAll(".line .txt")).map(
+          (el, i) => `${i + 1}. ${el.textContent.trim()}`
+        );
+        try {
+          await navigator.clipboard.writeText(lines.join("\n"));
+          statusEl.textContent = "Copied";
+          setTimeout(() => (statusEl.textContent = ""), 1500);
+        } catch {
+          statusEl.textContent = "Copy failed";
+          setTimeout(() => (statusEl.textContent = ""), 1500);
+        }
+      });
+      smallerBtn?.addEventListener("click", () => setSize(getSize() - 1));
+      largerBtn?.addEventListener("click", () => setSize(getSize() + 1));
+      resetBtn?.addEventListener("click", () => setSize(17));
+
+      // Renderer
+      function makeGroup(label, lines) {
+        const wrap = document.createElement("section");
+        if (label) {
+          const h = document.createElement("div");
+          h.className = "group-label";
+          h.textContent = label;
+          wrap.appendChild(h);
+        }
+        let idx = 1;
+        for (const line of lines || []) {
+          const row = document.createElement("div");
+          const isExample = /^Example/i.test(line.trim());
+          row.className = isExample ? "line example" : "line";
+          const n = document.createElement("span");
+          n.className = "idx";
+          n.textContent = idx++ + ".";
+          const t = document.createElement("span");
+          t.className = "txt";
+          t.textContent = line;
+          row.append(n, t);
+          wrap.appendChild(row);
+        }
+        return wrap;
+      }
+
+      function makeCard(title, groups) {
+        const det = document.createElement("details");
+        det.className = "card";
+        if (title !== "Instructions") det.open = true;
+        const sum = document.createElement("summary");
+        sum.textContent = title;
+        det.appendChild(sum);
+        const content = document.createElement("div");
+        content.className = "content";
+        det.appendChild(content);
+        for (const g of groups || []) {
+          console.assert(
+            g && Array.isArray(g.lines),
+            "Group lines must be array",
+            g
+          );
+          content.appendChild(makeGroup(g.label, g.lines || []));
+        }
+        return det;
+      }
+
+      (function init() {
+        const cards = $("cards");
+        let data = null;
+        try {
+          data = JSON.parse($("handoutData")?.textContent || "{}");
+          console.assert(
+            data && data.sections && data.order,
+            "Invalid data shape"
+          );
+        } catch (e) {
+          console.error("JSON parse error", e);
+          statusEl.textContent = "Data error";
+          return;
+        }
+
+        let sectionCount = 0,
+          lineCount = 0;
+        for (const name of data.order || []) {
+          const sec = data.sections?.[name];
+          if (!sec) continue;
+          const groups = Array.isArray(sec.groups) ? sec.groups : [];
+          groups.forEach((g) => (lineCount += (g.lines || []).length));
+          cards.appendChild(makeCard(name, groups));
+          sectionCount++;
+        }
+        statusEl.textContent = `${sectionCount} sections • ${lineCount} lines`;
+      })();
+    </script>
+  </body>
+</html>
