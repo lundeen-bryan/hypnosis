@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Insomnia Session — Ericksonian Outline (Responsive Handout)</title>
+  <style>
+    :root{
+      --bg:#0b0e12;
+      --card:#11161c;
+      --ink:#e7edf6;
+      --muted:#9aa7b4;
+      --accent:#5aa2ff;
+      --border:#1e2630;
+      --radius:14px;
+      --shadow:0 6px 22px rgba(0,0,0,.28);
+      --base-size:17px;
+      --container:980px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg:#fafafa; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
+        --accent:#2563eb; --border:#e5e7eb; --shadow:0 6px 20px rgba(0,0,0,.06);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font:400 var(--base-size)/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    }
+    .page{ max-width:var(--container); margin:48px auto 80px; padding:0 18px; }
+    header h1{ margin:0 0 6px; letter-spacing:.2px; font-weight:800; }
+    header p.sub{ margin:6px 0 16px; color:var(--muted) }
+
+    /* Erickson Handout Toolbar */
+    .toolbar{
+      position:sticky; top:0; z-index:10; background:var(--card);
+      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    }
+    .btn{
+      border:1px solid var(--border); background:#fff0; color:var(--ink);
+      padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:700; font-size:.95rem;
+    }
+    .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent) }
+    .btn.icon{ width:36px; text-align:center; padding:8px 0 }
+    .spacer{ flex:1 1 auto }
+    #status{ color:var(--muted); font-size:.9rem }
+
+    /* Cards */
+    .cards{ margin-top:16px; display:grid; gap:14px }
+    details.card{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden;
+    }
+    details.card>summary{
+      list-style:none; cursor:pointer; padding:16px 18px; font-weight:800; position:relative; user-select:none;
+    }
+    details.card>summary::-webkit-details-marker{ display:none }
+    details.card>summary::after{
+      content:"▸"; position:absolute; right:16px; top:16px; color:var(--muted); transition:transform .18s ease;
+    }
+    details[open]>summary::after{ transform:rotate(90deg) }
+    .content{ padding:10px 18px 18px }
+    .content p{ margin:.65rem 0 }
+    .content blockquote{
+      margin:.75rem 0; padding:10px 14px; border-left:3px solid var(--accent); background:color-mix(in lab, var(--accent) 11%, transparent);
+      border-radius:8px;
+    }
+    .grid-2{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr))}
+    .list-tight li{ margin:.3rem 0 }
+    table{ width:100%; border-collapse:collapse; margin:.6rem 0 }
+    th,td{ text-align:left; padding:8px 10px; border-bottom:1px dashed color-mix(in lab, var(--ink) 18%, transparent) }
+    code.k{ background:color-mix(in lab, var(--ink) 8%, transparent); padding:.1rem .4rem; border-radius:6px; font-size:.92em }
+
+    @media print{
+      .toolbar{ display:none !important }
+      .page{ margin:0; max-width:none }
+      details.card{ box-shadow:none }
+      details.card>summary::after{ content:"" }
+      details.card{ border-color:#bbb }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Insomnia Session — Ericksonian Outline</h1>
+      <p class="sub">Responsive handout with the Ericksonian Handout Toolbar. Content renders from JSON to avoid long-hand markup errors.</p>
+    </header>
+
+    <!-- Erickson Handout Toolbar -->
+    <div class="toolbar" role="toolbar" aria-label="Erickson Handout Toolbar">
+      <button class="btn primary" id="printBtn" title="Print">Print</button>
+      <button class="btn" id="copyBtn" title="Copy all">Copy</button>
+      <div class="spacer"></div>
+      <button class="btn icon" id="smallerBtn" aria-label="Decrease font size">A−</button>
+      <button class="btn icon" id="resetBtn" aria-label="Reset font size">A</button>
+      <button class="btn icon" id="largerBtn" aria-label="Increase font size">A+</button>
+      <span id="status" aria-live="polite"></span>
+    </div>
+
+    <main id="cards" class="cards" aria-label="Handout cards"></main>
+  </div>
+
+  <!-- DATA -->
+  <script type="application/json" id="outlineData">
+  {
+    "order": [
+      "I. Pre-Talk (Resource Reframing)",
+      "II. Induction and Trance Access",
+      "III. Nested Loop Sequence (Five Interwoven Stories)",
+      "IV. Mid-Loop Experience — “Wake Up from the Neck Up”",
+      "V. Return through the Stories (Loop Closure)",
+      "VI. Post-Hypnotic Integration (Indirect Suggestions)",
+      "VII. Awakening and Re-Orientation",
+      "VIII. Summary of Structure"
+    ],
+    "sections": {
+      "I. Pre-Talk (Resource Reframing)": {
+        "blocks": [
+          {"type":"p","html":"<strong>Purpose:</strong> Establish that the client already has the internal resources for natural sleep."},
+          {"type":"p","html":"People already have within them the resources needed to resolve problems; these are strengths — including the body’s natural ability to rest and restore."},
+          {"type":"p","html":"When people experience difficulty sleeping, it helps to remember they’ve slept naturally and easily far more nights in life than they’ve had insomnia."},
+          {"type":"blockquote","html":"“You’ve already been an expert at going to sleep. Every night you eventually went back to sleep because your body already possesses those skills naturally.”"},
+          {"type":"p","html":"Sometimes there is a <em>part</em> that seems to have forgotten how to fall asleep naturally and easily, while another <em>part</em> still remembers perfectly well. Those parts can cooperate so the remembering part shows the other how to relax and return to the natural rhythm of sleep."},
+          {"type":"p","html":"Emphasize that this is not learning something new but <em>remembering</em> what has always been there — the built-in ability to drift and rest without trying."}
+        ]
+      },
+
+      "II. Induction and Trance Access": {
+        "blocks": [
+          {"type":"p","html":"<strong>Goal:</strong> Lead into a natural, comfortable trance."},
+          {"type":"p","html":"Use a gentle, permissive induction (conversational, eye fixation, or progressive relaxation) that invites awareness to turn inward."},
+          {"type":"p","html":"Allow breathing to become the focus. As attention narrows and the body relaxes, begin introducing associative phrasing that will later connect to the story loops."}
+        ]
+      },
+
+      "III. Nested Loop Sequence (Five Interwoven Stories)": {
+        "blocks": [
+          {"type":"p","html":"Open each story to ~60–70%, then pivot before resolution. Use short transitions that bridge themes of trust, letting go, and natural sleep."},
+          {
+            "type":"group","title":"Story 1: Milton Erickson and the Boiler Factory","items":[
+              "Erickson learns to tune out irrelevant noise and turn inward.",
+              "Pause before stating he slept peacefully.",
+              "<em>Bridge:</em> “As the noise faded into something distant and unimportant, it reminds me of another kind of letting go…”"
+            ]
+          },
+          {
+            "type":"group","title":"Story 2: The Ship’s Captain","items":[
+              "A captain in fog chooses to trust ship and currents; sleeps while navigation continues.",
+              "Pause before arriving safely at port.",
+              "<em>Bridge:</em> “When someone truly trusts a process, things can find their own way… much like…”"
+            ]
+          },
+          {
+            "type":"group","title":"Story 3: Sleeping Beauty and the Townsfolk","items":[
+              "An entire kingdom rests; stillness allows quiet renewal.",
+              "Pause before the awakening.",
+              "<em>Bridge:</em> “As the town rested, waiting in that quiet space, it brings to mind another story…”"
+            ]
+          },
+          {
+            "type":"group","title":"Story 4: Rip Van Winkle","items":[
+              "Trusts the mountain folk; a drink allows deep, beyond-time rest.",
+              "Pause before the eventual awakening.",
+              "<em>Bridge:</em> “Just as he allowed himself to rest completely, I’m reminded of how easily children can…”"
+            ]
+          },
+          {
+            "type":"group","title":"Story 5: Children Falling Asleep Anywhere","items":[
+              "Children naturally let go — car seat, arms, mid-sentence.",
+              "Complete this one more fully to segue into the mid-loop experience."
+            ]
+          }
+        ]
+      },
+
+      "IV. Mid-Loop Experience — “Wake Up from the Neck Up”": {
+        "blocks": [
+          {"type":"blockquote","html":"“Sometimes, even as the body sleeps deeply, the mind can wake up just enough to learn something valuable.”"},
+          {"type":"p","html":"Invite the experience of the mind waking while the body remains asleep. Reframe partial awakenings as moments when the unconscious protects sleep and learns new ways to remain at rest."},
+          {"type":"blockquote","html":"“The mind can wake to learn, while the body continues doing what it does best — resting, restoring, rebalancing — until both settle again into a deeper quiet.”"},
+          {"type":"p","html":"Then deepen: <em>“And as that understanding settles, everything can drift even deeper into rest.”</em>"}
+        ]
+      },
+
+      "V. Return through the Stories (Loop Closure)": {
+        "blocks": [
+          {"type":"p","html":"Revisit and complete earlier stories in reverse order to close loops and integrate learning."},
+          {"type":"ol","items":[
+            "Children — reaffirm natural, effortless sleep.",
+            "Rip Van Winkle — awaken renewed and restored.",
+            "Sleeping Beauty — the kingdom awakens refreshed.",
+            "The Ship’s Captain — awaken safely at port, guided perfectly.",
+            "Erickson in the Boiler Factory — wake rested, undisturbed by noise."
+          ]},
+          {"type":"p","html":"Each closure reinforces the theme that trust and letting go lead naturally to rest and renewal."}
+        ]
+      },
+
+      "VI. Post-Hypnotic Integration (Indirect Suggestions)": {
+        "blocks": [
+          {"type":"p","html":"<strong>Purpose:</strong> Link trance experience to nightly life using permissive, indirect phrasing that supports automatic continuity of learning."},
+          {"type":"blockquote","html":"“Each night, without trying, your body can remember more of how it sleeps easily. You might begin to notice that sleep can happen even before you realize it’s starting. There may come a time when the body remembers exactly how to rest naturally. You could find that what used to keep you awake simply fades into the background. It might surprise you how easily comfort begins to return when you stop trying to sleep. Some part of you already knows how to drift, rest, and dream in just the right way. You may discover that each breath gently invites the next moment of calm. Perhaps your mind can rest even while other parts of you continue learning how to let go. There can be a sense that sleep is something your body does perfectly well on its own. And as that happens, you might notice that waking feels clearer, calmer, and more refreshed.”"}
+        ]
+      },
+
+      "VII. Awakening and Re-Orientation": {
+        "blocks": [
+          {"type":"blockquote","html":"“And when your eyes open, you’ll feel clear, refreshed, and pleasantly awake — as though you’ve had exactly the right amount of rest.”"},
+          {"type":"p","html":"Invite a few deep breaths and gentle stretches; verify orientation and alertness."}
+        ]
+      },
+
+      "VIII. Summary of Structure": {
+        "blocks": [
+          {"type":"table","head":["Section","Purpose","Theme"],"rows":[
+            ["I. Pre-Talk","Reframe insomnia as misdirected learning; parts cooperation","Existing ability, confidence"],
+            ["II. Induction","Establish receptive trance","Relaxation, curiosity"],
+            ["III. Nested Loops","Deepen and absorb themes","Trust, letting go, renewal"],
+            ["IV. Wake-Up-Neck-Up","Reframe partial awakenings","Learning, safety, continuity"],
+            ["V. Reverse Closure","Complete and integrate","Trust → rest → renewal"],
+            ["VI. Post-Hypnotic","Generalize change","Natural sleep ability"],
+            ["VII. Awakening","Reorient refreshed","Completion, readiness"]
+          ]}
+        ]
+      }
+    }
+  }
+  </script>
+
+  <!-- RENDERER -->
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    // Toolbar controls
+    const printBtn = $("printBtn"),
+          copyBtn = $("copyBtn"),
+          smallerBtn = $("smallerBtn"),
+          largerBtn = $("largerBtn"),
+          resetBtn = $("resetBtn"),
+          statusEl = $("status");
+
+    const getSize = () =>
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--base-size")) || 17;
+    const setSize = (px) =>
+      document.documentElement.style.setProperty("--base-size", Math.max(12, Math.min(24, px)) + "px");
+
+    printBtn?.addEventListener("click", () => window.print());
+    copyBtn?.addEventListener("click", async () => {
+      try{
+        const text = document.getElementById("cards").innerText.trim();
+        await navigator.clipboard.writeText(text);
+        statusEl.textContent = "Copied";
+        setTimeout(()=>statusEl.textContent="",1500);
+      }catch{
+        statusEl.textContent = "Copy failed";
+        setTimeout(()=>statusEl.textContent="",1500);
+      }
+    });
+    smallerBtn?.addEventListener("click", ()=> setSize(getSize()-1));
+    largerBtn?.addEventListener("click", ()=> setSize(getSize()+1));
+    resetBtn?.addEventListener("click", ()=> setSize(17));
+
+    // Render helpers
+    function el(tag, attrs={}, html){
+      const node = document.createElement(tag);
+      for(const [k,v] of Object.entries(attrs||{})){
+        if(k==="class") node.className = v;
+        else if(k==="dataset") Object.assign(node.dataset, v);
+        else node.setAttribute(k, v);
+      }
+      if(html!=null) node.innerHTML = html;
+      return node;
+    }
+
+    function blockToNode(block){
+      if(block.type==="p") return el("p",{}, block.html);
+      if(block.type==="blockquote") return el("blockquote",{}, block.html);
+      if(block.type==="ol"){
+        const o = el("ol"); (block.items||[]).forEach(t=>o.append(el("li",{}, t)));
+        return o;
+      }
+      if(block.type==="ul"){
+        const u = el("ul",{class:"list-tight"}); (block.items||[]).forEach(t=>u.append(el("li",{}, t)));
+        return u;
+      }
+      if(block.type==="group"){
+        const wrap = el("section");
+        wrap.append(el("h4",{}, block.title||""));
+        const u = el("ul",{class:"list-tight"});
+        (block.items||[]).forEach(t=>u.append(el("li",{}, t)));
+        wrap.append(u);
+        return wrap;
+      }
+      if(block.type==="table"){
+        const t = el("table");
+        const thead = el("thead");
+        const trh = el("tr");
+        (block.head||[]).forEach(h=> trh.append(el("th",{}, h)));
+        thead.append(trh); t.append(thead);
+        const tbody = el("tbody");
+        (block.rows||[]).forEach(r=>{
+          const tr = el("tr");
+          r.forEach(c=> tr.append(el("td",{}, c)));
+          tbody.append(tr);
+        });
+        t.append(tbody);
+        return t;
+      }
+      return el("p",{}, "");
+    }
+
+    function makeCard(title, blocks){
+      const det = el("details",{class:"card"});
+      if(title !== "VIII. Summary of Structure") det.open = true;
+      const sum = el("summary",{}, title);
+      const content = el("div",{class:"content"});
+      (blocks||[]).forEach(b=> content.append(blockToNode(b)));
+      det.append(sum, content);
+      return det;
+    }
+
+    (function init(){
+      const cards = $("cards");
+      let data = null;
+      try{
+        data = JSON.parse($("outlineData")?.textContent || "{}");
+        if(!(data && data.sections && data.order)) throw new Error("Invalid data shape");
+      }catch(e){
+        console.error("JSON parse error", e);
+        statusEl.textContent = "Data error";
+        return;
+      }
+
+      let secCount=0, blkCount=0;
+      for(const name of data.order || []){
+        const sec = data.sections?.[name];
+        if(!sec) continue;
+        const blocks = Array.isArray(sec.blocks) ? sec.blocks : [];
+        blkCount += blocks.length;
+        cards.append(makeCard(name, blocks));
+        secCount++;
+      }
+      statusEl.textContent = `${secCount} sections • ${blkCount} blocks`;
+    })();
+  </script>
+</body>
+</html>
